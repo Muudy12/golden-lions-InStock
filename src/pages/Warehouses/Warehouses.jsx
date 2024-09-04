@@ -21,10 +21,12 @@ function Warehouses() {
 
   const addWarehouse = () => {
     alert("Add Warehouse Clicked!");
+    navigate(`/warehouses/add`);
   };
 
-  const goToDetail = () => {
+  const goToDetail = (warehouseId) => {
     alert("Warehouse Detail Clicked!");
+    navigate(`/warehouses/${warehouseId}`);
   };
 
   return (
@@ -75,7 +77,7 @@ function Warehouses() {
             <h3
               className="warehouse__title"
               data-label="WAREHOUSE"
-              onClick={goToDetail}
+              onClick={() => goToDetail(w.id)}
             >
               {w.warehouse}
               <ReactSVG src={ChevronIcon} />
