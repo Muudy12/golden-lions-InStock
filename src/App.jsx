@@ -19,7 +19,6 @@ function App() {
         <Header />
         <Routes>
           <Route path='/' element={<Warehouses />} />
-          <Route path='/warehouses' element={<Warehouses />} />
           <Route path='/warehouses/:warehouseId' element={<WarehouseDetails />} />
           <Route path='/warehouses/:warehouseId/edit' element={<EditWarehouse />} />
           <Route path='/warehouses/:warehouseId/add' element={ <AddNewWarehouse /> } />
