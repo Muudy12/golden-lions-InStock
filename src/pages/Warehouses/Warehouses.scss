@@ -1,4 +1,4 @@
-@import "../../styles/global.scss";
+@use "../../styles/global.scss" as *;
 
 html,
 body {
@@ -79,7 +79,7 @@ body {
         }
 
         &-input {
-          width: 100%;
+          width: 90%;
           height: 100%;
           outline: none;
           border: none;
@@ -93,7 +93,7 @@ body {
           @include tablet {
             padding: 0.8rem;
             font-size: 0.65rem;
-            width: 50%;
+            width: 85%;
           }
         }
       }

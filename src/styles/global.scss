@@ -1,5 +1,5 @@
-@import "./partials/mixins";
-@import "./partials/typography";
-@import "./partials/media";
-@import "./partials/variables";
-@import "./partials/colors";
+@use "./partials/mixins" as *;
+@use "./partials/typography" as *;
+@use "./partials/variables" as *;
+@use "./partials/media" as *;
+@use "./partials/colors" as *;
