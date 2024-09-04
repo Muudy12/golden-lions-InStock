@@ -1,1 +1,11 @@
 @import "./styles/global.scss";
+
+body {
+  padding: 1.5rem 1rem;
+  @include tablet {
+    padding: 2rem 1.5rem;
+  }
+  @include desktop {
+    padding: 2rem 5rem;
+  }
+}
