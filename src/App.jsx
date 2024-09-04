@@ -19,14 +19,15 @@ function App() {
         <Header />
         <Routes>
           <Route path='/' element={<Warehouses />} />
+          <Route path='/warehouses' element={<Warehouses />} />
           <Route path='/warehouses/:warehouseId' element={<WarehouseDetails />} />
           <Route path='/warehouses/:warehouseId/edit' element={<EditWarehouse />} />
-          <Route path='/warehouses/:warehouseId/add' element={ <AddNewWarehouse /> } />
-
+          <Route path='/warehouses/add' element={ <AddNewWarehouse /> } />
+         
           <Route path='/inventories/' element={<Inventory />} />
-          <Route path='/inventories/:id' element={<InventoryDetails />} />
-          <Route path='/inventories/:id/edit' element={<EditInventory />} />
-          <Route path='/inventories/:id/add' element={<AddNewInventory/>} />
+          <Route path='/inventories/:inventoryId' element={<InventoryDetails />} />
+          <Route path='/inventories/:inventoryId/edit' element={<EditInventory />} />
+          <Route path='/inventories/add' element={<AddNewInventory/>} />
         </Routes>
         <Footer/>
       </BrowserRouter>

@@ -14,16 +14,19 @@ function Warehouses() {
     alert("Delete Clicked!");
   };
 
-  const editWarehouse = () => {
+  const editWarehouse = (warehouseId) => {
     alert("Edit Clicked!");
+    navigate(`/warehouses/${warehouseId}/edit`);
   };
 
   const addWarehouse = () => {
     alert("Add Warehouse Clicked!");
+    navigate(`/warehouses/add`);
   };
 
-  const goToDetail = () => {
+  const goToDetail = (warehouseId) => {
     alert("Warehouse Detail Clicked!");
+    navigate(`/warehouses/${warehouseId}`);
   };
 
   return (
@@ -74,7 +77,7 @@ function Warehouses() {
             <h3
               className="warehouse__title"
               data-label="WAREHOUSE"
-              onClick={goToDetail}
+              onClick={() => goToDetail(w.id)}
             >
               {w.warehouse}
               <ReactSVG src={ChevronIcon} />
@@ -94,7 +97,7 @@ function Warehouses() {
             </h3>
             <h3 className="warehouse__actions" data-label="ACTIONS">
               <ReactSVG src={DeleteIcon} onClick={deleteWarehouse} />
-              <ReactSVG src={EditIcon} onClick={editWarehouse} />
+              <ReactSVG src={EditIcon} onClick={() => editWarehouse(w.id)} />
             </h3>
           </div>
         );
@@ -106,6 +109,7 @@ function Warehouses() {
 function getTestData() {
   return [
     {
+      id: "1",
       warehouse: "Washington",
       address: "33 Pearl Street SW, Washington, USA",
       contact: {
@@ -124,6 +128,7 @@ function getTestData() {
       ],
     },
     {
+      id: "2",
       warehouse: "Washington",
       address: "33 Pearl Street SW, Washington, USA",
       contact: {
@@ -142,6 +147,7 @@ function getTestData() {
       ],
     },
     {
+      id: "3",
       warehouse: "Washington",
       address: "33 Pearl Street SW, Washington, USA",
       contact: {
