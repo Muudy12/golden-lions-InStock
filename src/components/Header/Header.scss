@@ -1,0 +1,49 @@
+@import '../../styles/global.scss';
+
+body {
+    background: linear-gradient( rgb(35, 41, 64) 14rem,
+    rgba(255, 255, 255, 1) 0rem);
+    min-height: 100vh;
+}
+
+.header {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    // padding-top : 1.5rem;
+    @include tablet {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+    }
+    &-logo {
+        width: 8.0369rem;
+        height: 1.75rem;
+        margin: auto;
+        @include tablet {
+            margin: 0;
+        }
+    }
+    &-links {
+        display: flex;
+        justify-content: space-around;
+        @include tablet {
+            gap: 2rem;
+        }
+        &__item {
+            text-decoration: none;
+            color: $secondary-cloud-color;
+            &:hover{
+                text-decoration: underline;
+            }
+        }
+        .warehouse-link {
+            background-color: $primary-text-color;
+            padding: .8125rem 2.25rem;
+            border-radius: 1.25rem;
+            @include tablet {
+                padding: .5rem 1rem;
+            }
+        }
+    }
+}
