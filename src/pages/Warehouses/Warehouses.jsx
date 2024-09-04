@@ -5,8 +5,27 @@ import EditIcon from "../../assets/icons/edit-24px.svg";
 import { ReactSVG } from "react-svg";
 import ChevronIcon from "../../assets/icons/chevron_right-24px.svg";
 import SortIcon from "../../assets/icons/sort-24px.svg";
+import { useNavigate } from "react-router-dom";
 
 function Warehouses() {
+  const navigate = useNavigate();
+
+  const deleteWarehouse = () => {
+    alert("Delete Clicked!");
+  };
+
+  const editWarehouse = () => {
+    alert("Edit Clicked!");
+  };
+
+  const addWarehouse = () => {
+    alert("Add Warehouse Clicked!");
+  };
+
+  const goToDetail = () => {
+    alert("Warehouse Detail Clicked!");
+  };
+
   return (
     <div className="warehouses">
       <header className="warehouses__title">
@@ -24,7 +43,9 @@ function Warehouses() {
               className="options__search-form-input"
             />
           </form>
-          <button className="options__add-btn">+ Add New Warehouse</button>
+          <button className="options__add-btn" onClick={addWarehouse}>
+            + Add New Warehouse
+          </button>
         </div>
       </header>
 
@@ -50,7 +71,11 @@ function Warehouses() {
       {getTestData().map((w, index) => {
         return (
           <div key={index} className="warehouses__list-item warehouse">
-            <h3 className="warehouse__title" data-label="WAREHOUSE">
+            <h3
+              className="warehouse__title"
+              data-label="WAREHOUSE"
+              onClick={goToDetail}
+            >
               {w.warehouse}
               <ReactSVG src={ChevronIcon} />
             </h3>
@@ -68,8 +93,8 @@ function Warehouses() {
               <span>{w.contact.email}</span>
             </h3>
             <h3 className="warehouse__actions" data-label="ACTIONS">
-              <ReactSVG src={DeleteIcon} />
-              <ReactSVG src={EditIcon} />
+              <ReactSVG src={DeleteIcon} onClick={deleteWarehouse} />
+              <ReactSVG src={EditIcon} onClick={editWarehouse} />
             </h3>
           </div>
         );
