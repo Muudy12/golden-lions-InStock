@@ -140,6 +140,7 @@
         color: $primary-white-color;
         font-size: 0.7rem;
         padding: 0.45rem;
+        cursor: pointer;
 
         @include tablet {
           width: 50%;
@@ -175,6 +176,7 @@
             height: 1rem;
             display: flex;
             align-items: center;
+            cursor: pointer;
           }
         }
       }
@@ -258,6 +260,7 @@
       & .warehouse {
         &__title {
           order: 0;
+          cursor: pointer;
 
           & svg {
             height: 1.2rem;
@@ -294,6 +297,7 @@
 
         &__actions {
           order: 4;
+          cursor: pointer;
 
           @include tablet {
             order: 0;
