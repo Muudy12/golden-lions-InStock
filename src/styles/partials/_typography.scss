@@ -1,6 +1,80 @@
+@use './media' as *;
+
 @font-face {
-    font-family: "Roboto", sans-serif;
-    src: url("../../assets/fonts/Roboto/Roboto-Regular.ttf") format('truetype');
+    font-family: 'Titillium Web';
+    src: url('../src/assets/fonts/TitilliumWeb-Regular.ttf') format('openType');
     font-weight: 400;
-    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Titillium Web';
+    src: url('../src/assets/fonts/TitilliumWeb-SemiBold.ttf') format('openType');
+    font-weight: 600;
+}
+
+body {
+    font-family: 'Titillium Web';
+    font-weight: 400;
+    font-size: .8125rem;
+    line-height: 1.25rem;
+    .large {
+        font-size: .9375rem;
+        line-height: 1.625rem;
+    }
+    .small {
+        font-size: .6875rem;
+        line-height: 1rem;
+    }
+    @include tablet {
+        font-size: .875rem;
+        line-height: 1.375rem;
+        .large {
+            font-size: 1rem;
+            line-height: 1.75rem;
+        }
+        .small {
+            font-size: .75rem;
+            line-height: 1.125rem;
+        }
+    }
+}
+
+h1 {
+    font-size: 1.75rem;
+    line-height: 2.25rem;
+    font-weight: 600;
+    @include tablet {
+        font-size: 2rem;
+        line-height: 2.5rem;
+    }
+}
+
+h2 {
+    font-size: 1.25rem;
+    line-height: 1.75rem;
+    font-weight: 600;
+    @include tablet {
+        font-size: 1.5rem;
+        line-height: 2rem;
+    }
+}
+
+h3, label, button {
+    font-size: .8125rem;
+    line-height: 1.25rem;
+    font-weight: 400;
+    @include tablet {
+        font-size: .875rem;
+        line-height: 1.375rem;
+    }
+}
+
+h4 {
+    font-size: .6875rem;
+    line-height: 1rem;
+    font-weight: 400;
+    @include tablet {
+        font-size: .75rem;
+        line-height: 1.125rem;
+    }
 }
