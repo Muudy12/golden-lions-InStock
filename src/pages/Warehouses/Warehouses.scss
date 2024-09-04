@@ -262,7 +262,13 @@
       & .warehouse {
         &__title {
           order: 0;
-          cursor: pointer;
+
+          &-name {
+            &:hover {
+              text-decoration: underline;
+              cursor: pointer;
+            }
+          }
 
           & svg {
             height: 1.2rem;
@@ -270,6 +276,7 @@
             align-self: flex-end;
             box-sizing: border-box;
             padding-bottom: 0.1rem;
+            cursor: pointer;
           }
         }
 
