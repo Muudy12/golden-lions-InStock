@@ -3,8 +3,8 @@ import './Footer.scss'
 
 function Footer() {
   return (
-    <div>
-
+    <div className='footer'>
+      &copy; InStock Inc. All Rights Reserved.
     </div>
   )
 }

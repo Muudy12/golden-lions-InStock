@@ -1,0 +1,8 @@
+@use "./../../styles/partials/colors" as *;
+
+
+.footer{
+    display: flex;
+    justify-content: center;
+    color: $secondary-cloud-color;
+}

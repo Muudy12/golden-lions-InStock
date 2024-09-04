@@ -10,12 +10,11 @@ import Inventory from './pages/Inventory/Inventory'
 import InventoryDetails from './pages/Inventory/InventoryDetails/InventoryDetails'
 import EditInventory from './pages/Inventory/EditInventory/EditInventory'
 import AddNewInventory from './pages/Inventory/AddNewInventory/AddNewInventory'
+import "./App.scss";
 
 function App() {
-
   return (
     <>
-      <h1>Welcome to InStock client side!</h1>
       <BrowserRouter>
         <Header />
         <Routes>
@@ -35,4 +34,4 @@ function App() {
   )
 }
 
-export default App
+export default App;
