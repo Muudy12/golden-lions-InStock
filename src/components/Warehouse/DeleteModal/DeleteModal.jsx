@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { ReactSVG } from "react-svg";
+import { baseUrl } from "../../../utils/utils.js";
 import axios from 'axios';
 import ReactModal from 'react-modal'
 import DeleteModalStyles from './DeleteModal.scss'
@@ -21,7 +22,8 @@ function DeleteModal({ warehouseName }) {
     const warehouseId = event.target.id;
 
     try{
-      await axios.delete(``);
+      console.log(warehouseId)
+      // await axios.delete(`${baseUrl}/warehouses/${warehouseId}/`);
     } catch (error) {
       console.error('Error deleting warehouse', error)
     }
