@@ -127,6 +127,10 @@
             font-size: 0.65rem;
             width: 85%;
           }
+
+          &:focus::placeholder {
+            opacity: 0;
+          }
         }
       }
 
