@@ -4,6 +4,31 @@ import ArrowBackIcon from "../../../assets/icons/arrow_back-24px.svg"
 import './EditWarehouse.scss'
 
 function EditWarehouse() {
+  // State to keep tracking validation for each field
+  const [isError, setIsError] = useState({
+    name: true,
+    street: true,
+    city: true,
+    country: true,
+    contactName: true,
+    position: true,
+    phone: true,
+    email: true
+  });
+  // Validation of individual fields
+  const validationHandler = (event) => {
+    const { name, value } = event.target;
+    setIsError(currentErrors => ({
+      ...currentErrors,
+      [name]: value.trim()  !=='',
+    }));
+  };
+
+  const submitFormHandler = (event) =>{
+    event.preventDefault();
+
+    const formData = new FormData(event.target);
+  }
   return (
     <div className="edit">
       <div className="edit__header">
