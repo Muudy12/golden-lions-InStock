@@ -3,18 +3,27 @@ import { ReactSVG } from "react-svg";
 import axios from "axios";
 import "./Inventory.scss";
 import { baseUrl } from "./../../utils/utils.js";
+import { Api } from "./../../utils/utils.js";
+import DeleteIcon from "../../assets/icons/delete_outline-24px.svg";
 import EditIcon from "../../assets/icons/edit-24px.svg";
 import ChevronIcon from "../../assets/icons/chevron_right-24px.svg";
 import SortIcon from "../../assets/icons/sort-24px.svg";
 import DeleteInventory from "./Modals/DeleteModal.jsx";
 
-function Inventory() {
+function Inventory({ warehouseId }) {
+  const api = new Api();
   const [inventoryList, setInventoryList] = useState([]);
 
   useEffect(() => {
     const getInventoryList = async () => {
-      const response = await axios.get(`${baseUrl}/inventories`);
-      setInventoryList(response.data);
+      let response;
+      console.log("test ", warehouseId, { warehouseId });
+      if (warehouseId !== undefined) {
+        response = await api.getInventoriesGivenWarehouseId(warehouseId);
+      } else {
+        response = await api.getAllInventories();
+      }
+      setInventoryList(response);
     };
     getInventoryList();
   }, []);
