@@ -1,0 +1,13 @@
+@mixin roundButton {
+    border-radius: 1.25rem;
+    height: 2.25rem;
+    width: 100%;
+    padding: 0.45rem;
+    border: none;
+
+
+    @include tablet {
+        padding: 0 1rem;
+        width: fit-content;
+    }
+}
