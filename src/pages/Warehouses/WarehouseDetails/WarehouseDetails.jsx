@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 import { Api } from "../../../utils/utils";
 
+import Inventory from '../../Inventory/Inventory.jsx';
 import { ReactSVG } from "react-svg";
 import backIcon from "../../../assets/icons/arrow_back-24px.svg";
 import editIcon from "../../../assets/icons/edit-white-24px.svg";
@@ -81,6 +82,7 @@ function WarehouseDetails() {
             </div>
           </section>
         </section>
+        <Inventory warehouseId={params.warehouseId}/>
       </div>
     </>
   );
