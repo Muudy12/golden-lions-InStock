@@ -6,13 +6,11 @@ import CloseIcon from "../../../assets/icons/close-24px.svg";
 import axios from 'axios';
 import ReactModal from 'react-modal'
 import './DeleteModal.scss'
-import { useParams } from 'react-router-dom';
 
 ReactModal.setAppElement('#root')
 
 function DeleteModal({ warehouseName, warehouseId }) {
   const [showModal, setShowModal] = useState(false);
-  //const {warehouseId} = useParams();
 
   const openModal = () => setShowModal(true);
 
