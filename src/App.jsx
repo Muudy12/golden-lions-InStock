@@ -23,7 +23,7 @@ function App() {
           <Route path='/warehouses/:warehouseId' element={<WarehouseDetails />} />
           <Route path='/warehouses/:warehouseId/edit' element={<EditWarehouse />} />
           <Route path='/warehouses/add' element={ <AddNewWarehouse /> } />
-         
+
           <Route path='/inventories/' element={<Inventory />} />
           <Route path='/inventories/:inventoryId' element={<InventoryDetails />} />
           <Route path='/inventories/:inventoryId/edit' element={<EditInventory />} />
