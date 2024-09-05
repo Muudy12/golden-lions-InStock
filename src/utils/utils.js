@@ -16,6 +16,15 @@ class Api {
     }
   }
 
+  async getWarehouseById(id) {
+    try {
+      const response = await axios.get(`${this.baseUrl}/warehouses/${id}`);
+      return response.data;
+    } catch (err) {
+      console.log(`Failed to get warehouse with id: ${id}`);
+    }
+  }
+
   async deleteInventoryById(id) {
     try {
       const response = await axios.delete();
