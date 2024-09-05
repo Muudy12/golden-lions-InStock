@@ -13,34 +13,30 @@ function EditWarehouse() {
       <form className="edit__form">
         <div className="edit__form-warehouse">
           <h2 className="edit__form-warehouse-title">Warehouse Details</h2>
-          <label className="edit__form-label" htmlFor="edit__form-warehouse-name">Warehouse Name</label>
+          <h3 className="edit__form-label">Warehouse Name</h3>
           <input
             className="edit__form-input"
-            id="edit__form-warehouse-name"
             type="text"
             placeholder="Warehouse Name"
             name="name"
           />
-          <label className="edit__form-label" htmlFor="edit__form-warehouse-street">Street Address</label>
+          <h3 className="edit__form-label">Street Address</h3>
           <input
             className="edit__form-input"
-            id="edit__form-warehouse-street"
             type="text"
             placeholder="Street Address"
             name="street"
           />
-          <label className="edit__form-label" htmlFor="edit__form-warehouse-city">City</label>
+          <h3 className="edit__form-label">City</h3>
           <input
             className="edit__form-input"
-            id="edit__form-warehouse-city"
             type="text"
             placeholder="City"
             name="city"
           />
-          <label className="edit__form-label" htmlFor="edit__form-warehouse-country">Country</label>
+          <h3 className="edit__form-label">Country</h3>
           <input
             className="edit__form-input"
-            id="edit__form-warehouse-country"
             type="text"
             placeholder="Country"
             name="country"
@@ -48,34 +44,30 @@ function EditWarehouse() {
         </div>
         <div className="edit__form-contact">
         <h2 className="edit__form-contact-title">Contact Details</h2>
-          <label className="edit__form-label" htmlFor="edit__form-contact-name">Contact Name</label>
+          <h3 className="edit__form-label">Contact Name</h3>
           <input
             className="edit__form-input"
-            id="edit__form-contact-name"
             type="text"
             placeholder="Full Name"
             name="name"
           />
-          <label className="edit__form-label" htmlFor="edit__form-contact-position">Position</label>
+          <h3 className="edit__form-label" htmlFor="edit__form-contact-position">Position</h3>
           <input
             className="edit__form-input"
-            id="edit__form-contact-position"
             type="text"
             placeholder="Position"
             name="position"
           />
-          <label className="edit__form-label" htmlFor="edit__form-contact-phone">Phone Number</label>
+          <h3 className="edit__form-label">Phone Number</h3>
           <input
             className="edit__form-input"
-            id="edit__form-contact-phone"
             type="text"
             placeholder="Phone Number"
             name="phone"
           />
-          <label className="edit__form-label" htmlFor="edit__form-contact-email">Email</label>
+          <h3 className="edit__form-label">Email</h3>
           <input
             className="edit__form-input"
-            id="edit__form-contact-email"
             type="text"
             placeholder="Email"
             name="email"
