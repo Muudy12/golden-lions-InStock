@@ -45,7 +45,7 @@ function DeleteModal({ warehouseName }) {
       overlayClassName='delete-modal__overlay'
       >
         <div className='delete-modal__top-container'>
-          <ReactSVG src={CloseIcon} onClick={closeModal}/>
+          <ReactSVG src={CloseIcon} onClick={closeModal} className='delete-modal__close'/>
         </div>
         <h2 className='delete-modal__title'>{`Delete ${warehouseName} warehouse?`}</h2>
         <p className='delete-modal__text'>{`Please confirm that you'd like to delete the ${warehouseName} from the list of warehouses. You won't be able to undo this action?`}</p>
