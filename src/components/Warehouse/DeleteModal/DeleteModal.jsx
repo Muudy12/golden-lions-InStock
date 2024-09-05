@@ -10,9 +10,9 @@ import { useParams } from 'react-router-dom';
 
 ReactModal.setAppElement('#root')
 
-function DeleteModal({ warehouseName }) {
+function DeleteModal({ warehouseName, warehouseId }) {
   const [showModal, setShowModal] = useState(false);
-  const {warehouseId} = useParams();
+  //const {warehouseId} = useParams();
 
   const openModal = () => setShowModal(true);
 
