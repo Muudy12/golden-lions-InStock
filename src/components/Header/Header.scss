@@ -27,6 +27,9 @@ body {
             margin: 0;
         }
     }
+    &-link {
+        align-self: center;
+    }
     &-links {
         display: flex;
         justify-content: space-around;
@@ -39,9 +42,13 @@ body {
             &:hover{
                 text-decoration: underline;
             }
+            @include tablet {
+                padding: .5rem 1rem;
+            }
         }
         .active-link {
             background-color: $primary-text-color;
+            color: $primary-white-color;
             padding: .8125rem 2.25rem;
             border-radius: 1.25rem;
             @include tablet {

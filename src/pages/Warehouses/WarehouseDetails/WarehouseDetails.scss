@@ -28,6 +28,24 @@
             & > svg, div {
                 display: flex;
             }
+            &-link {
+                span {
+                    display: none;
+                }
+            }
+            @include tablet {
+                border-radius: 40px;
+                &-link {
+                    display: flex;
+                    align-items: center;
+                    gap: .5rem;
+                    text-decoration: none;
+                    color: $primary-white-color;
+                    span {
+                        display: inline;
+                    }
+                }
+            }
         }
     }
 }
@@ -47,9 +65,29 @@
     p {
         color: $primary-text-color;
     }
+    &__address {
+        &--street {
+            display: inline;
+            @include tablet {
+                display: block;
+            }
+        }
+    }
     &__contact {
         display: flex;
         justify-content: space-between;
         padding-bottom: 1rem;
+        @include tablet {
+            gap: 5rem;
+            border-left: 1px solid $secondary-cloud-color;
+            padding-left: 5rem;
+            @include desktop {
+                padding-left: 3rem;
+            }
+        }
+    }
+    @include tablet {
+        flex-direction: row;
+        justify-content: space-between;
     }
 }

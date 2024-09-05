@@ -1,0 +1,152 @@
+@font-face {
+  font-family: "Titillium Web";
+  src: url("../src/assets/fonts/TitilliumWeb-Regular.ttf") format("openType");
+  font-weight: 400;
+}
+@font-face {
+  font-family: "Titillium Web";
+  src: url("../src/assets/fonts/TitilliumWeb-SemiBold.ttf") format("openType");
+  font-weight: 600;
+}
+body {
+  font-family: "Titillium Web";
+  font-weight: 400;
+  font-size: 0.8125rem;
+  line-height: 1.25rem;
+}
+body .large {
+  font-size: 0.9375rem;
+  line-height: 1.625rem;
+}
+body .small {
+  font-size: 0.6875rem;
+  line-height: 1rem;
+}
+@media screen and (min-width: 768px) {
+  body {
+    font-size: 0.875rem;
+    line-height: 1.375rem;
+  }
+  body .large {
+    font-size: 1rem;
+    line-height: 1.75rem;
+  }
+  body .small {
+    font-size: 0.75rem;
+    line-height: 1.125rem;
+  }
+}
+
+h1 {
+  font-size: 1.75rem;
+  line-height: 2.25rem;
+  font-weight: 600;
+}
+@media screen and (min-width: 768px) {
+  h1 {
+    font-size: 2rem;
+    line-height: 2.5rem;
+  }
+}
+
+h2 {
+  font-size: 1.25rem;
+  line-height: 1.75rem;
+  font-weight: 600;
+}
+@media screen and (min-width: 768px) {
+  h2 {
+    font-size: 1.5rem;
+    line-height: 2rem;
+  }
+}
+
+h3, label, button {
+  font-size: 0.8125rem;
+  line-height: 1.25rem;
+  font-weight: 600;
+}
+@media screen and (min-width: 768px) {
+  h3, label, button {
+    font-size: 0.875rem;
+    line-height: 1.375rem;
+  }
+}
+
+h4 {
+  font-size: 0.6875rem;
+  line-height: 1rem;
+  font-weight: 400;
+}
+@media screen and (min-width: 768px) {
+  h4 {
+    font-size: 0.75rem;
+    line-height: 1.125rem;
+  }
+}
+
+.warehouse-details {
+  background-color: #FFFFFF;
+  border-radius: 0.25rem;
+  box-shadow: 0 0.2rem 0.5rem 0 rgba(19, 24, 44, 0.1);
+  margin: 2rem 0;
+}
+
+.warehouse {
+  padding: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 0.0625rem solid #BDC5D5;
+}
+.warehouse__header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  color: #13182C;
+}
+.warehouse__header--title {
+  margin: 0;
+}
+.warehouse__header--wrapper {
+  background-color: #2E66E5;
+  border-radius: 50%;
+  padding: 0.75rem;
+}
+.warehouse__header--wrapper > svg, .warehouse__header--wrapper div {
+  display: flex;
+}
+@media screen and (min-width: 768px) {
+  .warehouse__header--wrapper {
+    border-radius: 40px;
+  }
+  .warehouse__header--wrapper-link {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    text-decoration: none;
+    color: #FFFFFF;
+  }
+}
+
+.warehouse-information {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  padding: 2rem;
+  border-bottom: 0.0625rem solid #BDC5D5;
+}
+.warehouse-information * {
+  margin: 0;
+}
+.warehouse-information h3 {
+  color: #5C667E;
+}
+.warehouse-information p {
+  color: #13182C;
+}
+.warehouse-information__contact {
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 1rem;
+}/*# sourceMappingURL=WarehouseDetails.css.map */
