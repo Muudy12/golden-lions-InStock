@@ -15,6 +15,15 @@ class Api {
       console.log(`Failed to get all warehouses.`);
     }
   }
+
+  async deleteInventoryById(id) {
+    try {
+      const response = await axios.delete();
+      return response.data;
+    } catch (err) {
+      console.log(`Failed to delete inventory item with id: ${id}`);
+    }
+  }
 }
 
 export { Api, baseUrl };

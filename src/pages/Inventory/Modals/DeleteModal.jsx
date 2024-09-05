@@ -11,7 +11,7 @@ ReactModal.setAppElement("#root");
 function DeleteInventory({ warehouseId, inventoryId }) {
   const [inventoryName, setInventoryName] = useState("");
   const [isOpen, setIsOpen] = useState(false);
-  //const api = new Api();
+  const api = new Api();
 
   useEffect(() => {
     const getInventoryName = async () => {
@@ -29,7 +29,11 @@ function DeleteInventory({ warehouseId, inventoryId }) {
     setIsOpen(false);
   };
 
-  function deleteInventory(warehouseId, inventoryId) {
+  function deleteInventory(inventoryId) {
+    const deleteItem = async () => {
+      const response = await api.deleteInventoryById(inventoryId);
+    };
+
     alert(
       `Inventory Delete! warehouse id: ${warehouseId}; inventory id: ${inventoryId}`
     );
@@ -67,7 +71,7 @@ function DeleteInventory({ warehouseId, inventoryId }) {
             </button>
             <button
               className="button__delete btn"
-              onClick={() => deleteInventory(warehouseId, inventoryId)}
+              onClick={() => deleteInventory(inventoryId)}
             >
               Delete
             </button>
