@@ -37,7 +37,6 @@ function Warehouses() {
   };
 
   const goToDetail = (warehouseId) => {
-    alert("Warehouse Detail Clicked!");
     navigate(`/warehouses/${warehouseId}`);
   };
 

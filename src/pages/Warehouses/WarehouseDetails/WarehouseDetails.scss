@@ -1,6 +1,14 @@
 @import "../../../styles/global.scss";
 
+.warehouse-details {
+    background-color: $primary-white-color;
+    border-radius: .25rem;
+    box-shadow: 0 0.2rem 0.5rem 0 rgba(19, 24, 44, 0.1);
+    margin: 2rem 0;
+}
+
 .warehouse {
+    padding: 1rem;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -10,13 +18,38 @@
         align-items: center;
         gap: 1rem;
         color: $primary-text-color;
+        &--title {
+            margin: 0;
+        }
         &--wrapper {
             background-color: $primary-element-color;
             border-radius: 50%;
-            padding: 12px;
+            padding: .75rem;
             & > svg, div {
                 display: flex;
             }
         }
+    }
+}
+
+.warehouse-information {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    padding: 2rem;
+    border-bottom: .0625rem solid $secondary-cloud-color;
+    & * {
+        margin: 0;
+    }
+    h3 {
+        color: $secondary-slate-color;
+    }
+    p {
+        color: $primary-text-color;
+    }
+    &__contact {
+        display: flex;
+        justify-content: space-between;
+        padding-bottom: 1rem;
     }
 }
