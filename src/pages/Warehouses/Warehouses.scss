@@ -193,6 +193,7 @@
 
       @include tablet {
         padding: 1rem 2rem;
+        flex-wrap: nowrap;
 
         &:nth-of-type(2) {
           border-top: 0;

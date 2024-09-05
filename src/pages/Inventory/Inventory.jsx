@@ -14,7 +14,6 @@ function Inventory({ warehouseId }) {
   useEffect(() => {
     const getInventoryList = async () => {
       let response;
-      console.log("test ", warehouseId, { warehouseId });
       if (warehouseId !== undefined) {
         response = await api.getInventoriesGivenWarehouseId(warehouseId);
       } else {
@@ -24,6 +23,10 @@ function Inventory({ warehouseId }) {
     };
     getInventoryList();
   }, []);
+
+  function updateInventoryList(invId) {
+    setInventoryList(inventoryList.filter((inv) => inv.id !== invId));
+  }
 
   return (
     <div className="inventories">
@@ -99,8 +102,8 @@ function Inventory({ warehouseId }) {
             </h3>
             <h3 className="inventory__actions" data-label="ACTIONS">
               <DeleteInventory
-                warehouseId={inventoryItem.warehouse_id}
                 inventoryId={inventoryItem.id}
+                updateInventoryList={updateInventoryList}
               />
               <ReactSVG src={EditIcon} />
             </h3>
