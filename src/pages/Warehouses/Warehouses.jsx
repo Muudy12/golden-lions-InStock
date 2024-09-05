@@ -7,6 +7,7 @@ import ChevronIcon from "../../assets/icons/chevron_right-24px.svg";
 import SortIcon from "../../assets/icons/sort-24px.svg";
 import { useNavigate } from "react-router-dom";
 import { Api } from "../../utils/utils";
+import DeleteModal from "../../components/Warehouse/DeleteModal/DeleteModal";
 
 function Warehouses() {
   const api = new Api();
@@ -21,10 +22,6 @@ function Warehouses() {
 
     getAllWarehouses();
   }, [warehouses]);
-
-  const deleteWarehouse = () => {
-    alert("Delete Clicked!");
-  };
 
   const editWarehouse = (warehouseId) => {
     alert("Edit Clicked!");
@@ -109,7 +106,7 @@ function Warehouses() {
                 <span>{w.contact_email}</span>
               </h3>
               <h3 className="warehouse__actions" data-label="ACTIONS">
-                <ReactSVG src={DeleteIcon} onClick={deleteWarehouse} />
+                <DeleteModal  warehouseName={w.warehouse_name}  warehouseId ={w.id} />
                 <ReactSVG src={EditIcon} onClick={() => editWarehouse(w.id)} />
               </h3>
             </div>
