@@ -1,0 +1,93 @@
+@import "../../../styles/global.scss";
+
+.warehouse-details {
+    background-color: $primary-white-color;
+    border-radius: .25rem;
+    box-shadow: 0 0.2rem 0.5rem 0 rgba(19, 24, 44, 0.1);
+    margin: 2rem 0;
+}
+
+.warehouse {
+    padding: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: .0625rem solid $secondary-cloud-color;
+    &__header {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        color: $primary-text-color;
+        &--title {
+            margin: 0;
+        }
+        &--wrapper {
+            background-color: $primary-element-color;
+            border-radius: 50%;
+            padding: .75rem;
+            & > svg, div {
+                display: flex;
+            }
+            &-link {
+                span {
+                    display: none;
+                }
+            }
+            @include tablet {
+                border-radius: 40px;
+                &-link {
+                    display: flex;
+                    align-items: center;
+                    gap: .5rem;
+                    text-decoration: none;
+                    color: $primary-white-color;
+                    span {
+                        display: inline;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.warehouse-information {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    padding: 2rem;
+    border-bottom: .0625rem solid $secondary-cloud-color;
+    & * {
+        margin: 0;
+    }
+    h3 {
+        color: $secondary-slate-color;
+    }
+    p {
+        color: $primary-text-color;
+    }
+    &__address {
+        &--street {
+            display: inline;
+            @include tablet {
+                display: block;
+            }
+        }
+    }
+    &__contact {
+        display: flex;
+        justify-content: space-between;
+        padding-bottom: 1rem;
+        @include tablet {
+            gap: 5rem;
+            border-left: 1px solid $secondary-cloud-color;
+            padding-left: 5rem;
+            @include desktop {
+                padding-left: 3rem;
+            }
+        }
+    }
+    @include tablet {
+        flex-direction: row;
+        justify-content: space-between;
+    }
+}
