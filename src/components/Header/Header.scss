@@ -4,13 +4,16 @@ body {
     background: linear-gradient( rgb(35, 41, 64) 14rem,
     rgba(255, 255, 255, 1) 0rem);
     min-height: 100vh;
+    @include tablet {
+        background: linear-gradient( rgb(35, 41, 64) 10rem,
+        rgba(255, 255, 255, 1) 0rem);
+    }
 }
 
 .header {
     display: flex;
     flex-direction: column;
     gap: 2rem;
-    // padding-top : 1.5rem;
     @include tablet {
         flex-direction: row;
         justify-content: space-between;

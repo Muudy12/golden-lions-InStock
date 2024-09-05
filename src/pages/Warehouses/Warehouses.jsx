@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./Warehouses.scss";
 import DeleteIcon from "../../assets/icons/delete_outline-24px.svg";
 import EditIcon from "../../assets/icons/edit-24px.svg";
@@ -6,24 +6,39 @@ import { ReactSVG } from "react-svg";
 import ChevronIcon from "../../assets/icons/chevron_right-24px.svg";
 import SortIcon from "../../assets/icons/sort-24px.svg";
 import { useNavigate } from "react-router-dom";
+import { Api } from "../../utils/utils";
 
 function Warehouses() {
+  const api = new Api();
   const navigate = useNavigate();
+  const [warehouses, setWarehouses] = useState([]);
+
+  useEffect(() => {
+    const getAllWarehouses = async () => {
+      const data = await api.getAllWarehouses();
+      setWarehouses(data);
+    };
+
+    getAllWarehouses();
+  }, [warehouses]);
 
   const deleteWarehouse = () => {
     alert("Delete Clicked!");
   };
 
-  const editWarehouse = () => {
+  const editWarehouse = (warehouseId) => {
     alert("Edit Clicked!");
+    navigate(`/warehouses/${warehouseId}/edit`);
   };
 
   const addWarehouse = () => {
     alert("Add Warehouse Clicked!");
+    navigate(`/warehouses/add`);
   };
 
-  const goToDetail = () => {
+  const goToDetail = (warehouseId) => {
     alert("Warehouse Detail Clicked!");
+    navigate(`/warehouses/${warehouseId}`);
   };
 
   return (
@@ -68,98 +83,41 @@ function Warehouses() {
         </h3>
         <h3>ACTIONS</h3>
       </div>
-      {getTestData().map((w, index) => {
-        return (
-          <div key={index} className="warehouses__list-item warehouse">
-            <h3
-              className="warehouse__title"
-              data-label="WAREHOUSE"
-              onClick={goToDetail}
-            >
-              {w.warehouse}
-              <ReactSVG src={ChevronIcon} />
-            </h3>
-            <h3 className="warehouse__address" data-label="ADDRESS">
-              {w.address}
-            </h3>
-            <h3 className="warehouse__name" data-label="CONTACT NAME">
-              {w.contact.name}
-            </h3>
-            <h3
-              className="warehouse__information"
-              data-label="CONTACT INFORMATION"
-            >
-              <span>{w.contact.phone}</span>
-              <span>{w.contact.email}</span>
-            </h3>
-            <h3 className="warehouse__actions" data-label="ACTIONS">
-              <ReactSVG src={DeleteIcon} onClick={deleteWarehouse} />
-              <ReactSVG src={EditIcon} onClick={editWarehouse} />
-            </h3>
-          </div>
-        );
-      })}
+      {warehouses &&
+        warehouses.map((w, index) => {
+          return (
+            <div key={index} className="warehouses__list-item warehouse">
+              <h3 className="warehouse__title" data-label="WAREHOUSE">
+                <span
+                  className="warehouse__title-name"
+                  onClick={() => goToDetail(w.id)}
+                >
+                  {w.warehouse_name}
+                </span>
+                <ReactSVG src={ChevronIcon} onClick={() => goToDetail(w.id)} />
+              </h3>
+              <h3 className="warehouse__address" data-label="ADDRESS">
+                {w.address}, {w.city}, {w.country}
+              </h3>
+              <h3 className="warehouse__name" data-label="CONTACT NAME">
+                {w.contact_name}
+              </h3>
+              <h3
+                className="warehouse__information"
+                data-label="CONTACT INFORMATION"
+              >
+                <span>{w.contact_phone}</span>
+                <span>{w.contact_email}</span>
+              </h3>
+              <h3 className="warehouse__actions" data-label="ACTIONS">
+                <ReactSVG src={DeleteIcon} onClick={deleteWarehouse} />
+                <ReactSVG src={EditIcon} onClick={() => editWarehouse(w.id)} />
+              </h3>
+            </div>
+          );
+        })}
     </div>
   );
-}
-
-function getTestData() {
-  return [
-    {
-      warehouse: "Washington",
-      address: "33 Pearl Street SW, Washington, USA",
-      contact: {
-        name: "Graeme Lyon",
-        position: "Warehouse Manager",
-        phone: "+1 (647) 504-0911",
-        email: "glyon@instock.com",
-      },
-      invetories: [
-        {
-          item: "Television",
-          category: "Electronics",
-          status: "In Stock",
-          quantity: 0,
-        },
-      ],
-    },
-    {
-      warehouse: "Washington",
-      address: "33 Pearl Street SW, Washington, USA",
-      contact: {
-        name: "Graeme Lyon",
-        position: "Warehouse Manager",
-        phone: "+1 (647) 504-0911",
-        email: "glyon@instock.com",
-      },
-      invetories: [
-        {
-          item: "Television",
-          category: "Electronics",
-          status: "In Stock",
-          quantity: 0,
-        },
-      ],
-    },
-    {
-      warehouse: "Washington",
-      address: "33 Pearl Street SW, Washington, USA",
-      contact: {
-        name: "Graeme Lyon",
-        position: "Warehouse Manager",
-        phone: "+1 (647) 504-0911",
-        email: "glyon@instock.com",
-      },
-      invetories: [
-        {
-          item: "Television",
-          category: "Electronics",
-          status: "In Stock",
-          quantity: 0,
-        },
-      ],
-    },
-  ];
 }
 
 export default Warehouses;
