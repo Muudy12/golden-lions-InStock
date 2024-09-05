@@ -4,7 +4,7 @@ import { baseUrl } from "../../../utils/utils.js";
 import DeleteIcon from "../../../assets/icons/delete_outline-24px.svg";
 import CloseIcon from "../../../assets/icons/close-24px.svg";
 import axios from 'axios';
-import ReactModal from 'react-modal'
+import ReactModal from 'react-modal';
 import './DeleteModal.scss'
 
 ReactModal.setAppElement('#root')
@@ -14,10 +14,6 @@ function DeleteModal({ warehouseName, warehouseId }) {
 
   const openModal = () => setShowModal(true);
 
-  const afterOpenModal = () => {
-    console.log("I don't know what to put in this but it was in the example!")
-  };
-
   const closeModal = () => setShowModal(false);
 
   const handleDelete = async () => {
@@ -26,6 +22,7 @@ function DeleteModal({ warehouseName, warehouseId }) {
     } catch (error) {
       console.error('Error deleting warehouse', error)
     }
+    setShowModal(false)
   }
   return (
     <div>
@@ -36,17 +33,15 @@ function DeleteModal({ warehouseName, warehouseId }) {
       </a>
       <ReactModal
         isOpen={showModal}
-        onAfterOpen={afterOpenModal}
         onRequestClose={closeModal}
         contentLabel='Delete Warehouse'
-      className='delete-modal'
-      overlayClassName='delete-modal__overlay'
-      >
-        <div className='delete-modal__top-container'>
-          <ReactSVG src={CloseIcon} onClick={closeModal} className='delete-modal__close'/>
+        className='delete-modal'
+        overlayClassName='delete-modal__overlay'>
+        <div className='delete-modal__top-container' >
+          <img src={CloseIcon} onClick={closeModal} className='delete-modal__close' />
         </div>
         <h2 className='delete-modal__title'>{`Delete ${warehouseName} warehouse?`}</h2>
-        <p className='delete-modal__text'>{`Please confirm that you'd like to delete the ${warehouseName} from the list of warehouses. You won't be able to undo this action?`}</p>
+        <p className='delete-modal__text large'>{`Please confirm that you'd like to delete the ${warehouseName} from the list of warehouses. You won't be able to undo this action?`}</p>
         <div className='delete-modal__container'>
           <button
             className='delete-modal__cancel-btn'
