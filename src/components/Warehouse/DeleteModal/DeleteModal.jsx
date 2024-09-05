@@ -23,10 +23,7 @@ function DeleteModal({ warehouseName }) {
   const closeModal = () => setShowModal(false);
 
   const handleDelete = async () => {
-
-
     try {
-      console.log(`Delete button has been clicked to delete warehouseId: ${warehouseId} .`)
       await axios.delete(`${baseUrl}/warehouses/${warehouseId}/`);
     } catch (error) {
       console.error('Error deleting warehouse', error)
@@ -48,7 +45,7 @@ function DeleteModal({ warehouseName }) {
       overlayClassName='delete-modal__overlay'
       >
         <div className='delete-modal__top-container'>
-          <ReactSVG src={CloseIcon} />
+          <ReactSVG src={CloseIcon} onClick={closeModal}/>
         </div>
         <h2 className='delete-modal__title'>{`Delete ${warehouseName} warehouse?`}</h2>
         <p className='delete-modal__text'>{`Please confirm that you'd like to delete the ${warehouseName} from the list of warehouses. You won't be able to undo this action?`}</p>
