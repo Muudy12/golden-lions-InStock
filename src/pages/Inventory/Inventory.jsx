@@ -1,28 +1,25 @@
 import { React, useState, useEffect } from "react";
 import { ReactSVG } from "react-svg";
-import axios from "axios";
-
 import "./Inventory.scss";
 import { Api } from "./../../utils/utils.js";
-import DeleteIcon from "../../assets/icons/delete_outline-24px.svg";
 import EditIcon from "../../assets/icons/edit-24px.svg";
 import ChevronIcon from "../../assets/icons/chevron_right-24px.svg";
 import SortIcon from "../../assets/icons/sort-24px.svg";
+import DeleteInventory from "./Modals/DeleteModal.jsx";
 
-function Inventory({warehouseId}) {
-
+function Inventory({ warehouseId }) {
   const api = new Api();
   const [inventoryList, setInventoryList] = useState([]);
 
   useEffect(() => {
-    const getInventoryList= async () => {
+    const getInventoryList = async () => {
       let response;
-      console.log("test ",warehouseId,{warehouseId})
-      if (warehouseId !== undefined){
+      console.log("test ", warehouseId, { warehouseId });
+      if (warehouseId !== undefined) {
         response = await api.getInventoriesGivenWarehouseId(warehouseId);
-      } else{
+      } else {
         response = await api.getAllInventories();
-      }   
+      }
       setInventoryList(response);
     };
     getInventoryList();
@@ -72,7 +69,7 @@ function Inventory({warehouseId}) {
         </h3>
         <h3>ACTIONS</h3>
       </div>
-      
+
       {inventoryList?.map((inventoryItem, index) => {
         return (
           <div key={index} className="inventories__list-item inventory">
@@ -84,8 +81,15 @@ function Inventory({warehouseId}) {
               {inventoryItem.category}
             </h3>
             <h3 data-label="STATUS">
-              <div className={`inventory__status ${inventoryItem.status === "In Stock"? "inventory__status--green" : "inventory__status--red"}`}>{inventoryItem.status}</div>
-              
+              <div
+                className={`inventory__status ${
+                  inventoryItem.status === "In Stock"
+                    ? "inventory__status--green"
+                    : "inventory__status--red"
+                }`}
+              >
+                {inventoryItem.status}
+              </div>
             </h3>
             <h3 className="inventory__qty" data-label="QTY">
               {inventoryItem.quantity}
@@ -94,7 +98,10 @@ function Inventory({warehouseId}) {
               {inventoryItem.warehouse_name}
             </h3>
             <h3 className="inventory__actions" data-label="ACTIONS">
-              <ReactSVG src={DeleteIcon} />
+              <DeleteInventory
+                warehouseId={inventoryItem.warehouse_id}
+                inventoryId={inventoryItem.id}
+              />
               <ReactSVG src={EditIcon} />
             </h3>
           </div>
