@@ -5,7 +5,7 @@ import './EditWarehouse.scss'
 
 function EditWarehouse() {
   // State to keep tracking validation for each field
-  const [isError, setIsError] = useState({
+  const [formErrors, setFormErrors] = useState({
     name: true,
     street: true,
     city: true,
@@ -18,7 +18,7 @@ function EditWarehouse() {
   // Validation of individual fields
   const validationHandler = (event) => {
     const { name, value } = event.target;
-    setIsError(currentErrors => ({
+    setFormErrors(currentErrors => ({
       ...currentErrors,
       [name]: value.trim()  !=='',
     }));
@@ -28,24 +28,54 @@ function EditWarehouse() {
     event.preventDefault();
 
     const formData = new FormData(event.target);
-  }
+    let valid = true;
+    let notValid ={};
+
+    for (const [formItem, value] of form.entries()) {
+      if (value.trim() === '') {
+        notValid[formItem] = false;
+        valid = false;
+      } else {
+        notValid[formItem] = true;
+      }
+    }
+
+    setFormErrors(notValid);
+
+    if(valid) {
+      alert('Form submitted successfully!');
+    } else {
+      alert('Pleas fill in all required fields.')
+    }
+  };
   return (
     <div className="edit">
       <div className="edit__header">
         <ReactSVG className="edit__header-icon" src={ArrowBackIcon} />
         <h1 className="edit__header-title">Edit Warehouse</h1>
       </div>
-      <form className="edit__form-wrapper">
+      <form className="edit__form-wrapper" onSubmit={submitFormHandler}>
         <div className="edit__form">
           <div className="edit__form-warehouse">
             <h2 className="edit__form-warehouse-title">Warehouse Details</h2>
+
+            {/* Warehouse Name */}
             <h3 className="edit__form-label">Warehouse Name</h3>
             <input
-              className="edit__form-input"
+              className={`edit__form-input ${!formErrors.name && 'invalid'}`}
               type="text"
               placeholder="Warehouse Name"
               name="name"
-            />
+              onBlur={validationHandler}
+              />
+              {!formErrors.name && (
+                <div className="edit__form-input-error">
+                  <ReactSVG className="edit__form-input-error-icon" src={ErrorIcon} />
+                  <p className="edit__form-input-error-message">This field is required</p>
+                </div>
+              )}
+
+            {/* Warehouse Street Address */}
             <h3 className="edit__form-label">Street Address</h3>
             <input
               className="edit__form-input"
