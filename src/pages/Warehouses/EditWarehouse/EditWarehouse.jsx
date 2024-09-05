@@ -49,7 +49,7 @@ function EditWarehouse() {
             <input
               className="edit__form-input"
               type="text"
-              placeholder="Full Name"
+              placeholder="Contact Name"
               name="name"
             />
             <h3 className="edit__form-label" htmlFor="edit__form-contact-position">Position</h3>
