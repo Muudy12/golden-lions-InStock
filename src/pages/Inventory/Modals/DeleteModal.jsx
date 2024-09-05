@@ -15,8 +15,9 @@ function DeleteInventory({ warehouseId, inventoryId }) {
 
   useEffect(() => {
     const getInventoryName = async () => {
-      const name = "Television";
-      setInventoryName(name);
+      const inventories = await api.getAllInventories();
+      const inv = inventories.find((i) => i.id === inventoryId);
+      setInventoryName(inv.item_name);
     };
     getInventoryName();
   }, [isOpen]);

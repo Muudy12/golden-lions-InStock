@@ -214,6 +214,7 @@
         display: flex;
         align-items: center;
         flex-wrap: wrap;
+        font-weight: 400;
 
         @include tablet {
           width: 8rem;
@@ -259,7 +260,7 @@
         }
       }
 
-      & .warehouse {
+      & .warehouse-item {
         &__title {
           order: 0;
 

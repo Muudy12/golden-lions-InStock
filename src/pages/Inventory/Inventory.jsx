@@ -1,10 +1,7 @@
 import { React, useState, useEffect } from "react";
 import { ReactSVG } from "react-svg";
-import axios from "axios";
 import "./Inventory.scss";
-import { baseUrl } from "./../../utils/utils.js";
 import { Api } from "./../../utils/utils.js";
-import DeleteIcon from "../../assets/icons/delete_outline-24px.svg";
 import EditIcon from "../../assets/icons/edit-24px.svg";
 import ChevronIcon from "../../assets/icons/chevron_right-24px.svg";
 import SortIcon from "../../assets/icons/sort-24px.svg";
