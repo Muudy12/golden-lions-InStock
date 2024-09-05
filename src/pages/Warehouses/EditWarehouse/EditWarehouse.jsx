@@ -2,6 +2,7 @@ import React from 'react'
 import { ReactSVG } from "react-svg";
 import ArrowBackIcon from "../../../assets/icons/arrow_back-24px.svg"
 import './EditWarehouse.scss'
+import { useState } from 'react';
 
 function EditWarehouse() {
   // State to keep tracking validation for each field
