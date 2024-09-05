@@ -10,16 +10,13 @@ import "./WarehouseDetails.scss";
 
 function WarehouseDetails() {
   const params = useParams();
-  const [warehouse, setWarehouses] = useState({});
+  const [warehouse, setWarehouse] = useState({});
   const api = new Api();
 
   const getWarehouse = async () => {
     try {
-      const response = await api.getAllWarehouses();
-      const selectedWarehouse = response.find(
-        (item) => item.id == params.warehouseId
-      );
-      setWarehouses(selectedWarehouse);
+      const response = await api.getWarehouseById(params.warehouseId);
+      setWarehouse(response);
     } catch (error) {
       console.log("Error while getting all warehouse: ", error);
     }
