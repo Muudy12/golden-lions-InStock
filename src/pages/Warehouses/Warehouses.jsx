@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import "./Warehouses.scss";
-import DeleteIcon from "../../assets/icons/delete_outline-24px.svg";
 import EditIcon from "../../assets/icons/edit-24px.svg";
 import { ReactSVG } from "react-svg";
 import ChevronIcon from "../../assets/icons/chevron_right-24px.svg";
@@ -82,30 +81,30 @@ function Warehouses() {
       {warehouses &&
         warehouses.map((w, index) => {
           return (
-            <div key={index} className="warehouses__list-item warehouse">
-              <h3 className="warehouse__title" data-label="WAREHOUSE">
+            <div key={index} className="warehouses__list-item warehouse-item">
+              <h3 className="warehouse-item__title" data-label="WAREHOUSE">
                 <span
-                  className="warehouse__title-name"
+                  className="warehouse-item__title-name"
                   onClick={() => goToDetail(w.id)}
                 >
                   {w.warehouse_name}
                 </span>
                 <ReactSVG src={ChevronIcon} onClick={() => goToDetail(w.id)} />
               </h3>
-              <h3 className="warehouse__address" data-label="ADDRESS">
-                {w.address}, {w.city}, {w.country}
+              <h3 className="warehouse-item__address" data-label="ADDRESS">
+                {w.address},&nbsp;<span>{w.city},&nbsp;{w.country}</span>
               </h3>
-              <h3 className="warehouse__name" data-label="CONTACT NAME">
+              <h3 className="warehouse-item__name" data-label="CONTACT NAME">
                 {w.contact_name}
               </h3>
               <h3
-                className="warehouse__information"
+                className="warehouse-item__information"
                 data-label="CONTACT INFORMATION"
               >
                 <span>{w.contact_phone}</span>
                 <span>{w.contact_email}</span>
               </h3>
-              <h3 className="warehouse__actions" data-label="ACTIONS">
+              <h3 className="warehouse-item__actions" data-label="ACTIONS">
                 <DeleteModal  warehouseName={w.warehouse_name}  warehouseId ={w.id} />
                 <ReactSVG src={EditIcon} onClick={() => editWarehouse(w.id)} />
               </h3>
