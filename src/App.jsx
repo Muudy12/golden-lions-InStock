@@ -11,26 +11,8 @@ import InventoryDetails from "./pages/Inventory/InventoryDetails/InventoryDetail
 import EditInventory from "./pages/Inventory/EditInventory/EditInventory";
 import AddNewInventory from "./pages/Inventory/AddNewInventory/AddNewInventory";
 import "./App.scss";
-import { useState } from "react";
-import DeleteInventory from "./components/Modals/DeleteModal";
 
 function App() {
-  const [deleteInv, setDeleteInv] = useState(false);
-  const [warehouseId, setWarehouseId] = useState("");
-  const [inventoryId, setInventoryId] = useState("");
-  const [isWarehouse, setIsWarehouse] = useState("");
-
-  function closeModal() {
-    setDeleteInv(false);
-  }
-
-  function openModal(isWarehouse, warehouseId, inventoryId) {
-    setIsWarehouse(isWarehouse);
-    setWarehouseId(warehouseId);
-    setInventoryId(inventoryId ? inventoryId : "");
-    setDeleteInv(true);
-  }
-
   return (
     <>
       <BrowserRouter>
@@ -48,10 +30,7 @@ function App() {
           />
           <Route path="/warehouses/add" element={<AddNewWarehouse />} />
 
-          <Route
-            path="/inventories/"
-            element={<Inventory openModal={openModal} />}
-          />
+          <Route path="/inventories/" element={<Inventory />} />
           <Route
             path="/inventories/:inventoryId"
             element={<InventoryDetails />}
@@ -63,14 +42,6 @@ function App() {
           <Route path="/inventories/add" element={<AddNewInventory />} />
         </Routes>
         <Footer />
-        {deleteInv && (
-          <DeleteInventory
-            closeModal={closeModal}
-            isWarehouse={isWarehouse}
-            warehouseId={warehouseId}
-            inventoryId={inventoryId}
-          />
-        )}
       </BrowserRouter>
     </>
   );

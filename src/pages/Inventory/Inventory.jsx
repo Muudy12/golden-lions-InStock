@@ -1,15 +1,14 @@
 import { React, useState, useEffect } from "react";
 import { ReactSVG } from "react-svg";
 import axios from "axios";
-
 import "./Inventory.scss";
 import { baseUrl } from "./../../utils/utils.js";
-import DeleteIcon from "../../assets/icons/delete_outline-24px.svg";
 import EditIcon from "../../assets/icons/edit-24px.svg";
 import ChevronIcon from "../../assets/icons/chevron_right-24px.svg";
 import SortIcon from "../../assets/icons/sort-24px.svg";
+import DeleteInventory from "./Modals/DeleteModal.jsx";
 
-function Inventory({ openModal }) {
+function Inventory() {
   const [inventoryList, setInventoryList] = useState([]);
 
   useEffect(() => {
@@ -93,11 +92,9 @@ function Inventory({ openModal }) {
               {inventoryItem.warehouse_name}
             </h3>
             <h3 className="inventory__actions" data-label="ACTIONS">
-              <ReactSVG
-                src={DeleteIcon}
-                onClick={() =>
-                  openModal(false, inventoryItem.warehouse_id, inventoryItem.id)
-                }
+              <DeleteInventory
+                warehouseId={inventoryItem.warehouse_id}
+                inventoryId={inventoryItem.id}
               />
               <ReactSVG src={EditIcon} />
             </h3>
