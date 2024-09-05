@@ -7,8 +7,8 @@ function EditWarehouse() {
   return (
     <div className="edit">
       <div className="edit__header">
-        <h1 className="edit__header-title">Edit Warehouse</h1>
         <ReactSVG className="edit__header-icon" src={ArrowBackIcon} />
+        <h1 className="edit__header-title">Edit Warehouse</h1>
       </div>
       <form className="edit__form">
         <div className="edit__form-warehouse">
@@ -46,13 +46,6 @@ function EditWarehouse() {
             name="country"
           />
         </div>
-
-
-
-
-
-
-
         <div className="edit__form-contact">
         <h2 className="edit__form-contact-title">Contact Details</h2>
           <label className="edit__form-contact-label" htmlFor="edit__form-contact-name">Contact Name</label>
@@ -63,7 +56,6 @@ function EditWarehouse() {
             placeholder="Full Name"
             name="name"
           />
-
           <label className="edit__form-contact-label" htmlFor="edit__form-contact-position">Position</label>
           <input
             className="edit__form-contact-position"
@@ -72,7 +64,6 @@ function EditWarehouse() {
             placeholder="Position"
             name="position"
           />
-
           <label className="edit__form-contact-label" htmlFor="edit__form-contact-phone">Phone Number</label>
           <input
             className="edit__form-contact-phone"
@@ -81,7 +72,6 @@ function EditWarehouse() {
             placeholder="Phone Number"
             name="phone"
           />
-
           <label className="edit__form-contact-label" htmlFor="edit__form-contact-email">Email</label>
           <input
             className="edit__form-contact-email"
@@ -95,7 +85,6 @@ function EditWarehouse() {
           <div className="edit__form-buttons-save">Save</div>
           <div className="edit__form-buttons-cancel">Cancel</div>
         </div>
-
       </form>
     </div >
   )
