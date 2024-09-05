@@ -76,14 +76,15 @@ function Inventory() {
             <h3 className="inventory__category" data-label="CATEGORY">
               {inventoryItem.category}
             </h3>
-            <h3 className="inventory__status" data-label="STATUS">
-              {inventoryItem.status}
+            <h3 data-label="STATUS">
+              <div className={`inventory__status ${inventoryItem.status === "In Stock"? "inventory__status--green" : "inventory__status--red"}`}>{inventoryItem.status}</div>
+              
             </h3>
             <h3 className="inventory__qty" data-label="QTY">
               {inventoryItem.quantity}
             </h3>
             <h3 className="inventory__warehouse_id" data-label="WAREHOUSE">
-              {inventoryItem.warehouse_id}
+              {inventoryItem.warehouse_name}
             </h3>
             <h3 className="inventory__actions" data-label="ACTIONS">
               <ReactSVG src={DeleteIcon} />
