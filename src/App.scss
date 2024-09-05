@@ -3,6 +3,7 @@
 body {
   margin: 0;
   padding: 1rem;
+  position: relative;
 
   @include tablet {
     padding: 1rem 2rem;

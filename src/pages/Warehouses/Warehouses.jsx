@@ -97,7 +97,7 @@ function Warehouses() {
                 <ReactSVG src={ChevronIcon} onClick={() => goToDetail(w.id)} />
               </h3>
               <h3 className="warehouse__address" data-label="ADDRESS">
-                {w.address}, {w.city}, {w.country}
+                {w.address},&nbsp;<span>{w.city},&nbsp;{w.country}</span>
               </h3>
               <h3 className="warehouse__name" data-label="CONTACT NAME">
                 {w.contact_name}

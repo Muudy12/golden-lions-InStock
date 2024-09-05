@@ -9,12 +9,11 @@ import EditIcon from "../../assets/icons/edit-24px.svg";
 import ChevronIcon from "../../assets/icons/chevron_right-24px.svg";
 import SortIcon from "../../assets/icons/sort-24px.svg";
 
-function Inventory() {
-
+function Inventory({ openModal }) {
   const [inventoryList, setInventoryList] = useState([]);
 
   useEffect(() => {
-    const getInventoryList= async () => {
+    const getInventoryList = async () => {
       const response = await axios.get(`${baseUrl}/inventories`);
       setInventoryList(response.data);
     };
@@ -65,7 +64,7 @@ function Inventory() {
         </h3>
         <h3>ACTIONS</h3>
       </div>
-      
+
       {inventoryList?.map((inventoryItem, index) => {
         return (
           <div key={index} className="inventories__list-item inventory">
@@ -77,8 +76,15 @@ function Inventory() {
               {inventoryItem.category}
             </h3>
             <h3 data-label="STATUS">
-              <div className={`inventory__status ${inventoryItem.status === "In Stock"? "inventory__status--green" : "inventory__status--red"}`}>{inventoryItem.status}</div>
-              
+              <div
+                className={`inventory__status ${
+                  inventoryItem.status === "In Stock"
+                    ? "inventory__status--green"
+                    : "inventory__status--red"
+                }`}
+              >
+                {inventoryItem.status}
+              </div>
             </h3>
             <h3 className="inventory__qty" data-label="QTY">
               {inventoryItem.quantity}
@@ -87,7 +93,12 @@ function Inventory() {
               {inventoryItem.warehouse_name}
             </h3>
             <h3 className="inventory__actions" data-label="ACTIONS">
-              <ReactSVG src={DeleteIcon} />
+              <ReactSVG
+                src={DeleteIcon}
+                onClick={() =>
+                  openModal(false, inventoryItem.warehouse_id, inventoryItem.id)
+                }
+              />
               <ReactSVG src={EditIcon} />
             </h3>
           </div>
