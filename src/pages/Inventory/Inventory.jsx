@@ -24,6 +24,8 @@ function Inventory({ warehouseId }) {
     getInventoryList();
   }, []);
 
+  // Function to update list in client side without re-rending the page or component to avoid infinite loopings:
+  // This function is passed as props to delete modal:
   function updateInventoryList(invId) {
     setInventoryList(inventoryList.filter((inv) => inv.id !== invId));
   }
