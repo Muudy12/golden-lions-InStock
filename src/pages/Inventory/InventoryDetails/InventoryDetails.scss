@@ -24,7 +24,7 @@
         &--wrapper {
             background-color: $primary-element-color;
             border-radius: 50%;
-            padding: .375rem 1rem;
+            padding: .75rem;
             & > svg, div {
                 display: flex;
             }
@@ -34,7 +34,8 @@
                 }
             }
             @include tablet {
-                border-radius: 40px;
+                border-radius: 2.5rem;
+                padding: .375rem 1rem;
                 &-link {
                     display: flex;
                     align-items: center;
