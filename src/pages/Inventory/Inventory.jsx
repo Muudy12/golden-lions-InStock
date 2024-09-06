@@ -1,6 +1,6 @@
 import { React, useState, useEffect } from "react";
 import { ReactSVG } from "react-svg";
-import { Link, useNavigate  } from 'react-router-dom';
+import { useNavigate  } from 'react-router-dom';
 import "./Inventory.scss";
 import { Api } from "./../../utils/utils.js";
 import EditIcon from "../../assets/icons/edit-24px.svg";
@@ -9,11 +9,9 @@ import SortIcon from "../../assets/icons/sort-24px.svg";
 import DeleteInventory from "./Modals/DeleteModal.jsx";
 
 
-
 function Inventory({ warehouseId }) {
   const navigate = useNavigate();
   const api = new Api();
-  //const navigate = useNavigate();
   const [inventoryList, setInventoryList] = useState([]);
 
   const addInventory = ()=>{
@@ -37,9 +35,6 @@ function Inventory({ warehouseId }) {
     getInventoryList();
   }, []);
 
-  const goToInventoryDetail = (warehouseId, inventoryId) => {
-    navigate(`/warehouses/${warehouseId}/${inventoryId}`);
-  }
   // Function to update list in client side without re-rending the page or component to avoid infinite loopings:
   // This function is passed as props to delete modal:
   function updateInventoryList(invId) {
