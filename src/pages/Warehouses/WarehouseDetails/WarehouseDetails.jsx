@@ -45,7 +45,7 @@ function WarehouseDetails() {
           <div className="warehouse__header--wrapper">
             <Link
               className="warehouse__header--wrapper-link"
-              to={`/warehouse/${params.warehouseId}/edit`}
+              to={`/warehouses/${params.warehouseId}/edit`}
             >
               <ReactSVG
                 className="warehouse__header--wrapper-editIcon"

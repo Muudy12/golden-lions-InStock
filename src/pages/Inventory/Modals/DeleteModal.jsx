@@ -8,7 +8,7 @@ import DeleteIcon from "../../../assets/icons/delete_outline-24px.svg";
 
 ReactModal.setAppElement("#root");
 
-function DeleteInventory({ warehouseId, inventoryId }) {
+function DeleteInventory({ inventoryId, updateInventoryList }) {
   const [inventoryName, setInventoryName] = useState("");
   const [isOpen, setIsOpen] = useState(false);
   const api = new Api();
@@ -32,12 +32,11 @@ function DeleteInventory({ warehouseId, inventoryId }) {
 
   function deleteInventory(inventoryId) {
     const deleteItem = async () => {
-      const response = await api.deleteInventoryById(inventoryId);
+      await api.deleteInventoryById(inventoryId);
+      updateInventoryList(inventoryId);
     };
 
-    alert(
-      `Inventory Delete! warehouse id: ${warehouseId}; inventory id: ${inventoryId}`
-    );
+    deleteItem();
     closeModal();
   }
 

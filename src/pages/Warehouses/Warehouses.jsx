@@ -20,7 +20,7 @@ function Warehouses() {
     };
 
     getAllWarehouses();
-  }, [warehouses]);
+  }, []); // removed the detect warehouses because it was causing infinite loop/re-rending
 
   const editWarehouse = (warehouseId) => {
     alert("Edit Clicked!");
@@ -35,6 +35,12 @@ function Warehouses() {
   const goToDetail = (warehouseId) => {
     navigate(`/warehouses/${warehouseId}`);
   };
+
+  // Added this function to update the list of warehouses without having to re-render the page.
+  //// Had to pass this function as prop to the delete modal:
+  function updateWarehouseList(warehouseId) {
+    setWarehouses(warehouses.filter((wh) => wh.id !== warehouseId));
+  }
 
   return (
     <div className="warehouses">
@@ -82,17 +88,19 @@ function Warehouses() {
         warehouses.map((w, index) => {
           return (
             <div key={index} className="warehouses__list-item warehouse-item">
-              <h3 className="warehouse-item__title" data-label="WAREHOUSE">
+              <h3 className="warehouse-item__title" data-label="WAREHOUSE" onClick={() => goToDetail(w.id)}>
                 <span
                   className="warehouse-item__title-name"
-                  onClick={() => goToDetail(w.id)}
                 >
                   {w.warehouse_name}
                 </span>
-                <ReactSVG src={ChevronIcon} onClick={() => goToDetail(w.id)} />
+                <ReactSVG src={ChevronIcon}  />
               </h3>
               <h3 className="warehouse-item__address" data-label="ADDRESS">
-                {w.address},&nbsp;<span>{w.city},&nbsp;{w.country}</span>
+                {w.address},&nbsp;
+                <span>
+                  {w.city},&nbsp;{w.country}
+                </span>
               </h3>
               <h3 className="warehouse-item__name" data-label="CONTACT NAME">
                 {w.contact_name}
@@ -105,7 +113,11 @@ function Warehouses() {
                 <span>{w.contact_email}</span>
               </h3>
               <h3 className="warehouse-item__actions" data-label="ACTIONS">
-                <DeleteModal  warehouseName={w.warehouse_name}  warehouseId ={w.id} />
+                <DeleteModal
+                  warehouseName={w.warehouse_name}
+                  warehouseId={w.id}
+                  updateWarehouseList={updateWarehouseList}
+                />
                 <ReactSVG src={EditIcon} onClick={() => editWarehouse(w.id)} />
               </h3>
             </div>
