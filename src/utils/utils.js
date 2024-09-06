@@ -56,7 +56,7 @@ class Api {
     }
   }
 
-  async getOneItem() {
+  async editOneItem() {
     try {
       const response = await axios.put(`${baseUrl}/inventories/:id`);
       return response.data;

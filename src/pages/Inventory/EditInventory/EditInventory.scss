@@ -156,6 +156,7 @@
         margin: 0 .5rem 0 0 ;
 
         &:checked{
+            box-sizing: border-box;
             margin: 0 0.5rem 0 0 ;
             background-color:  $primary-element-color;
             border: .0625rem solid $secondary-cloud-color;
