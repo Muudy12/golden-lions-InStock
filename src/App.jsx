@@ -1,5 +1,5 @@
 import "./App.scss";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import Header from "./components/Header/Header";
 import Footer from "./components/Footer/Footer";
 import Warehouses from "./pages/Warehouses/Warehouses";
@@ -19,7 +19,7 @@ function App() {
         <Header />
         <Routes>
           <Route path='/' element={<Warehouses />} />
-          <Route path='/warehouses' element={<Warehouses />} />
+          <Route path='/warehouses' element={<Navigate to="/" />} />
           <Route path='/warehouses/:warehouseId' element={<WarehouseDetails />} />
 
           <Route path='/warehouses/:warehouseId/:inventoryId' element={<InventoryDetails />} />
