@@ -1,6 +1,6 @@
 @import "../../../styles/global.scss";
 
-.inventory {
+.edit-inventory {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -9,4 +9,56 @@
     border-radius: 0.2rem;
     box-shadow: 0 0.2rem 0.5rem 0 rgba($primary-text-color, 0.1);
     margin: 2rem 0;
+
+
+    @include tablet {
+        margin: 1rem 0 4rem;
+
+        & div {
+            & h3 {
+                &:last-of-type {
+                    max-width: 5rem !important;
+                }
+            }
+        }
+    }
+
+    @include desktop {
+        margin-bottom: 5rem;
+
+        & div {
+            gap: 1rem;
+            min-width: fit-content;
+
+            & h3 {
+                &:nth-of-type(2) {
+                    padding-right: 2rem;
+                }
+            }
+        }
+    }
+
+    &__title {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+        width: 100%;
+        padding: 0 1.5rem;
+        box-sizing: border-box;
+
+        @include tablet {
+            flex-direction: row;
+            padding: 1.5rem 2rem 1rem;
+        }
+
+        &-heading {
+            align-self: flex-start;
+            margin-bottom: 0;
+
+            @include tablet {
+                margin: 0;
+            }
+        }
+    }
 }
