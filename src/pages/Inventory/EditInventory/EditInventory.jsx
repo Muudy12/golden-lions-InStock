@@ -1,12 +1,12 @@
 import { useEffect, useRef, useState } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import ArrowBackIcon from "../../../assets/icons/arrow_back-24px.svg";
 import './EditInventory.scss'
 
 function EditInventory({ id, warehouse_id, item_name, description, category, status, quantity }) {
   const [inStock, setInStock] = useState(status);
   const [inventoryItem, setInventoryItem] = useState(null);
-  const [itemName, setItemName] = useState(item_name);
+  const [formData, setFormData] = useState(item_name);
   const {inventoryId} = useParams();
   const formRef = useRef();
 
@@ -106,6 +106,7 @@ function EditInventory({ id, warehouse_id, item_name, description, category, sta
         </div>
       </form>
       <div className="edit-inventory__bottom">
+       {/* TODO: add LINK for cancel and save */}
         <button className="edit-inventory__cancel-btn">Cancel</button>
         <button className="edit-inventory__save-btn">Save</button>
       </div>
