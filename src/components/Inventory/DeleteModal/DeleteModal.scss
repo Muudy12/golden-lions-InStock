@@ -119,10 +119,22 @@
         }
       }
 
+      & .button__cancel {
+        &:hover {
+          color: $primary-element-color;
+          border-color: $primary-element-color;
+        }
+      }
+
       & .button__delete {
         background-color: $supporting-red-color;
         border-color: $supporting-red-color;
         color: $primary-white-color;
+
+        &:hover {
+          background-color: $background-graphite-color;
+          border-color: $background-graphite-color;
+        }
       }
     }
   }
