@@ -27,13 +27,13 @@ class Api {
 
   async deleteInventoryById(id) {
     try {
-      const response = await axios.delete();
+      const response = await axios.delete(`${this.baseUrl}/inventories/${id}`);
       return response.data;
     } catch (err) {
       console.log(`Failed to delete inventory item with id: ${id}`);
     }
   }
-  
+
   async getAllInventories() {
     try {
       const response = await axios.get(`${baseUrl}/inventories`);
@@ -45,14 +45,16 @@ class Api {
 
   async getInventoriesGivenWarehouseId(warehouseId) {
     try {
-      const response = await axios.get(`${baseUrl}/warehouses/${warehouseId}/inventories`);
+      const response = await axios.get(
+        `${baseUrl}/warehouses/${warehouseId}/inventories`
+      );
       return response.data;
     } catch (err) {
-      console.log(`Failed to get all inventories with warehouse id: ${warehouseId}.`);
+      console.log(
+        `Failed to get all inventories with warehouse id: ${warehouseId}.`
+      );
     }
   }
-
 }
-
 
 export { Api, baseUrl };
