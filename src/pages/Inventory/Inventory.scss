@@ -190,7 +190,8 @@
       justify-content: space-between;
 
       @include tablet {
-        padding: 1rem 2rem;
+        padding-left: 2rem !important;
+        padding-right: 2rem !important;
         flex-wrap: nowrap;
 
         &:nth-of-type(2) {

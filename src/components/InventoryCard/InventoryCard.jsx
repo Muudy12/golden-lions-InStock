@@ -86,24 +86,26 @@ function InventoryCard({cardTitle, inventoryItem}) {
             <h2 className="inventory-card__form-details-title">Item Availability</h2>
             <h3 className="inventory-card__form-label">Category</h3>
             <div className='inventory-card__form-radios'>
-            <h4>
-            <input className="inventory-card__form-radio" 
+            <label className="inventory-card__form-radio" >
+            <input 
             name="status" 
             type="radio" 
             value="In Stock" 
             checked={inventoryItemData.status === "In Stock"}
             onChange={handleChange}/>
+            <span className='inventory-card__form-radio__circle'></span>
             In stock
-            </h4>
-            <h4>
-            <input className="inventory-card__form-radio" 
+            </label>
+            <label className="inventory-card__form-radio" >
+            <input
             name="status" 
             type="radio" 
             value="Out of Stock" 
             checked={inventoryItemData.status === "Out of Stock"}
             onChange={handleChange}/>
+            <span className='inventory-card__form-radio__circle'></span>
             Out of stock
-            </h4>
+            </label>
             </div>
             <h3 className="inventory-card__form-label">Quantity</h3>
             <input
