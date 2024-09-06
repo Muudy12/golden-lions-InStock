@@ -17,7 +17,6 @@ function Inventory({ warehouseId }) {
   useEffect(() => {
     const getInventoryList = async () => {
       let response;
-      console.log("test ", warehouseId, { warehouseId });
       if (warehouseId !== undefined) {
         response = await api.getInventoriesGivenWarehouseId(warehouseId);
       } else {
@@ -30,6 +29,11 @@ function Inventory({ warehouseId }) {
 
   const goToInventoryDetail = (warehouseId, inventoryId) => {
     navigate(`/warehouses/${warehouseId}/${inventoryId}`);
+  }
+  // Function to update list in client side without re-rending the page or component to avoid infinite loopings:
+  // This function is passed as props to delete modal:
+  function updateInventoryList(invId) {
+    setInventoryList(inventoryList.filter((inv) => inv.id !== invId));
   }
 
   return (
@@ -106,8 +110,8 @@ function Inventory({ warehouseId }) {
             </h3>
             <h3 className="inventory__actions" data-label="ACTIONS">
               <DeleteInventory
-                warehouseId={inventoryItem.warehouse_id}
                 inventoryId={inventoryItem.id}
+                updateInventoryList={updateInventoryList}
               />
               <ReactSVG src={EditIcon} />
             </h3>

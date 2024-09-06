@@ -20,7 +20,7 @@ function Warehouses() {
     };
 
     getAllWarehouses();
-  }, [warehouses]);
+  }, []); // removed the detect warehouses because it was causing infinite loop/re-rending
 
   const editWarehouse = (warehouseId) => {
     alert("Edit Clicked!");
@@ -35,6 +35,12 @@ function Warehouses() {
   const goToDetail = (warehouseId) => {
     navigate(`/warehouses/${warehouseId}`);
   };
+
+  // Added this function to update the list of warehouses without having to re-render the page.
+  //// Had to pass this function as prop to the delete modal:
+  function updateWarehouseList(warehouseId) {
+    setWarehouses(warehouses.filter((wh) => wh.id !== warehouseId));
+  }
 
   return (
     <div className="warehouses">
@@ -91,7 +97,10 @@ function Warehouses() {
                 <ReactSVG src={ChevronIcon}  />
               </h3>
               <h3 className="warehouse-item__address" data-label="ADDRESS">
-                {w.address},&nbsp;<span>{w.city},&nbsp;{w.country}</span>
+                {w.address},&nbsp;
+                <span>
+                  {w.city},&nbsp;{w.country}
+                </span>
               </h3>
               <h3 className="warehouse-item__name" data-label="CONTACT NAME">
                 {w.contact_name}
@@ -104,7 +113,11 @@ function Warehouses() {
                 <span>{w.contact_email}</span>
               </h3>
               <h3 className="warehouse-item__actions" data-label="ACTIONS">
-                <DeleteModal  warehouseName={w.warehouse_name}  warehouseId ={w.id} />
+                <DeleteModal
+                  warehouseName={w.warehouse_name}
+                  warehouseId={w.id}
+                  updateWarehouseList={updateWarehouseList}
+                />
                 <ReactSVG src={EditIcon} onClick={() => editWarehouse(w.id)} />
               </h3>
             </div>
