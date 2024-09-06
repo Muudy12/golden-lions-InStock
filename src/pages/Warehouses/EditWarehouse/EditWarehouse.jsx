@@ -65,7 +65,7 @@ function EditWarehouse() {
 
     if (valid) {
       alert('Form is submitted successfully!');
-      warehousesPageNavigator('/');
+      warehousesPageNavigator('/warehouses');
     } else {
       alert('Please fill in all the fields.')
     }
@@ -232,7 +232,7 @@ function EditWarehouse() {
         </div>
 
         <div className="edit__form-buttons">
-          <Link className="edit__form-buttons-cancel" to="/">Cancel</Link>
+          <Link className="edit__form-buttons-cancel" to="/warehouses">Cancel</Link>
           <button className="edit__form-buttons-save" type="submit">Save</button>
         </div>
       </form>

@@ -36,7 +36,6 @@
     &__form-wrapper{
         width: 100%;
         padding-top: 1.5rem;
-        padding-bottom: 1rem;
         @include tablet{
             flex-direction: row;
         }
@@ -46,7 +45,6 @@
         width: 100%;
         display: flex;
         flex-direction: column;
-        padding-bottom: .5rem;
         @include tablet{
             flex-direction: row;
         }
@@ -140,12 +138,14 @@
             display: flex;
             flex-direction: row;
             justify-content: center;
-            padding: 0rem  1.5rem  0rem  1.5rem;
+            padding: 1rem  1.5rem  1rem  1.5rem;
             gap: 1rem;
+            background-color: $background-light-grey;
             @include tablet{
                 justify-content: flex-end;
                 padding-right: 2rem;
-                padding-top: 1.5rem;
+                padding-top: 1rem;
+                margin-top: 1.5rem ;
             }
             &-save{
                 all: unset;
