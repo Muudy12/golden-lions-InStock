@@ -36,7 +36,17 @@
       @include displayList-item();
 
       @include tablet {
+<<<<<<< HEAD
         @include inventoryListColumnWidths();
+=======
+        padding-left: 2rem !important;
+        padding-right: 2rem !important;
+        flex-wrap: nowrap;
+
+        &:nth-of-type(2) {
+          border-top: 0;
+        }
+>>>>>>> dev
       }
 
       & .inventory-item {

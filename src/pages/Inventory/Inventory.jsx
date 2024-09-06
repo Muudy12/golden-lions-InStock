@@ -6,7 +6,12 @@ import { Api } from "./../../utils/utils.js";
 import EditIcon from "../../assets/icons/edit-24px.svg";
 import ChevronIcon from "../../assets/icons/chevron_right-24px.svg";
 import SortIcon from "../../assets/icons/sort-24px.svg";
+<<<<<<< HEAD
 import DeleteInventory from "../../components/Inventory/DeleteModal/DeleteModal.jsx";
+=======
+import DeleteInventory from "./Modals/DeleteModal.jsx";
+
+>>>>>>> dev
 
 function Inventory({ warehouseId }) {
   const navigate = useNavigate();
