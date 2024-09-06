@@ -82,138 +82,155 @@ function EditWarehouse() {
             <h2 className="edit__form-warehouse-title">Warehouse Details</h2>
 
             {/* Warehouse Name */}
-            <h3 className="edit__form-label">Warehouse Name</h3>
-            <input
-              className={`edit__form-input ${!formErrors.name && 'invalid'}`}
-              type="text"
-              placeholder="Warehouse Name"
-              name="name"
-              onBlur={validationHandler}
-            />
-            {!formErrors.name && (
-              <div className="edit__form-input-error">
-                <ReactSVG className="edit__form-input-error-icon" src={ErrorIcon} />
-                <p className="edit__form-input-error-message  small">This field is required</p>
-              </div>
-            )}
+            <div className="edit__form-item">
+              <h3 className="edit__form-item-label">Warehouse Name</h3>
+              <input
+                className={`edit__form-item-input ${!formErrors.name && 'invalid'}`}
+                type="text"
+                placeholder="Warehouse Name"
+                name="name"
+                onBlur={validationHandler}
+              />
+              {!formErrors.name && (
+                <div className="edit__form-item-input-error">
+                  <ReactSVG className="edit__form-item-input-error-icon" src={ErrorIcon} />
+                  <p className="edit__form-item-input-error-message  small">This field is required</p>
+                </div>
+              )}
+            </div>
 
             {/* Warehouse Street Address */}
-            <h3 className="edit__form-label">Street Address</h3>
-            <input
-              className={`edit__form-input ${!formErrors.street && 'invalid'}`}
-              type="text"
-              placeholder="Street Address"
-              name="street"
-              onBlur={validationHandler}
-            />
-            {!formErrors.street && (
-              <div className="edit__form-input-error">
-                <ReactSVG className="edit__form-input-error-icon" src={ErrorIcon} />
-                <p className="edit__form-input-error-message  small">This field is required</p>
-              </div>
-            )}
+            <div className="edit__form-item">
+              <h3 className="edit__form-item-label">Street Address</h3>
+              <input
+                className={`edit__form-item-input ${!formErrors.street && 'invalid'}`}
+                type="text"
+                placeholder="Street Address"
+                name="street"
+                onBlur={validationHandler}
+              />
+              {!formErrors.street && (
+                <div className="edit__form-item-input-error">
+                  <ReactSVG className="edit__form-item-input-error-icon" src={ErrorIcon} />
+                  <p className="edit__form-item-input-error-message  small">This field is required</p>
+                </div>
+              )}
+            </div>
 
             {/* Warehouse City */}
-            <h3 className="edit__form-label">City</h3>
-            <input
-              className={`edit__form-input ${!formErrors.city && 'invalid'}`}
-              type="text"
-              placeholder="City"
-              name="city"
-              onBlur={validationHandler}
-            />
-            {!formErrors.city && (
-              <div className="edit__form-input-error">
-                <ReactSVG className="edit__form-input-error-icon" src={ErrorIcon} />
-                <p className="edit__form-input-error-message  small">This field is required</p>
-              </div>
-            )}
+            <div className="edit__form-item">
+              <h3 className="edit__form-item-label">City</h3>
+              <input
+                className={`edit__form-item-input ${!formErrors.city && 'invalid'}`}
+                type="text"
+                placeholder="City"
+                name="city"
+                onBlur={validationHandler}
+              />
+              {!formErrors.city && (
+                <div className="edit__form-item-input-error">
+                  <ReactSVG className="edit__form-item-input-error-icon" src={ErrorIcon} />
+                  <p className="edit__form-item-input-error-message  small">This field is required</p>
+                </div>
+              )}
+            </div>
 
             {/* Warehouse Country */}
-            <h3 className="edit__form-label">Country</h3>
-            <input
-              className={`edit__form-input ${!formErrors.country && 'invalid'}`}
-              type="text"
-              placeholder="Country"
-              name="country"
-              onBlur={validationHandler}
-            />
-
-            {!formErrors.country && (
-              <div className="edit__form-input-error">
-                <ReactSVG className="edit__form-input-error-icon" src={ErrorIcon} />
-                <p className="edit__form-input-error-message  small">This field is required</p>
-              </div>
-            )}
+            <div className="edit__form-item">
+              <h3 className="edit__form-item-label">Country</h3>
+              <input
+                className={`edit__form-item-input ${!formErrors.country && 'invalid'}`}
+                type="text"
+                placeholder="Country"
+                name="country"
+                onBlur={validationHandler}
+              />
+              {!formErrors.country && (
+                <div className="edit__form-item-input-error">
+                  <ReactSVG className="edit__form-item-input-error-icon" src={ErrorIcon} />
+                  <p className="edit__form-item-input-error-message  small">This field is required</p>
+                </div>
+              )}
+            </div>
           </div>
+
+
           <div className="edit__form-contact">
             <h2 className="edit__form-contact-title">Contact Details</h2>
-
             {/* Contact Name */}
-            <h3 className="edit__form-label">Contact Name</h3>
-            <input
-              className={`edit__form-input ${!formErrors.contactName && 'invalid'}`}
-              type="text"
-              placeholder="Contact Name"
-              name="contactName"
-              onBlur={validationHandler}
-            />
-            {!formErrors.contactName && (
-              <div className="edit__form-input-error">
-                <ReactSVG className="edit__form-input-error-icon" src={ErrorIcon} />
-                <p className="edit__form-input-error-message  small">This field is required</p>
-              </div>
-            )}
+            <div className="edit__form-item">
+              <h3 className="edit__form-item-label">Contact Name</h3>
+              <input
+                className={`edit__form-item-input ${!formErrors.contactName && 'invalid'}`}
+                type="text"
+                placeholder="Contact Name"
+                name="contactName"
+                onBlur={validationHandler}
+              />
+              {!formErrors.contactName && (
+                <div className="edit__form-item-input-error">
+                  <ReactSVG className="edit__form-item-input-error-icon" src={ErrorIcon} />
+                  <p className="edit__form-item-input-error-message  small">This field is required</p>
+                </div>
+              )}
+            </div>
 
             {/* Position */}
-            <h3 className="edit__form-label" htmlFor="edit__form-contact-position">Position</h3>
-            <input
-              className={`edit__form-input ${!formErrors.position && 'invalid'}`}
-              type="text"
-              placeholder="Position"
-              name="position"
-              onBlur={validationHandler}
-            />
-            {!formErrors.position && (
-              <div className="edit__form-input-error">
-                <ReactSVG className="edit__form-input-error-icon" src={ErrorIcon} />
-                <p className="edit__form-input-error-message  small">This field is required</p>
-              </div>
-            )}
+            <div className="edit__form-item">
+              <h3 className="edit__form-item-label" htmlFor="edit__form-contact-position">Position</h3>
+              <input
+                className={`edit__form-item-input ${!formErrors.position && 'invalid'}`}
+                type="text"
+                placeholder="Position"
+                name="position"
+                onBlur={validationHandler}
+              />
+              {!formErrors.position && (
+                <div className="edit__form-item-input-error">
+                  <ReactSVG className="edit__form-item-input-error-icon" src={ErrorIcon} />
+                  <p className="edit__form-item-input-error-message  small">This field is required</p>
+                </div>
+              )}
+            </div>
 
             {/* Phone Number */}
-            <h3 className="edit__form-label">Phone Number</h3>
-            <input
-              className={`edit__form-input ${!formErrors.phone && 'invalid'}`}
-              type="text"
-              placeholder="Phone Number"
-              name="phone"
-              onBlur={validationHandler}
-            />
-            {!formErrors.phone && (
-              <div className="edit__form-input-error">
-                <ReactSVG className="edit__form-input-error-icon" src={ErrorIcon} />
-                <p className="edit__form-input-error-message  small">This field is required</p>
-              </div>
-            )}
+            <div className="edit__form-item">
+              <h3 className="edit__form-item-label">Phone Number</h3>
+              <input
+                className={`edit__form-item-input ${!formErrors.phone && 'invalid'}`}
+                type="text"
+                placeholder="Phone Number"
+                name="phone"
+                onBlur={validationHandler}
+              />
+              {!formErrors.phone && (
+                <div className="edit__form-item-input-error">
+                  <ReactSVG className="edit__form-item-input-error-icon" src={ErrorIcon} />
+                  <p className="edit__form-item-input-error-message  small">This field is required</p>
+                </div>
+              )}
+            </div>
 
             {/* Email */}
-            <h3 className="edit__form-label">Email</h3>
-            <input
-              className={`edit__form-input ${!formErrors.email && 'invalid'}`}
-              type="text"
-              placeholder="Email"
-              name="email"
-              onBlur={validationHandler}
-            />
-            {!formErrors.email && (
-              <div className="edit__form-input-error">
-                <ReactSVG className="edit__form-input-error-icon" src={ErrorIcon} />
-                <p className="edit__form-input-error-message  small">This field is required</p>
-              </div>
-            )}
+            <div className="edit__form-item">
+              <h3 className="edit__form-item-label">Email</h3>
+              <input
+                className={`edit__form-item-input ${!formErrors.email && 'invalid'}`}
+                type="text"
+                placeholder="Email"
+                name="email"
+                onBlur={validationHandler}
+              />
+              {!formErrors.email && (
+                <div className="edit__form-item-input-error">
+                  <ReactSVG className="edit__form-item-input-error-icon" src={ErrorIcon} />
+                  <p className="edit__form-item-input-error-message  small">This field is required</p>
+                </div>
+              )}
+            </div>
           </div>
         </div>
+
         <div className="edit__form-buttons">
           <Link className="edit__form-buttons-cancel" to="/">Cancel</Link>
           <button className="edit__form-buttons-save" type="submit">Save</button>
