@@ -74,6 +74,15 @@ class Api {
     }
   }
 
+  async createInventoryItem(inventoryItemData) {
+    try {
+      const response = await axios.post(`${baseUrl}/inventories`, inventoryItemData);
+      return response.data;
+    } catch (err) {
+      console.log(`Failed to create a new inventory item.`);
+    }
+  }
+
 }
 
 export { Api, baseUrl };
