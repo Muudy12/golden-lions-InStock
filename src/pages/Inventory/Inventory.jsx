@@ -6,7 +6,7 @@ import { Api } from "./../../utils/utils.js";
 import EditIcon from "../../assets/icons/edit-24px.svg";
 import ChevronIcon from "../../assets/icons/chevron_right-24px.svg";
 import SortIcon from "../../assets/icons/sort-24px.svg";
-import DeleteInventory from "./Modals/DeleteModal.jsx";
+import DeleteInventory from "../../components/Inventory/DeleteModal/DeleteModal.jsx";
 
 function Inventory({ warehouseId }) {
   const navigate = useNavigate();
@@ -34,9 +34,6 @@ function Inventory({ warehouseId }) {
     getInventoryList();
   }, []);
 
-  const goToInventoryDetail = (warehouseId, inventoryId) => {
-    navigate(`/warehouses/${warehouseId}/${inventoryId}`);
-  }
   // Function to update list in client side without re-rending the page or component to avoid infinite loopings:
   // This function is passed as props to delete modal:
   function updateInventoryList(invId) {
@@ -90,8 +87,8 @@ function Inventory({ warehouseId }) {
 
       {inventoryList?.map((inventoryItem, index) => {
         return (
-          <div key={index} className="inventories__list-item inventory">
-            <h3 className="inventory__title" data-label="INVENTORY ITEM">            
+          <div key={index} className="inventories__list-item inventory-item">
+            <h3 className="inventory-item__title" data-label="INVENTORY ITEM">            
               <span
                   className="inventories__list-item__name"
                   onClick={() => goToDetail(inventoryItem.id)}
@@ -100,27 +97,27 @@ function Inventory({ warehouseId }) {
                 </span>
               <ReactSVG src={ChevronIcon} onClick={() => goToDetail(inventoryItem.id)} />
             </h3>
-            <h3 className="inventory__category" data-label="CATEGORY">
+            <h3 className="inventory-item__category" data-label="CATEGORY">
               {inventoryItem.category}
             </h3>
             <h3 data-label="STATUS">
               <div
-                className={`inventory__status ${
+                className={`inventory-item__status ${
                   inventoryItem.status === "In Stock"
-                    ? "inventory__status--green"
-                    : "inventory__status--red"
+                    ? "status--green"
+                    : "status--red"
                 }`}
               >
                 {inventoryItem.status}
               </div>
             </h3>
-            <h3 className="inventory__qty" data-label="QTY">
+            <h3 className="inventory-item__qty" data-label="QTY">
               {inventoryItem.quantity}
             </h3>
-            <h3 className="inventory__warehouse_id" data-label="WAREHOUSE">
+            <h3 className="inventory-item__warehouse_id" data-label="WAREHOUSE">
               {inventoryItem.warehouse_name}
             </h3>
-            <h3 className="inventory__actions" data-label="ACTIONS">
+            <h3 className="inventory-item__actions" data-label="ACTIONS">
               <DeleteInventory
                 inventoryId={inventoryItem.id}
                 updateInventoryList={updateInventoryList}
