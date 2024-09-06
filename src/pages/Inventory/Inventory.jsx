@@ -1,5 +1,6 @@
 import { React, useState, useEffect } from "react";
 import { ReactSVG } from "react-svg";
+import { Link, useNavigate  } from 'react-router-dom';
 import "./Inventory.scss";
 import { Api } from "./../../utils/utils.js";
 import EditIcon from "../../assets/icons/edit-24px.svg";
@@ -12,7 +13,16 @@ import { useNavigate } from "react-router-dom";
 function Inventory({ warehouseId }) {
   const navigate = useNavigate();
   const api = new Api();
+  const navigate = useNavigate();
   const [inventoryList, setInventoryList] = useState([]);
+
+  const addInventory = ()=>{
+    navigate("/inventory/add");
+  }
+
+  const goToDetail = (inventoryId) => {
+    navigate(`/inventory/${inventoryId}`);
+  };
 
   useEffect(() => {
     const getInventoryList = async () => {
@@ -38,7 +48,7 @@ function Inventory({ warehouseId }) {
 
   return (
     <div className="inventories">
-      <header className="inventories__title">
+      {!warehouseId && <header className="inventories__title">
         <h1 className="inventories__title-heading">Inventory</h1>
         <div className="inventories__title options">
           <form
@@ -53,9 +63,9 @@ function Inventory({ warehouseId }) {
               className="options__search-form-input"
             />
           </form>
-          <button className="options__add-btn">+ Add New Item</button>
+          <button className="options__add-btn" onClick={addInventory}>+ Add New Item</button>
         </div>
-      </header>
+      </header>}
 
       <div className="inventories__list-headers">
         <h3>
@@ -83,10 +93,15 @@ function Inventory({ warehouseId }) {
 
       {inventoryList?.map((inventoryItem, index) => {
         return (
-          <div key={index} className="inventories__list-item inventory" onClick={() => goToInventoryDetail(inventoryItem.warehouse_id, inventoryItem.id)}>
-            <h3 className="inventory__title" data-label="INVENTORY ITEM">
-              {inventoryItem.item_name}
-              <ReactSVG src={ChevronIcon} />
+          <div key={index} className="inventories__list-item inventory">
+            <h3 className="inventory__title" data-label="INVENTORY ITEM">            
+              <span
+                  className="inventories__list-item__name"
+                  onClick={() => goToDetail(inventoryItem.id)}
+                >
+                  {inventoryItem.item_name}
+                </span>
+              <ReactSVG src={ChevronIcon} onClick={() => goToDetail(inventoryItem.id)} />
             </h3>
             <h3 className="inventory__category" data-label="CATEGORY">
               {inventoryItem.category}

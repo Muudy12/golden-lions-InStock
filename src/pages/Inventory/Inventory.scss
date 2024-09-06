@@ -198,6 +198,13 @@
         }
       }
 
+      &__name {
+        &:hover {
+          text-decoration: underline;
+          cursor: pointer;
+        }
+      }
+
       &.inventory {
         @include tablet {
           &:nth-of-type(2) {
@@ -215,6 +222,7 @@
         display: flex;
         align-items: center;
         flex-wrap: wrap;
+        font-weight: 400;
 
         @include tablet {
           width: 8rem;
