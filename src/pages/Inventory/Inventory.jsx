@@ -8,12 +8,12 @@ import ChevronIcon from "../../assets/icons/chevron_right-24px.svg";
 import SortIcon from "../../assets/icons/sort-24px.svg";
 import DeleteInventory from "./Modals/DeleteModal.jsx";
 
-import { useNavigate } from "react-router-dom";
+
 
 function Inventory({ warehouseId }) {
   const navigate = useNavigate();
   const api = new Api();
-  const navigate = useNavigate();
+  //const navigate = useNavigate();
   const [inventoryList, setInventoryList] = useState([]);
 
   const addInventory = ()=>{
@@ -94,7 +94,7 @@ function Inventory({ warehouseId }) {
       {inventoryList?.map((inventoryItem, index) => {
         return (
           <div key={index} className="inventories__list-item inventory">
-            <h3 className="inventory__title" data-label="INVENTORY ITEM">            
+            <h3 className="inventory__title" data-label="INVENTORY ITEM">
               <span
                   className="inventories__list-item__name"
                   onClick={() => goToDetail(inventoryItem.id)}
