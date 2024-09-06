@@ -15,7 +15,7 @@
     border-bottom: .0625rem solid $secondary-cloud-color;
     &__header {
         display: flex;
-        align-items: center;
+        align-items: flex-end;
         gap: 1rem;
         color: $primary-text-color;
         &--title {
@@ -24,7 +24,7 @@
         &--wrapper {
             background-color: $primary-element-color;
             border-radius: 50%;
-            padding: .75rem;
+            padding: .375rem 1rem;
             & > svg, div {
                 display: flex;
             }
