@@ -15,7 +15,7 @@
     border-bottom: .0625rem solid $secondary-cloud-color;
     &__header {
         display: flex;
-        align-items: center;
+        align-items: flex-end;
         gap: 1rem;
         color: $primary-text-color;
         &--title {
@@ -34,7 +34,8 @@
                 }
             }
             @include tablet {
-                border-radius: 40px;
+                border-radius: 2.5rem;
+                padding: .375rem 1rem;
                 &-link {
                     display: flex;
                     align-items: center;

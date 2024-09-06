@@ -3,10 +3,11 @@ import ArrowBackIcon from "../../../assets/icons/arrow_back-24px.svg";
 import './EditInventory.scss'
 
 function EditInventory({ id, warehouse_id, item_name, description, category, status, quantity }) {
-  const [inStock, setInStock] = useState(false);
+  const [inStock, setInStock] = useState(status);
   const [inventoryItem, setInventoryItem] = useState(null);
 
   const [formErrors, setFormErrors] = useState({
+    warehouse_id: warehouse_id,
     item_name: true,
     description: true,
     category: true,
@@ -16,7 +17,7 @@ function EditInventory({ id, warehouse_id, item_name, description, category, sta
 
   // TODO: add form validation cannot submit blank info
 
-  //TODO: API call will need to load the data from the database
+  //TODO: API call will need to load the data from the database OR is it better to have props passed down from parent component?
 
   const fromValidation = (event) => {
     console.log('TODO: need to add form validation here can this be from the add item')
@@ -38,7 +39,7 @@ function EditInventory({ id, warehouse_id, item_name, description, category, sta
           <section className="form__section">
             <h2 className="form__title">Item Details</h2>
             <h3 className="form__label">Item Name</h3>
-            <input className="form__input" type="text" placeholder="Television" name="item_name" />
+            <input className="form__input" type="text" placeholder="Television" name="item_name" value="Television" />
 
             <h3 className="form__label">Description</h3>
             <textarea className="form__textarea" placeholder='This 50", 4K LED TV provides a crystal-clear picture and vivid colors.' name="item_name" />

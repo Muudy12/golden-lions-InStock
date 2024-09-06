@@ -64,6 +64,16 @@ class Api {
       console.log(`Failed to get an item.`);
     }
   }
+
+  async getInventoryItemDetails(warehouseId, inventoryId) {
+    try {
+      const response = await axios.get(`${baseUrl}/warehouses/${warehouseId}/inventories/${inventoryId}`);
+      return response.data;
+    } catch (err) {
+      console.log(`Failed to get inventory item with id: ${inventoryId} for warehouse with id: ${warehouseId}.`);
+    }
+  }
+
 }
 
 export { Api, baseUrl };
