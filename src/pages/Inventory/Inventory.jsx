@@ -7,7 +7,10 @@ import ChevronIcon from "../../assets/icons/chevron_right-24px.svg";
 import SortIcon from "../../assets/icons/sort-24px.svg";
 import DeleteInventory from "./Modals/DeleteModal.jsx";
 
+import { useNavigate } from "react-router-dom";
+
 function Inventory({ warehouseId }) {
+  const navigate = useNavigate();
   const api = new Api();
   const [inventoryList, setInventoryList] = useState([]);
 
@@ -24,6 +27,9 @@ function Inventory({ warehouseId }) {
     getInventoryList();
   }, []);
 
+  const goToInventoryDetail = (warehouseId, inventoryId) => {
+    navigate(`/warehouses/${warehouseId}/${inventoryId}`);
+  }
   // Function to update list in client side without re-rending the page or component to avoid infinite loopings:
   // This function is passed as props to delete modal:
   function updateInventoryList(invId) {
@@ -77,7 +83,7 @@ function Inventory({ warehouseId }) {
 
       {inventoryList?.map((inventoryItem, index) => {
         return (
-          <div key={index} className="inventories__list-item inventory">
+          <div key={index} className="inventories__list-item inventory" onClick={() => goToInventoryDetail(inventoryItem.warehouse_id, inventoryItem.id)}>
             <h3 className="inventory__title" data-label="INVENTORY ITEM">
               {inventoryItem.item_name}
               <ReactSVG src={ChevronIcon} />

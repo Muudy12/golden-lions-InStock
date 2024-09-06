@@ -88,14 +88,13 @@ function Warehouses() {
         warehouses.map((w, index) => {
           return (
             <div key={index} className="warehouses__list-item warehouse-item">
-              <h3 className="warehouse-item__title" data-label="WAREHOUSE">
+              <h3 className="warehouse-item__title" data-label="WAREHOUSE" onClick={() => goToDetail(w.id)}>
                 <span
                   className="warehouse-item__title-name"
-                  onClick={() => goToDetail(w.id)}
                 >
                   {w.warehouse_name}
                 </span>
-                <ReactSVG src={ChevronIcon} onClick={() => goToDetail(w.id)} />
+                <ReactSVG src={ChevronIcon}  />
               </h3>
               <h3 className="warehouse-item__address" data-label="ADDRESS">
                 {w.address},&nbsp;
