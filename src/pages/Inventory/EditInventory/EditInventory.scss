@@ -39,33 +39,40 @@
         }
     }
 
-    &__bottom{
+    &__bottom {
         width: calc(100% - 2rem);
         padding: 1rem;
         display: flex;
         gap: 1rem;
+        background-color: $background-light-grey;
+
+        @include tablet {
+            justify-content: flex-end;
+            width: calc(100% - 4rem);
+            padding: 1rem 2rem;
+        }
     }
 
-    &__cancel-btn{
+    &__cancel-btn {
         @include roundButton;
         width: 100%;
         border: 0.1rem solid $secondary-cloud-color;
         color: $secondary-slate-color;
         background-color: $primary-white-color;
 
-        &:hover{
+        &:hover {
             border-color: $primary-element-color;
             color: $primary-element-color;
         }
     }
 
-    &__save-btn{
+    &__save-btn {
         @include roundButton;
         width: 100%;
         background-color: $primary-element-color;
         color: $primary-white-color;
 
-        &:hover{
+        &:hover {
             background-color: $background-graphite-color;
         }
     }
@@ -74,10 +81,32 @@
 .form {
     width: 100%;
 
+    &__container {
+        @include tablet {
+            display: flex;
+            padding: 1.5rem 0 1rem 0;
+        }
+    }
+
     &__section {
         width: calc(100% - 2rem);
         padding: 0 1rem 1.5rem 1rem;
         border-bottom: 0.1rem solid $secondary-cloud-color;
+
+        @include tablet {
+            padding: 0 2rem 1.5rem 2rem;
+            border-bottom: none;
+            border-right: 0.1rem solid #BDC5D5;
+        }
+    }
+
+    &__aside {
+        width: calc(100% - 2rem);
+        padding: 0 1rem 1rem 1rem;
+
+        @include tablet {
+            padding: 0 2rem 1.5rem 2rem;
+        }
     }
 
     &__label {
@@ -85,10 +114,20 @@
         padding: 1rem 0rem .25rem 0rem;
     }
 
+    &__stock-label{
+        padding-right: 0.5rem;
+    }
+
     &__input {
         @include formStyling;
         width: calc(100% - 1.65rem);
         height: 2.25rem;
+
+        &--quantity {
+            @include desktop {
+                width: 7.625rem;
+            }
+        }
     }
 
     &__textarea {
@@ -105,8 +144,22 @@
         height: 2.25rem;
     }
 
-    &__aside{
-        width: calc(100% - 2rem);
-        padding: 0 1rem 1rem 1rem;
+    &__radio-btn {
+        appearance: none;
+        margin: 0;
+        font: inherit;
+        color: currentColor;
+        width: 1rem;
+        height: 1rem;
+        border: .0625rem solid $secondary-cloud-color;
+        border-radius: 50%;
+        margin: 0 .5rem 0 0 ;
+
+        &:checked{
+            margin: 0 0.5rem 0 0 ;
+            background-color:  $primary-element-color;
+            border: .0625rem solid $secondary-cloud-color;
+            border-radius: 50%;
+        }
     }
 }

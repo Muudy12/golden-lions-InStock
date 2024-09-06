@@ -55,6 +55,15 @@ class Api {
       );
     }
   }
+
+  async getOneItem() {
+    try {
+      const response = await axios.put(`${baseUrl}/inventories/:id`);
+      return response.data;
+    } catch (err) {
+      console.log(`Failed to get an item.`);
+    }
+  }
 }
 
 export { Api, baseUrl };

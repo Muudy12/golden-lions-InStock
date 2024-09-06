@@ -22,4 +22,9 @@
     &::placeholder{
         color: $primary-text-color;
     }
+
+    &:focus{
+        border: 0.1rem solid  $primary-element-color;
+        outline: none;
+    }
 }
