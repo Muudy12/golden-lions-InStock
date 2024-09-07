@@ -1,353 +1,375 @@
 @mixin roundButton {
-  border-radius: 1.25rem;
-  height: 2.25rem;
-  width: 100%;
-  padding: 0.45rem;
-  border: none;
+    font-weight: 400;
+    border-radius: 1.25rem;
+    height: 2.25rem;
+    width: 100%;
+    padding: 0.45rem;
+    border: none;
+    cursor: pointer;
 
-  @include tablet {
+    @include tablet {
     padding: 0 1rem;
     width: fit-content;
-  }
+    }
 }
+
 
 @mixin displayListContainer {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  background-color: $primary-white-color;
-  width: 100%;
-  border-radius: 0.2rem;
-  box-shadow: 0 0.2rem 0.5rem 0 rgba($primary-text-color, 0.1);
-  margin: 2rem 0;
-
-  @include tablet {
-    margin: 1rem 0 4rem;
-
-    & div {
-      & h3 {
-        &:last-of-type {
-          max-width: 5rem !important;
-        }
-      }
-    }
-  }
-
-  @include desktop {
-    margin-bottom: 5rem;
-
-    & div {
-      gap: 1rem;
-      min-width: fit-content;
-
-      & h3 {
-        &:nth-of-type(2) {
-          padding-right: 2rem;
-        }
-      }
-    }
-  }
-}
-
-@mixin displayListTitle {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  align-items: center;
-  padding-top: 1rem;
-  padding-bottom: 0.5rem;
-  @include listSidePadding();
-  box-sizing: border-box;
-
-  @include tablet {
-    flex-direction: row;
-    justify-content: space-between;
-    padding-top: 1.8rem;
-    padding-bottom: 1.3rem;
-  }
-}
-
-@mixin displayListTitle__header {
-  align-self: flex-start;
-  margin-bottom: 0;
-  font-size: 1.75rem;
-
-  @include tablet {
-    margin: 0;
-    font-size: 2rem;
-  }
-}
-
-@mixin input-button-height {
-  height: 2.25rem;
-  border-radius: 2rem;
-
-  @include tablet {
-    height: 2.2rem;
-  }
-}
-
-@mixin displayListTitle__options {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  padding: 1rem 0;
-  gap: 1rem;
-
-  @include tablet {
-    flex-direction: row;
-    width: 60%;
-    padding: 0;
-  }
-}
-
-@mixin displayListTitle__options-search {
-  width: 100%;
-  position: relative;
-  @include input-button-height();
-  border: 0.1rem solid $secondary-cloud-color;
-  overflow: hidden;
-
-  &::after {
-    content: "";
     display: flex;
-    width: 2rem;
-    height: 100%;
-    position: absolute;
-    top: 0;
-    right: 0.5rem;
-    background-image: url("../../assets/icons/search-24px.svg");
-    background-position: center;
-    background-size: 1.8em;
-    background-repeat: no-repeat;
-
-    @include tablet {
-      background-size: 1.5em;
-    }
-  }
-
-  &:focus-within {
-    border-color: $primary-element-color;
-  }
-
-  &-input {
-    width: 90%;
-    height: 100%;
-    outline: none;
-    border: none;
-    box-sizing: border-box;
-    padding: 1rem;
-    display: flex;
+    flex-direction: column;
     align-items: center;
-    font-size: 0.77rem;
-    padding-top: 1rem;
-    font-family: "Titillium Web";
-
-    @include tablet {
-      padding: 0.8rem;
-      font-size: 0.8rem;
-      width: 85%;
-    }
-
-    &:focus::placeholder {
-      opacity: 0;
-    }
-  }
-}
-
-@mixin displayListTitle__options-add-btn {
-  width: 100%;
-  @include input-button-height();
-  @include primaryCta();
-
-  @include tablet {
-    max-width: fit-content;
-  }
-}
-
-@mixin primaryCta {
-  background-color: $primary-element-color;
-  color: $primary-white-color;
-  outline: none;
-  border: none;
-  cursor: pointer;
-  font-size: 0.8rem;
-  padding: 0.45rem 1rem;
-  font-weight: 600;
-  box-sizing: border-box;
-  font-family: "Titillium Web";
-
-  &:hover {
-    background-color: $background-graphite-color;
-  }
-}
-
-@mixin displayList-headers {
-  display: none;
-
-  @include tablet {
-    display: flex;
+    background-color: $primary-white-color;
     width: 100%;
-    padding: 0;
-    @include listSidePadding();
-    box-sizing: border-box;
-    background-color: $background-light-grey;
-
-    & h3 {
-      font-size: 0.65rem;
-      font-weight: 600;
-      flex: 1;
-      display: flex;
-      align-items: center;
-      color: $secondary-slate-color;
-
-      &:last-of-type {
-        justify-content: end;
-      }
-
-      & svg {
-        height: 1rem;
-        display: flex;
-        align-items: center;
-        cursor: pointer;
-      }
-    }
-  }
-}
-
-@mixin listSidePadding() {
-  padding-left: 1.5rem;
-  padding-right: 1.5rem;
-
-  @include tablet {
-    padding-left: 2rem;
-    padding-right: 2rem;
-  }
-}
-
-@mixin displayList-item {
-  display: flex;
-  flex-wrap: wrap;
-  border-top: 0.0835rem solid $secondary-cloud-color;
-  padding: 0.5rem;
-  @include listSidePadding();
-  box-sizing: border-box;
-  width: 100%;
-  justify-content: space-between;
-
-  @include tablet {
-    padding-top: 1rem;
-    padding-bottom: 1rem;
-    flex-wrap: nowrap;
-
-    &:nth-of-type(2) {
-      border-top: 0;
-      padding-top: 0.5rem;
-      padding-bottom: 0.5rem;
-    }
-  }
-
-  @include desktop {
-    padding-top: 0.5rem;
-    padding-bottom: 0.5rem;
-  }
-
-  &:hover {
-    background-color: rgba($primary-element-color, 0.1);
-  }
-
-  & h3 {
-    width: 50%;
-    position: relative;
-    font-size: 0.8rem;
-    margin: 0.5rem 0;
-    display: flex;
-    align-items: center;
-    flex-wrap: wrap;
-    font-weight: 400;
+    border-radius: 0.2rem;
+    box-shadow: 0 0.2rem 0.5rem 0 rgba($primary-text-color, 0.1);
+    margin: 2rem 0;
 
     @include tablet {
-      width: 8rem;
-      flex-wrap: nowrap;
-      font-size: 0.875rem;
+        margin: 1rem 0 4rem;
+
+        & div {
+            & h3 {
+                &:last-of-type {
+                    max-width: 5rem !important;
+                }
+            }
+        }
     }
 
     @include desktop {
-      flex: 1;
+        margin-bottom: 5rem;
+
+        & div {
+            gap: 1rem;
+            min-width: fit-content;
+
+            & h3 {
+                &:nth-of-type(2) {
+                    padding-right: 2rem;
+                }
+            }
+        }
     }
+}
 
-    &::before {
-      content: attr(data-label);
-      display: block;
-      position: relative;
-      font-size: 0.65rem;
-      font-weight: 600;
-      color: $secondary-slate-color;
-      width: 100%;
+@mixin displayListTitle {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+    padding-top: 1rem;
+    padding-bottom: 0.5rem;
+    @include listSidePadding();
+    box-sizing: border-box;
 
-      @include tablet {
-        display: none;
-      }
+    @include tablet {
+        flex-direction: row;
+        justify-content: space-between;
+        padding-top: 1.8rem;
+        padding-bottom: 1.3rem;
     }
+}
 
-    &:first-of-type {
-      color: $primary-element-color;
-      font-weight: 600;
+@mixin displayListTitle__header {
+    align-self: flex-start;
+    margin-bottom: 0;
+    font-size: 1.75rem;
 
-      & span:hover {
-        text-decoration: underline;
-        cursor: pointer;
-      }
+    @include tablet {
+        margin: 0;
+        font-size: 2rem;
+    }
+}
 
-      & svg {
-        height: 1.2rem;
+@mixin input-button-height {
+    height: 2.25rem;
+    border-radius: 2rem;
+
+    @include tablet {
+        height: 2.2rem;
+    }
+}
+
+@mixin displayListTitle__options {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding: 1rem 0;
+    gap: 1rem;
+
+    @include tablet {
+        flex-direction: row;
+        width: 60%;
+        padding: 0;
+    }
+}
+
+@mixin displayListTitle__options-search {
+    width: 100%;
+    position: relative;
+    @include input-button-height();
+    border: 0.1rem solid $secondary-cloud-color;
+    overflow: hidden;
+
+    &::after {
+        content: "";
         display: flex;
-        align-self: flex-end;
+        width: 2rem;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        right: 0.5rem;
+        background-image: url("../../assets/icons/search-24px.svg");
+        background-position: center;
+        background-size: 1.8em;
+        background-repeat: no-repeat;
+
+        @include tablet {
+            background-size: 1.5em;
+        }
+    }
+
+    &:focus-within {
+        border-color: $primary-element-color;
+    }
+
+    &-input {
+        width: 90%;
+        height: 100%;
+        outline: none;
+        border: none;
         box-sizing: border-box;
-        cursor: pointer;
-      }
-    }
-
-    &:last-of-type {
-      width: 100%;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-
-      &::before {
-        display: none;
-      }
-
-      @include tablet {
-        justify-content: flex-end;
-        gap: 1rem;
-      }
-
-      & svg {
+        padding: 1rem;
         display: flex;
-        cursor: pointer;
-      }
+        align-items: center;
+        font-size: 0.77rem;
+        padding-top: 1rem;
+        font-family: "Titillium Web";
+
+        @include tablet {
+            padding: 0.8rem;
+            font-size: 0.8rem;
+            width: 85%;
+        }
+
+        &:focus::placeholder {
+            opacity: 0;
+        }
     }
-  }
+}
+
+@mixin displayListTitle__options-add-btn {
+    width: 100%;
+    @include input-button-height();
+    @include primaryCta();
+
+    @include tablet {
+        max-width: fit-content;
+    }
+}
+
+@mixin primaryCta {
+    background-color: $primary-element-color;
+    color: $primary-white-color;
+    outline: none;
+    border: none;
+    cursor: pointer;
+    font-size: 0.8rem;
+    padding: 0.45rem 1rem;
+    font-weight: 600;
+    box-sizing: border-box;
+    font-family: "Titillium Web";
+
+    &:hover {
+        background-color: $background-graphite-color;
+    }
+}
+
+@mixin displayList-headers {
+    display: none;
+
+    @include tablet {
+        display: flex;
+        width: 100%;
+        padding: 0;
+        @include listSidePadding();
+        box-sizing: border-box;
+        background-color: $background-light-grey;
+
+        & h3 {
+            font-size: 0.65rem;
+            font-weight: 600;
+            flex: 1;
+            display: flex;
+            align-items: center;
+            color: $secondary-slate-color;
+
+            &:last-of-type {
+                justify-content: end;
+            }
+
+            & svg {
+                height: 1rem;
+                display: flex;
+                align-items: center;
+                cursor: pointer;
+            }
+        }
+    }
+}
+
+@mixin listSidePadding() {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+
+    @include tablet {
+        padding-left: 2rem;
+        padding-right: 2rem;
+    }
+}
+
+@mixin displayList-item {
+    display: flex;
+    flex-wrap: wrap;
+    border-top: 0.0835rem solid $secondary-cloud-color;
+    padding: 0.5rem;
+    @include listSidePadding();
+    box-sizing: border-box;
+    width: 100%;
+    justify-content: space-between;
+
+    @include tablet {
+        padding-top: 1rem;
+        padding-bottom: 1rem;
+        flex-wrap: nowrap;
+
+        &:nth-of-type(2) {
+            border-top: 0;
+            padding-top: 0.5rem;
+            padding-bottom: 0.5rem;
+        }
+    }
+
+    @include desktop {
+        padding-top: 0.5rem;
+        padding-bottom: 0.5rem;
+    }
+
+    &:hover {
+        background-color: rgba($primary-element-color, 0.1);
+    }
+
+    & h3 {
+        width: 50%;
+        position: relative;
+        font-size: 0.8rem;
+        margin: 0.5rem 0;
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+        font-weight: 400;
+
+        @include tablet {
+            width: 8rem;
+            flex-wrap: nowrap;
+            font-size: 0.875rem;
+        }
+
+        @include desktop {
+            flex: 1;
+        }
+
+        &::before {
+            content: attr(data-label);
+            display: block;
+            position: relative;
+            font-size: 0.65rem;
+            font-weight: 600;
+            color: $secondary-slate-color;
+            width: 100%;
+
+            @include tablet {
+                display: none;
+            }
+        }
+
+        &:first-of-type {
+            color: $primary-element-color;
+            font-weight: 600;
+
+            & span:hover {
+                text-decoration: underline;
+                cursor: pointer;
+            }
+
+            & svg {
+                height: 1.2rem;
+                display: flex;
+                align-self: flex-end;
+                box-sizing: border-box;
+                cursor: pointer;
+            }
+        }
+
+        &:last-of-type {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            &::before {
+                display: none;
+            }
+
+            @include tablet {
+                justify-content: flex-end;
+                gap: 1rem;
+            }
+
+            & svg {
+                display: flex;
+                cursor: pointer;
+            }
+        }
+    }
 }
 
 @mixin inventoryListColumnWidths {
-  justify-content: space-between;
+    justify-content: space-between;
 
-  & h3 {
-    flex: none;
-    width: 7rem;
-    &:nth-of-type(1) {
-      width: 8rem;
+    & h3 {
+        flex: none;
+        width: 7rem;
+
+        &:nth-of-type(1) {
+            width: 8rem;
+        }
+
+        &:nth-of-type(3) {
+            width: 6rem;
+        }
+
+        &:nth-of-type(4) {
+            width: 3rem;
+        }
+
+        &:nth-of-type(5) {
+            width: 6rem;
+        }
     }
-    &:nth-of-type(3) {
-      width: 6rem;
+}
+
+@mixin formStyling {
+    border-radius: 1.25rem;
+    border: 0.1rem solid $secondary-cloud-color;
+    color: $secondary-slate-color;
+    padding: 0 0.75rem;
+    color: $primary-text-color;
+
+
+
+    &:focus {
+        border: 0.1rem solid $primary-element-color;
+        outline: none;
     }
-    &:nth-of-type(4) {
-      width: 3rem;
-    }
-    &:nth-of-type(5) {
-      width: 6rem;
-    }
-  }
 }

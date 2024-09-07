@@ -88,7 +88,7 @@ function Inventory({ warehouseId }) {
       {inventoryList?.map((inventoryItem, index) => {
         return (
           <div key={index} className="inventories__list-item inventory-item">
-            <h3 className="inventory-item__title" data-label="INVENTORY ITEM">            
+            <h3 className="inventory-item__title" data-label="INVENTORY ITEM">
               <span
                   className="inventories__list-item__name"
                   onClick={() => goToDetail(inventoryItem.id)}
@@ -122,7 +122,7 @@ function Inventory({ warehouseId }) {
                 inventoryId={inventoryItem.id}
                 updateInventoryList={updateInventoryList}
               />
-              <ReactSVG src={EditIcon} />
+              <ReactSVG src={EditIcon} onClick={() => navigate(`/inventory/${inventoryItem.id}/edit`)}/>
             </h3>
           </div>
         );
