@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { ReactSVG } from "react-svg";
-import { baseUrl } from "../../utils/utils.js";
-import DeleteIcon from "../../assets/icons/delete_outline-24px.svg";
-import CloseIcon from "../../assets/icons/close-24px.svg";
+import { baseUrl } from "../../../utils/utils.js";
+import DeleteIcon from "../../../assets/icons/delete_outline-24px.svg";
+import CloseIcon from "../../../assets/icons/close-24px.svg";
 import axios from "axios";
 import ReactModal from "react-modal";
 import "./DeleteModal.scss";
