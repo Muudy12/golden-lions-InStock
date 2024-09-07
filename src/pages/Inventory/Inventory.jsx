@@ -90,11 +90,43 @@ function Inventory({ warehouseId }) {
           <h3>ACTIONS</h3>
         </div>
 
+<<<<<<< HEAD
         {inventoryList?.map((inventoryItem, index) => {
           return (
             <div key={index} className="inventories__list-item inventory-item">
               <h3 className="inventory-item__title" data-label="INVENTORY ITEM">
                 <span
+=======
+      <div className="inventories__list-headers">
+        <h3>
+          INVENTORY ITEM
+          <ReactSVG src={SortIcon} />
+        </h3>
+        <h3>
+          CATEGORY
+          <ReactSVG src={SortIcon} />
+        </h3>
+        <h3>
+          STATUS
+          <ReactSVG src={SortIcon} />
+        </h3>
+        <h3>
+          QTY
+          <ReactSVG src={SortIcon} />
+        </h3>
+        <h3>
+          WAREHOUSE
+          <ReactSVG src={SortIcon} />
+        </h3>
+        <h3>ACTIONS</h3>
+      </div>
+
+      {inventoryList?.map((inventoryItem, index) => {
+        return (
+          <div key={index} className="inventories__list-item inventory-item">
+            <h3 className="inventory-item__title" data-label="INVENTORY ITEM">
+              <span
+>>>>>>> dev
                   className="inventories__list-item__name"
                   onClick={() => goToDetail(inventoryItem.id)}
                 >
@@ -126,6 +158,7 @@ function Inventory({ warehouseId }) {
                 className="inventory-item__warehouse_id"
                 data-label="WAREHOUSE"
               >
+<<<<<<< HEAD
                 {inventoryItem.warehouse_name}
               </h3>
               <h3 className="inventory-item__actions" data-label="ACTIONS">
@@ -139,6 +172,27 @@ function Inventory({ warehouseId }) {
           );
         })}
       </div>
+=======
+                {inventoryItem.status}
+              </div>
+            </h3>
+            <h3 className="inventory-item__qty" data-label="QTY">
+              {inventoryItem.quantity}
+            </h3>
+            <h3 className="inventory-item__warehouse_id" data-label="WAREHOUSE">
+              {inventoryItem.warehouse_name}
+            </h3>
+            <h3 className="inventory-item__actions" data-label="ACTIONS">
+              <DeleteInventory
+                inventoryId={inventoryItem.id}
+                updateInventoryList={updateInventoryList}
+              />
+              <ReactSVG src={EditIcon} onClick={() => navigate(`/inventory/${inventoryItem.id}/edit`)}/>
+            </h3>
+          </div>
+        );
+      })}
+>>>>>>> dev
     </div>
   );
 }
