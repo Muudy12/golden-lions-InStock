@@ -96,7 +96,7 @@
 
   @include tablet {
     flex-direction: row;
-    width: 60%;
+    width: fit-content;
     padding: 0;
   }
 }
@@ -107,6 +107,11 @@
   @include input-button-height();
   border: 0.1rem solid $secondary-cloud-color;
   overflow: hidden;
+  
+
+  @include tablet {
+    width: 11.5625rem;
+  }
 
   &::after {
     content: "";
