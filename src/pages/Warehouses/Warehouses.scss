@@ -1,293 +1,70 @@
 @import "../../styles/global.scss";
 
 .warehouses {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  background-color: $primary-white-color;
-  width: 100%;
-  border-radius: 0.2rem;
-  box-shadow: 0 0.2rem 0.5rem 0 rgba($primary-text-color, 0.1);
-  margin: 2rem 0;
-
-  @include tablet {
-    margin: 1rem 0 4rem;
-
-    & div {
-      & h3 {
-        &:last-of-type {
-          max-width: 5rem !important;
-        }
-      }
-    }
-  }
-
-  @include desktop {
-    margin-bottom: 5rem;
-
-    & div {
-      gap: 1rem;
-      min-width: fit-content;
-
-      & h3 {
-        &:nth-of-type(2) {
-          padding-right: 2rem;
-        }
-      }
-    }
-  }
+  @include displayListContainer();
 
   &__title {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    align-items: center;
-    padding: 0 1.5rem;
-    box-sizing: border-box;
-
-    @include tablet {
-      flex-direction: row;
-      justify-content: space-between;
-      padding: 1.5rem 2rem 1rem;
-    }
+    @include displayListTitle();
 
     &-heading {
-      align-self: flex-start;
-      margin-bottom: 0;
-
-      @include tablet {
-        margin: 0;
-      }
+      @include displayListTitle__header();
     }
 
     & .options {
-      display: flex;
-      flex-direction: column;
-      width: 100%;
-      padding: 1rem 0;
-      gap: 1rem;
-
-      @include tablet {
-        flex-direction: row;
-        width: 50%;
-        padding: 0;
-      }
+      @include displayListTitle__options();
 
       &__search-form {
-        width: 100%;
-        position: relative;
-        height: 2rem;
-        border-radius: 2rem;
-        border: 0.1rem solid $secondary-cloud-color;
-        overflow: hidden;
-
-        @include tablet {
-          height: 1.8rem;
-          width: 55%;
-        }
-
-        &::after {
-          content: "";
-          display: flex;
-          width: 2rem;
-          height: 100%;
-          position: absolute;
-          top: 0;
-          right: 0.5rem;
-          background-image: url("../../assets/icons/search-24px.svg");
-          background-position: center;
-          background-size: 1.8em;
-          background-repeat: no-repeat;
-
-          @include tablet {
-            background-size: 1.5em;
-          }
-        }
-
-        &-input {
-          width: 90%;
-          height: 100%;
-          outline: none;
-          border: none;
-          box-sizing: border-box;
-          padding: 1rem;
-          display: flex;
-          align-items: center;
-          font-size: 0.77rem;
-          padding-top: 1.05rem;
-
-          @include tablet {
-            padding: 0.8rem;
-            font-size: 0.65rem;
-            width: 85%;
-          }
-
-          &:focus::placeholder {
-            opacity: 0;
-          }
-        }
+        @include displayListTitle__options-search();
       }
 
       &__add-btn {
-        width: 100%;
-        border-radius: 2rem;
-        height: 2rem;
-        outline: none;
-        border: none;
-        background-color: $primary-element-color;
-        color: $primary-white-color;
-        font-size: 0.7rem;
-        padding: 0.45rem;
-        cursor: pointer;
-        font-weight: 400;
-
-        @include tablet {
-          width: 50%;
-          padding: 0;
-        }
+        @include displayListTitle__options-add-btn();
       }
     }
   }
 
   &__list {
     &-headers {
-      display: none;
+      @include displayList-headers();
 
       @include tablet {
-        display: flex;
-        width: 100%;
-        padding: 0 2rem;
-        box-sizing: border-box;
-        background-color: $background-light-grey;
-
-        & h3 {
-          font-size: 0.65rem;
-          font-weight: 600;
-          flex: 1;
-          display: flex;
-          align-items: center;
-          color: $secondary-slate-color;
-
-          &:last-of-type {
-            justify-content: end;
-          }
-
-          & svg {
-            height: 1rem;
-            display: flex;
-            align-items: center;
-            cursor: pointer;
-          }
+        & h3:nth-of-type(2) {
+          min-width: 17rem !important;
         }
       }
     }
 
     &-item {
-      display: flex;
-      flex-wrap: wrap;
-      border-top: 0.0835rem solid $secondary-cloud-color;
-      padding: 0.5rem 1.5rem;
-      box-sizing: border-box;
-      width: 100%;
-      justify-content: space-between;
+      @include displayList-item();
 
       @include tablet {
-        padding: 1rem 2rem;
-        flex-wrap: nowrap;
-
         &:nth-of-type(2) {
-          border-top: 0;
           padding-top: 0.5rem;
           padding-bottom: 0.5rem;
         }
       }
+    }
 
-      @include desktop {
-        padding-top: 0.5rem;
-        padding-bottom: 0.5rem;
-      }
-
-      & h3 {
-        width: 45%;
-        position: relative;
-        font-size: 0.7rem;
-        margin: 0.5rem 0;
-        display: flex;
-        align-items: center;
-        flex-wrap: wrap;
-        font-weight: 400;
-
-        @include tablet {
-          width: 8rem;
-        }
-
-        @include desktop {
-          flex: 1;
-        }
-
-        &::before {
-          content: attr(data-label);
-          display: block;
-          position: relative;
-          font-size: 0.65rem;
-          font-weight: 600;
-          color: $secondary-slate-color;
-          width: 100%;
-
-          @include tablet {
-            display: none;
-          }
-        }
-
-        &:first-of-type {
-          color: $primary-element-color;
-          font-weight: 600;
-        }
-
-        &:last-of-type {
-          width: 100%;
-          display: flex;
-          justify-content: space-between;
-          align-items: center;
-
-          &::before {
-            display: none;
-          }
-
-          @include tablet {
-            justify-content: flex-end;
-            gap: 1rem;
-          }
-        }
-      }
-
+    &-item {
       & .warehouse-item {
         &__title {
           order: 0;
-
-          &-name {
-            &:hover {
-              text-decoration: underline;
-              cursor: pointer;
-            }
-          }
-
-          & svg {
-            height: 1.2rem;
-            display: flex;
-            align-self: flex-end;
-            box-sizing: border-box;
-            padding-bottom: 0.1rem;
-            cursor: pointer;
-          }
         }
 
         &__address {
-          order: 3;
-          width: 8rem;
+          order: 1;
+          display: flex;
+          flex-direction: column;
+          align-items: start;
 
           @include tablet {
             order: 0;
+          }
+
+          @include desktop {
+            flex-direction: row;
+            align-items: center;
+            min-width: 17rem !important;
           }
         }
 
@@ -309,15 +86,9 @@
 
         &__actions {
           order: 4;
-          cursor: pointer;
 
           @include tablet {
             order: 0;
-            padding-right: 0;
-          }
-
-          & svg {
-            display: flex;
           }
         }
       }
