@@ -3,6 +3,10 @@
 .warehouses {
   @include displayListContainer();
 
+  &-container {
+    @include displayMainContainer();
+  }
+
   &__title {
     @include displayListTitle();
 
@@ -28,8 +32,14 @@
       @include displayList-headers();
 
       @include tablet {
+        & h3:nth-of-type(4) {
+          width: 10rem;
+        }
+      }
+
+      @include desktop {
         & h3:nth-of-type(2) {
-          min-width: 17rem !important;
+          width: 17rem;
         }
       }
     }
@@ -64,7 +74,7 @@
           @include desktop {
             flex-direction: row;
             align-items: center;
-            min-width: 17rem !important;
+            width: 17rem;
           }
         }
 
@@ -81,6 +91,7 @@
 
           @include tablet {
             order: 0;
+            width: 10rem;
           }
         }
 

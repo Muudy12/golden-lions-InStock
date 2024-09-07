@@ -11,6 +11,13 @@
   }
 }
 
+@mixin displayMainContainer {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+}
+
 @mixin displayListContainer {
   display: flex;
   flex-direction: column;
@@ -20,9 +27,11 @@
   border-radius: 0.2rem;
   box-shadow: 0 0.2rem 0.5rem 0 rgba($primary-text-color, 0.1);
   margin: 2rem 0;
+  min-width: 21.4375rem;
 
   @include tablet {
     margin: 1rem 0 4rem;
+    min-width: 44rem;
 
     & div {
       & h3 {
@@ -35,6 +44,7 @@
 
   @include desktop {
     margin-bottom: 5rem;
+    width: 63.75rem;
 
     & div {
       gap: 1rem;
@@ -107,7 +117,6 @@
   @include input-button-height();
   border: 0.1rem solid $secondary-cloud-color;
   overflow: hidden;
-  
 
   @include tablet {
     width: 11.5625rem;
@@ -197,14 +206,18 @@
     @include listSidePadding();
     box-sizing: border-box;
     background-color: $background-light-grey;
+    justify-content: space-between;
+  }
 
-    & h3 {
-      font-size: 0.65rem;
+  & h3 {
+    @include tablet {
+      font-size: 0.75rem;
+      line-height: 1.125rem;
       font-weight: 600;
-      flex: 1;
       display: flex;
       align-items: center;
       color: $secondary-slate-color;
+      width: 8rem;
 
       &:last-of-type {
         justify-content: end;
@@ -264,28 +277,37 @@
   & h3 {
     width: 50%;
     position: relative;
-    font-size: 0.8rem;
+    font-size: 0.8125rem;
+    line-height: 1.25rem;
     margin: 0.5rem 0;
     display: flex;
     align-items: center;
     flex-wrap: wrap;
     font-weight: 400;
 
+    & span {
+      font-size: 0.8125rem;
+      line-height: 1.25rem;
+    }
+
     @include tablet {
       width: 8rem;
       flex-wrap: nowrap;
       font-size: 0.875rem;
-    }
+      line-height: 1.375rem;
 
-    @include desktop {
-      flex: 1;
+      & span {
+        font-size: 0.875rem;
+        line-height: 1.375rem;
+      }
     }
 
     &::before {
       content: attr(data-label);
       display: block;
       position: relative;
-      font-size: 0.65rem;
+      font-size: 0.6875rem;
+      line-height: 1rem;
       font-weight: 600;
       color: $secondary-slate-color;
       width: 100%;
