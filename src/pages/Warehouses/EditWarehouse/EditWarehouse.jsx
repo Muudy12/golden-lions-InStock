@@ -1,12 +1,14 @@
-import axios from 'axios';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import { ReactSVG } from "react-svg";
+import { useState, useEffect } from 'react';
+import { Api } from "../../../utils/utils";
 import ArrowBackIcon from "../../../assets/icons/arrow_back-24px.svg";
 import ErrorIcon from "../../../assets/icons/error-24px.svg";
 import './EditWarehouse.scss';
-import { useState, useEffect } from 'react';
 
 function EditWarehouse() {
+
+  const api =new Api();
   const { warehouseId } = useParams();
   const warehousesPageNavigator = useNavigate();
 
@@ -35,8 +37,7 @@ function EditWarehouse() {
   useEffect(() => {
     const getWarehouseInfo = async () => {
       try {
-        const response = await axios.get(`http://localhost:8080/warehouses/${warehouseId}`);
-        const warehouse = response.data;
+        const warehouse = await api.getWarehouseById(warehouseId);
         setWarehouseInfo({
           name: warehouse.warehouse_name,
           street: warehouse.address,
@@ -102,10 +103,10 @@ function EditWarehouse() {
     // Check if there are any invalid fields
     const formIsValid = Object.values(formErrors).every(error => error.isValid) &&
                         Object.values(warehouseInfo).every(value => value.trim() !== '');
-                        
+
     if (formIsValid) {
       try {
-        await axios.put(`http://localhost:8080/warehouses/${warehouseId}`, {
+        await api.updateWarehouse(warehouseId, {
           warehouse_name: warehouseInfo.name.trim(),
           address: warehouseInfo.street.trim(),
           city: warehouseInfo.city.trim(),
