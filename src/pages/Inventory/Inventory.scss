@@ -23,6 +23,10 @@
 
       &__add-btn {
         @include displayListTitle__options-add-btn();
+
+        @include tablet {
+          width: 8rem;
+        }
       }
     }
   }

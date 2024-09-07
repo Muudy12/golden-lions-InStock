@@ -23,6 +23,9 @@
 
       &__add-btn {
         @include displayListTitle__options-add-btn();
+        @include tablet {
+          width: 10.5rem;
+        }
       }
     }
   }

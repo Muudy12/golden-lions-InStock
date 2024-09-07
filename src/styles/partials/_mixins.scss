@@ -66,15 +66,15 @@
   flex-direction: column;
   width: 100%;
   align-items: center;
-  padding-top: 1rem;
-  padding-bottom: 0.5rem;
+  padding-top: 0.9rem;
+  padding-bottom: 0.3rem;
   @include listSidePadding();
   box-sizing: border-box;
 
   @include tablet {
     flex-direction: row;
     justify-content: space-between;
-    padding-top: 1.8rem;
+    padding-top: 2rem;
     padding-bottom: 1.3rem;
   }
 }
@@ -294,7 +294,7 @@
   border-radius: 2rem;
 
   @include tablet {
-    height: 2.2rem;
+    height: 2.375rem;
   }
 }
 
@@ -307,7 +307,7 @@
 
   @include tablet {
     flex-direction: row;
-    width: 60%;
+    width: fit-content;
     padding: 0;
   }
 }
@@ -318,6 +318,14 @@
   @include input-button-height();
   border: 0.1rem solid $secondary-cloud-color;
   overflow: hidden;
+
+  @include tablet {
+    width: 11.5625rem;
+  }
+
+  @include desktop {
+    width: 17.125rem;
+  }
 
   &::after {
     content: "";
@@ -370,10 +378,6 @@
   width: 100%;
   @include input-button-height();
   @include primaryCta();
-
-  @include tablet {
-    max-width: fit-content;
-  }
 }
 
 @mixin primaryCta {
