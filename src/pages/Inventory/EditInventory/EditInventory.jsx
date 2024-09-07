@@ -1,8 +1,10 @@
 import { useEffect, useRef, useState } from "react";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { Api } from '../../../utils/utils.js'
 import ArrowBackIcon from "../../../assets/icons/arrow_back-24px.svg";
+import ArrowDownIcon from "../../../assets/icons/arrow_drop_down-24px.svg";
 import './EditInventory.scss'
+import { ReactSVG } from "react-svg";
 
 function EditInventory({ id, warehouse_id, item_name, description, category, status, quantity }) {
   const api = new Api();
@@ -26,7 +28,6 @@ function EditInventory({ id, warehouse_id, item_name, description, category, sta
 
   const getWarehouses = async () => {
     const data = await api.getAllWarehouses();
-    //const warehouseList = data.map(warehouse => warehouse.warehouse_name);
     const uniqueWarehouses = data.filter((value, index, self) =>
       index === self.findIndex((warehouse) => warehouse.id === value.id));
     console.log(uniqueWarehouses)
@@ -43,7 +44,7 @@ function EditInventory({ id, warehouse_id, item_name, description, category, sta
         item_name: data.item_name,
         description: data.description,
         category: data.category,
-        status: data.status,
+        status: data.status || 'Out of Stock',
         quantity: data.quantity,
         warehouse_id: data.warehouse_id
       })
@@ -85,16 +86,19 @@ function EditInventory({ id, warehouse_id, item_name, description, category, sta
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-
+    try {
+      await api.editInventory(inventoryId, formData)
+    } catch (error) {
+      console.error('Error updating inventory item', error)
+    }
   };
 
   const handleCancel = () => navigate(`/warehouses/${warehouseId}`);
 
-
   return (
     <div className="edit-inventory">
       <header className="edit-inventory__title">
-        <img src={ArrowBackIcon} />
+        <img className="edit-inventory__arrow-icon" src={ArrowBackIcon} onClick={() => navigate(-1)} />
         <h1 className="edit-inventory__title-heading">Edit Inventory Item</h1>
       </header>
       <form ref={formRef} className="form">
@@ -112,40 +116,55 @@ function EditInventory({ id, warehouse_id, item_name, description, category, sta
 
             <h3 className="form__label">Description</h3>
             <textarea
-            className="form__textarea"
-            placeholder='This 50", 4K LED TV provides a crystal-clear picture and vivid colors.'
-            value={formData.description}
-            onChange={handleInputChange}
-            name="description" />
+              className="form__textarea"
+              placeholder='This 50", 4K LED TV provides a crystal-clear picture and vivid colors.'
+              value={formData.description}
+              onChange={handleInputChange}
+              name="description" />
 
             <h3 className="form__label">Category</h3>
-            <select className="form__select"
-            type="text"
-            name="category" >
-              <option defaultValue={formData.category} >{formData.category}</option>
-              {getUniqueCategories(formData.category).map((category, index) => (
-                <option key={index} value={category}>{category}</option>
-              ))}
-            </select>
+            <div className="form__custom-select">
+              <select className="form__select"
+                type="text"
+                name="category" >
+                <option defaultValue={formData.category} >{formData.category}</option>
+                {getUniqueCategories(formData.category).map((category, index) => (
+                  <option key={index} value={category}>{category}</option>
+                ))}
+              </select>
+            </div>
+
           </section>
 
           <aside className="form__aside">
             <h2 className="form__title">Item Availability</h2>
             <h3 className="form__label">Status</h3>
-            <input className="form__radio-btn"
-            type="radio"
-            name="status"
-            value='In Stock'
-            checked={formData.status === 'In Stock'}
-            onChange={handleStatusChange} />
-            <label htmlFor='In Stock' className="form__stock-label">In Stock</label>
 
-            <input className="form__radio-btn"
-            type="radio"
-            name="status"
-            value={formData.status === 'Out of Stock'}
-            onChange={handleStatusChange} />
-            <label htmlFor='In Stock' className="form__stock-label">Out of Stock</label>
+
+            <label htmlFor='in-stock' className="form__status" >
+              <input className="form__radio-btn"
+                type="radio"
+                name="status"
+                id="in-stock"
+                value='In Stock'
+                checked={formData.status === 'In Stock'}
+                onChange={handleStatusChange}
+              />
+              <span className="form__radio-circle"></span>
+              In Stock
+            </label>
+
+            <label htmlFor='out-of-stock' className="form__status">
+              <input className="form__radio-btn"
+                type="radio"
+                name="status"
+                id="out-of-stock"
+                value='Out of Stock'
+                checked={formData.status === 'Out of Stock'}
+                onChange={handleStatusChange}
+              />
+              <span className="form__radio-circle"></span>
+              Out of Stock</label>
             {inStock &&
               <>
                 <h3 className="form__label">Quantity</h3>
@@ -153,11 +172,14 @@ function EditInventory({ id, warehouse_id, item_name, description, category, sta
               </>}
 
             <h3 className="form__label">Warehouse</h3>
-            <select className="form__select" type="text" name="warehouse_id" defaultValue={formData.warehouse_id}>
-              {allWarehouses.map((warehouse) => (
-                <option key={warehouse.id} value={warehouse.id}>{warehouse.warehouse_name}</option>
-              ))}
-            </select>
+            <div className="form__custom-select">
+              <select className="form__select" type="text" name="warehouse_id" defaultValue={formData.warehouse_id}>
+                {allWarehouses.map((warehouse) => (
+                  <option key={warehouse.id} value={warehouse.id}>{warehouse.warehouse_name}</option>
+                ))}
+              </select>
+            </div>
+
           </aside>
 
         </div>

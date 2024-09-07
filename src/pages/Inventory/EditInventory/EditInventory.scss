@@ -114,10 +114,6 @@
         padding: 1rem 0rem .25rem 0rem;
     }
 
-    &__stock-label{
-        padding-right: 0.5rem;
-    }
-
     &__input {
         @include formStyling;
         width: calc(100% - 1.65rem);
@@ -136,6 +132,18 @@
         height: 7.5rem;
         padding: 0.5rem 1rem;
         font-family: 'Titillium Web';
+        resize: none;
+    }
+
+    &__custom-select{
+        position: relative;
+    }
+
+    &__custom-select select {
+        appearance: none;
+        background-image: url('../../../assets/icons/arrow_drop_down-24px.svg');
+        background-repeat: no-repeat;
+        background-position: right 10px center;
     }
 
     &__select {
@@ -144,37 +152,51 @@
         height: 2.25rem;
     }
 
-    &__radio-btn {
-       // appearance: none;
+
+    &__status{
+        color: $secondary-slate-color;
+        width: 100%;
         position: relative;
-        margin: 0;
-        font: inherit;
-        color: currentColor;
-        width: 1rem;
-        height: 1rem;
-        border: .0625rem solid $secondary-cloud-color;
-        border-radius: 50%;
-        margin: 0 .5rem 0 0 ;
-
-        // &::after{
-        //     content: "";
-        //     width: 0.5rem;
-        //     height: 0.5rem;
-        //     position: absolute;
-        //     top: 50%;
-        //     left: 50%;
-        //     border-radius: 50%;
-        //     background-color: $primary-element-color;
-        //     transform: translate(-50%,-50%);
-        //}
-        // {
-        //     box-sizing: border-box;
-        //     margin: 0 0.5rem 0 0 ;
-        //     background-color:  $primary-element-color;
-        //     border: .0625rem solid $secondary-cloud-color;
-        //     border-radius: 50%;
-        // }
-
-
+        padding-right: 5rem;
+        padding-left: 0.75rem;
+        cursor: pointer;
     }
+    input[type="radio"]{
+        opacity: 0;
+    }
+
+    &__radio-circle {
+        margin-right: 4px;
+        height: 0.75rem;
+        width: 0.75rem;
+        padding: 1px;
+        position: absolute;
+        left: 0;
+        background-color: $primary-white-color;
+        border: 1px solid $secondary-cloud-color;
+        color: $secondary-slate-color;
+        border-radius: 50%;
+    }
+    input[type='radio']:checked + .form__radio-circle {
+        border: 1px solid $primary-element-color;
+    }
+
+    input[type="radio"]:checked +  .form__radio-circle::after{
+        content: "";
+        width: 0.45rem;
+        height: 0.45rem;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        border-radius: 50%;
+        background-color: $primary-element-color;
+        transform: translate(-50%,-50%);
+    }
+
+    &__radio-btn{
+        margin: 0;
+        width: .5rem;
+    }
+
+
 }

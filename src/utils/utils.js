@@ -93,6 +93,15 @@ class Api {
       console.log('Error getting categories')
     }
   }
+
+  async editInventory ( inventoryId, inventoryItemData) {
+    try{
+      const response = await axios.put(`${baseUrl}/inventories/${inventoryId}`, inventoryItemData);
+      return response.data;
+    } catch (err){
+      console.log('Error getting categories')
+    }
+  }
 }
 
 export { Api, baseUrl };
