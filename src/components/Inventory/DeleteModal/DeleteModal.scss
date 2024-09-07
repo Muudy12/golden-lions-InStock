@@ -30,15 +30,15 @@
     @include tablet {
       padding: 2.3rem 4rem;
       width: 42rem;
-      height: 15rem;
+      height: 16.375rem;
       position: absolute;
       top: 10rem;
       border-radius: 0.2rem;
     }
 
     @include desktop {
-      width: 45rem;
-      height: 18rem;
+      width: 42rem;
+      height: 16.375rem;
     }
   }
 
@@ -61,7 +61,8 @@
       @include tablet {
         margin: 0;
         flex: 1;
-        font-size: 1.8rem;
+        font-size: 2rem;
+        line-height: 2.5rem;
       }
     }
 
@@ -73,7 +74,7 @@
 
       @include tablet {
         font-size: 1rem;
-        line-height: 1.7rem;
+        line-height: 1.75rem;
         display: flex;
         flex-direction: column;
       }
@@ -109,13 +110,10 @@
         color: $secondary-slate-color;
 
         @include tablet {
-          width: 4.5rem;
-          height: 2.3rem;
           font-size: 0.8rem;
-        }
-
-        @include desktop {
-          width: 5rem;
+          width: 4.5rem;
+          height: 2.375rem;
+          border-radius: 1.25rem;
         }
       }
 
