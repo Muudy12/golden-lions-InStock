@@ -84,9 +84,9 @@
     }
 
     &__cancel-btn {
-        @include roundButton;
         background-color: $primary-white-color;
         border: .0625rem solid $secondary-cloud-color;
+        @include roundButton;
 
         &:hover {
             border: .0625rem solid $primary-element-color;
@@ -96,8 +96,10 @@
 
     &__delete-btn {
         @include roundButton;
-        background-color: $supporting-red-color;
-        color: $primary-white-color;
+        &{
+            background-color: $supporting-red-color;
+            color: $primary-white-color;
+        }
 
         &:hover {
             background-color: $background-graphite-color;

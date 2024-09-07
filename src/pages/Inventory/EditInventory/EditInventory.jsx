@@ -66,7 +66,7 @@ function EditInventory() {
 
   const getCurrentItem = async () => {
     try {
-      const data = await api.getInventoryItemDetails( inventoryId);
+      const data = await api.getInventoryItemDetails(inventoryId);
 
       setAllCategories(await api.getInventoryCategories());
 
@@ -84,6 +84,7 @@ function EditInventory() {
     }
   }
   useEffect(() => {
+    document.title = "InStock - Edit Inventory"
     getCurrentItem();
     getWarehouses();
   }, [inventoryId]
@@ -126,7 +127,7 @@ function EditInventory() {
   const handlePageChange = () => {
     console.log('location state from :', location.state?.from)
     if (location.state?.from?.includes('/warehouses')) {
-      navigate(`/warehouses/${formData. warehouse_id}`);
+      navigate(`/warehouses/${formData.warehouse_id}`);
     } else if (location.state?.from?.includes('/inventory')) {
       navigate(`/inventory`);
     } else {
