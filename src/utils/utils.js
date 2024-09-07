@@ -74,6 +74,15 @@ class Api {
     }
   }
 
+  async updateWarehouse(warehouseId, warehouseData) {
+  try {
+    const response = await axios.put(`${baseUrl}/warehouses/${warehouseId}`, warehouseData);
+    return response.data;
+  } catch (err) {
+    console.log(`Failed to update warehouse with id: ${warehouseId}`, err);
+  }
 }
+}
+
 
 export { Api, baseUrl };

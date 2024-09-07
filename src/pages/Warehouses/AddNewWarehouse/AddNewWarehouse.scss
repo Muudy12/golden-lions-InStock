@@ -1,6 +1,6 @@
 @import "../../../styles/global.scss";
 
-.edit{
+.add{
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -150,7 +150,7 @@
             @include desktop{
                 padding-right: 3rem;
             }
-            &-save{
+            &-addWarehouse{
                 all: unset;
                 border-radius: 1.25rem;
                 height: 2.25rem;
@@ -164,6 +164,7 @@
                     flex: 0;
                     height: 2.375rem;
                     padding: 0rem  1rem;
+                    white-space: nowrap;
                 }
                 &:hover{
                     background-color: $background-graphite-color;
