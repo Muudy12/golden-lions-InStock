@@ -73,7 +73,9 @@ function AddNewWarehouse() {
   return (
     <div className="add">
       <div className="add__header">
-        <ReactSVG className="add__header-icon" src={ArrowBackIcon} />
+        <Link  to="/warehouses">
+          <ReactSVG className="add__header-icon" src={ArrowBackIcon} />
+        </Link>
         <h1 className="add__header-title">Add New Warehouse</h1>
       </div>
       <form className="add__form-wrapper" onSubmit={submitFormHandler}>

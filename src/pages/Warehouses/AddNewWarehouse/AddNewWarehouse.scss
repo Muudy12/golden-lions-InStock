@@ -1,6 +1,6 @@
 @import "../../../styles/global.scss";
 
-.edit{
+.add{
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -63,7 +63,7 @@
                 border: 0.1rem solid $secondary-cloud-color;
                 height: 2.25rem;
                 padding-left: 1rem;
-                color: $secondary-slate-color;
+                color: $primary-text-color !important;
                 @include tablet {
                     height: 2.375rem;
                 }
@@ -147,7 +147,10 @@
                 padding-top: 1rem;
                 margin-top: 1.5rem ;
             }
-            &-save{
+            @include desktop{
+                padding-right: 3rem !important;
+            }
+            &-addWarehouse{
                 all: unset;
                 border-radius: 1.25rem;
                 height: 2.25rem;
@@ -161,6 +164,7 @@
                     flex: 0;
                     height: 2.375rem;
                     padding: 0rem  1rem;
+                    white-space: nowrap !important;
                 }
                 &:hover{
                     background-color: $background-graphite-color;
