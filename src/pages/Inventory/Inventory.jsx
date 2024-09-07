@@ -133,7 +133,7 @@ function Inventory({ warehouseId }) {
                   inventoryId={inventoryItem.id}
                   updateInventoryList={updateInventoryList}
                 />
-                <ReactSVG src={EditIcon} />
+                <ReactSVG src={EditIcon} onClick={() => navigate(`/inventory/${inventoryItem.warehouse_id}/edit`)}/>
               </h3>
             </div>
           );

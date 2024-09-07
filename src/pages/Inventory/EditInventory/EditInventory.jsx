@@ -66,7 +66,7 @@ function EditInventory() {
 
   const getCurrentItem = async () => {
     try {
-      const data = await api.getInventoryItemDetails(formData.warehouseId, inventoryId);
+      const data = await api.getInventoryItemDetails(inventoryId);
 
       setAllCategories(await api.getInventoryCategories());
 
@@ -84,10 +84,12 @@ function EditInventory() {
     }
   }
   useEffect(() => {
+    document.title = "InStock - Edit Inventory"
     getCurrentItem();
     getWarehouses();
-  }, [formData.warehouseId, inventoryId]
+  }, [inventoryId]
   )
+
 
   const getUniqueCategories = (currentCategory) => (allCategories.filter(category => category !== currentCategory))
 
@@ -123,12 +125,13 @@ function EditInventory() {
   }
 
   const handlePageChange = () => {
+    console.log('location state from :', location.state?.from)
     if (location.state?.from?.includes('/warehouses')) {
-      navigate(`/warehouses/${formData.warehouseId}`);
+      navigate(`/warehouses/${formData.warehouse_id}`);
     } else if (location.state?.from?.includes('/inventory')) {
       navigate(`/inventory`);
     } else {
-      navigate(`/warehouses/${formData.warehouseId}`);
+      navigate(`/warehouses/${formData.warehouse_id}`);
     }
   }
 
@@ -203,7 +206,7 @@ function EditInventory() {
             <label htmlFor='in-stock' className="form__status" >
               <input className="form__radio-btn"
                 type="radio"
-                name="in-stock"
+                name="status"
                 id="in-stock"
                 value='In Stock'
                 checked={formData.status === 'In Stock'}
@@ -216,7 +219,7 @@ function EditInventory() {
             <label htmlFor='out-of-stock' className="form__status">
               <input className="form__radio-btn"
                 type="radio"
-                name="out-of-stock"
+                name="status"
                 id="out-of-stock"
                 value='Out of Stock'
                 checked={formData.status === 'Out of Stock'}
