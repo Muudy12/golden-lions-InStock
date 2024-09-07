@@ -10,7 +10,7 @@ function EditInventory() {
   const api = new Api();
   const navigate = useNavigate();
   const location = useLocation();
-  const { warehouseId, inventoryId } = useParams();
+  const { inventoryId } = useParams();
   const [inStock, setInStock] = useState(false);
   const formRef = useRef();
   const [allCategories, setAllCategories] = useState([]);
@@ -66,7 +66,7 @@ function EditInventory() {
 
   const getCurrentItem = async () => {
     try {
-      const data = await api.getInventoryItemDetails(warehouseId, inventoryId);
+      const data = await api.getInventoryItemDetails(formData.warehouseId, inventoryId);
 
       setAllCategories(await api.getInventoryCategories());
 
@@ -86,7 +86,7 @@ function EditInventory() {
   useEffect(() => {
     getCurrentItem();
     getWarehouses();
-  }, [warehouseId, inventoryId]
+  }, [formData.warehouseId, inventoryId]
   )
 
   const getUniqueCategories = (currentCategory) => (allCategories.filter(category => category !== currentCategory))
@@ -124,11 +124,11 @@ function EditInventory() {
 
   const handlePageChange = () => {
     if (location.state?.from?.includes('/warehouses')) {
-      navigate(`/warehouses/${warehouseId}`);
+      navigate(`/warehouses/${formData.warehouseId}`);
     } else if (location.state?.from?.includes('/inventory')) {
       navigate(`/inventory`);
     } else {
-      navigate(`/warehouses/${warehouseId}`);
+      navigate(`/warehouses/${formData.warehouseId}`);
     }
   }
 

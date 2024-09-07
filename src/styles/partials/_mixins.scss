@@ -7,10 +7,10 @@
     border: none;
     cursor: pointer;
 
-  @include tablet {
+    @include tablet {
     padding: 0 1rem;
     width: fit-content;
-  }
+    }
 }
 
 
