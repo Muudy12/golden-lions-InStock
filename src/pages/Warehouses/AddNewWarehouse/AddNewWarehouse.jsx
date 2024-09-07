@@ -28,7 +28,7 @@ function AddNewWarehouse() {
 
     //Regex for phone and email validation
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    const phoneRegex = /^\+?[0-9]{10,15}$/;
+    const phoneRegex = /^\+?(\d{1,3})?[-.\s]?\(?(\d{3})\)?[-.\s]?\d{3}[-.\s]?\d{4}$/;
     let isValid = true;
 
     if (name === "email") {
