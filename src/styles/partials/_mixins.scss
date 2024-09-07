@@ -46,7 +46,7 @@
 
   @include desktop {
     margin-bottom: 5rem;
-    width: 63.75rem;
+    min-width: 63.75rem;
 
     & div {
       gap: 1rem;
