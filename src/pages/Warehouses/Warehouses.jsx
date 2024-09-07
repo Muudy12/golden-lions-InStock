@@ -6,7 +6,7 @@ import ChevronIcon from "../../assets/icons/chevron_right-24px.svg";
 import SortIcon from "../../assets/icons/sort-24px.svg";
 import { useNavigate } from "react-router-dom";
 import { Api } from "../../utils/utils";
-import DeleteModal from "../../components/Warehouse/DeleteModal/DeleteModal";
+import DeleteModal from "../../components/WarehouseDeleteModal/DeleteModal";
 
 function Warehouses() {
   const api = new Api();

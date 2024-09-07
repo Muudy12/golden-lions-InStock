@@ -1,5 +1,5 @@
 import React from 'react'
-import DeleteModal from '../../../components/Warehouse/DeleteModal/DeleteModal'
+import DeleteModal from '../../../components/WarehouseDeleteModal/DeleteModal'
 
 
 function AddNewWarehouse() {

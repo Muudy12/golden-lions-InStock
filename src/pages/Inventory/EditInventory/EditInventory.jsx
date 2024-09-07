@@ -1,14 +1,15 @@
 import { useEffect, useRef, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams, useLocation } from "react-router-dom";
 import { Api } from '../../../utils/utils.js'
 import ArrowBackIcon from "../../../assets/icons/arrow_back-24px.svg";
-import ArrowDownIcon from "../../../assets/icons/arrow_drop_down-24px.svg";
-import './EditInventory.scss'
-import { ReactSVG } from "react-svg";
 
-function EditInventory({ id, warehouse_id, item_name, description, category, status, quantity }) {
+import './EditInventory.scss'
+import FormError from "../../../components/FormError/FormError.jsx";
+
+function EditInventory() {
   const api = new Api();
   const navigate = useNavigate();
+  const location = useLocation();
   const { warehouseId, inventoryId } = useParams();
   const [inStock, setInStock] = useState(false);
   const formRef = useRef();
@@ -24,7 +25,36 @@ function EditInventory({ id, warehouse_id, item_name, description, category, sta
     warehouse_id: ''
   });
 
-  // TODO: add form validation cannot submit blank info
+  const [formErrors, setFormErrors] = useState({
+    item_name: { isValid: true, errorMessage: '' },
+    description: { isValid: true, errorMessage: '' },
+    category: { isValid: true, errorMessage: '' },
+    status: { isValid: true, errorMessage: '' },
+    quantity: { isValid: true, errorMessage: '' },
+    warehouse_id: { isValid: true, errorMessage: '' }
+  })
+
+  const validationCheck = (name, value) => {
+    let isValid = true;
+    let errorMessage = '';
+
+    if (typeof value === 'string' && value.trim() === '') {
+      isValid = false;
+      errorMessage = `${name.replace('_', ' ')} cannot be empty`
+    }
+
+    if (name === 'quantity' && inStock && isNaN(value)) {
+      isValid = false;
+      errorMessage = 'Quantity must be a number';
+    }
+
+    setFormErrors((prevErrors) => ({
+      ...prevErrors,
+      [name]: { isValid, errorMessage },
+    }))
+
+    return isValid;
+  }
 
   const getWarehouses = async () => {
     const data = await api.getAllWarehouses();
@@ -59,46 +89,76 @@ function EditInventory({ id, warehouse_id, item_name, description, category, sta
   }, [warehouseId, inventoryId]
   )
 
-  const formValidation = (event) => {
-    console.log('TODO: need to add form validation here can this be from the add item')
-  }
-
   const getUniqueCategories = (currentCategory) => (allCategories.filter(category => category !== currentCategory))
 
   const getUniqueWarehouses = (currentWarehouse) => (allWarehouses.filter(warehouse => warehouse.id !== currentWarehouse))
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
+
+    validationCheck(name, value);
+
     setFormData((previous) => ({
       ...previous,
       [name]: value
     }));
   };
 
-  const handleStatusChange = (event) => {
+  const handleInStockChange = async (event) => {
     const status = event.target.value;
-    setFormData({
-      ...formData,
+
+    setFormData((previous) => ({
+      ...previous,
       status,
-    });
+    }));
+
+    if(formData.status === 'Out of Stock'){
+      setFormData((previousFormData) => ({
+        ...previousFormData,
+        quantity: 0,
+      }))
+    }
+
     setInStock(status === 'In Stock')
+  }
+
+  const handlePageChange = () => {
+    if (location.state?.from?.includes('/warehouses')) {
+      navigate(`/warehouses/${warehouseId}`);
+    } else if (location.state?.from?.includes('/inventory')) {
+      navigate(`/inventory`);
+    } else {
+      navigate(`/warehouses/${warehouseId}`);
+    }
   }
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+
+    let formIsValid = true;
+    Object.entries(formData).forEach(([name, value]) => {
+      if (!validationCheck(name, value)) {
+        formIsValid = false;
+      }
+    })
+
+    if (!formIsValid) {
+      return
+    }
+
     try {
-      await api.editInventory(inventoryId, formData)
-    } catch (error) {
-      console.error('Error updating inventory item', error)
+      await api.editInventory(inventoryId, formData);
+      alert(`${formData.item_name} updated successfully`);
+      handlePageChange();
+    } catch (err) {
+      console.error('Unable to edit item', err)
     }
   };
-
-  const handleCancel = () => navigate(`/warehouses/${warehouseId}`);
 
   return (
     <div className="edit-inventory">
       <header className="edit-inventory__title">
-        <img className="edit-inventory__arrow-icon" src={ArrowBackIcon} onClick={() => navigate(-1)} />
+        <img className="edit-inventory__arrow-icon" src={ArrowBackIcon} onClick={handlePageChange} />
         <h1 className="edit-inventory__title-heading">Edit Inventory Item</h1>
       </header>
       <form ref={formRef} className="form">
@@ -113,6 +173,7 @@ function EditInventory({ id, warehouse_id, item_name, description, category, sta
               name="item_name"
               value={formData.item_name}
               onChange={handleInputChange} />
+            <FormError isValid={formErrors.item_name.isValid} errorMessage={formErrors.item_name.errorMessage} />
 
             <h3 className="form__label">Description</h3>
             <textarea
@@ -121,6 +182,7 @@ function EditInventory({ id, warehouse_id, item_name, description, category, sta
               value={formData.description}
               onChange={handleInputChange}
               name="description" />
+            <FormError isValid={formErrors.description.isValid} errorMessage={formErrors.description.errorMessage} />
 
             <h3 className="form__label">Category</h3>
             <div className="form__custom-select">
@@ -139,16 +201,14 @@ function EditInventory({ id, warehouse_id, item_name, description, category, sta
           <aside className="form__aside">
             <h2 className="form__title">Item Availability</h2>
             <h3 className="form__label">Status</h3>
-
-
             <label htmlFor='in-stock' className="form__status" >
               <input className="form__radio-btn"
                 type="radio"
-                name="status"
+                name="in-stock"
                 id="in-stock"
                 value='In Stock'
                 checked={formData.status === 'In Stock'}
-                onChange={handleStatusChange}
+                onChange={handleInStockChange}
               />
               <span className="form__radio-circle"></span>
               In Stock
@@ -157,23 +217,31 @@ function EditInventory({ id, warehouse_id, item_name, description, category, sta
             <label htmlFor='out-of-stock' className="form__status">
               <input className="form__radio-btn"
                 type="radio"
-                name="status"
+                name="out-of-stock"
                 id="out-of-stock"
                 value='Out of Stock'
                 checked={formData.status === 'Out of Stock'}
-                onChange={handleStatusChange}
+                onChange={handleInStockChange}
               />
               <span className="form__radio-circle"></span>
               Out of Stock</label>
             {inStock &&
               <>
                 <h3 className="form__label">Quantity</h3>
-                <input className="form__input form__input--quantity" type="text" placeholder="500" name="quantity" value={formData.quantity} onChange={handleInputChange} />
+                <input className="form__input form__input--quantity"
+                  type="text" placeholder="500"
+                  name="quantity"
+                  value={formData.quantity}
+                  onChange={handleInputChange} />
               </>}
+              <FormError isValid={formErrors.quantity.isValid} errorMessage={formErrors.quantity.errorMessage} />
 
             <h3 className="form__label">Warehouse</h3>
             <div className="form__custom-select">
-              <select className="form__select" type="text" name="warehouse_id" defaultValue={formData.warehouse_id}>
+              <select className="form__select"
+                type="text"
+                name="warehouse_id"
+                defaultValue={formData.warehouse_id}>
                 {allWarehouses.map((warehouse) => (
                   <option key={warehouse.id} value={warehouse.id}>{warehouse.warehouse_name}</option>
                 ))}
@@ -185,7 +253,7 @@ function EditInventory({ id, warehouse_id, item_name, description, category, sta
         </div>
       </form>
       <div className="edit-inventory__bottom">
-        <button className="edit-inventory__cancel-btn" onClick={handleCancel}>Cancel</button>
+        <button className="edit-inventory__cancel-btn" onClick={handlePageChange}>Cancel</button>
         <button className="edit-inventory__save-btn" onClick={handleSubmit}>Save</button>
       </div>
     </div>
