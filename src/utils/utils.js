@@ -83,6 +83,16 @@ class Api {
     }
   }
 
+  async getInventoryCategories() {
+    try{
+      const response = await axios.get(`${baseUrl}/inventories`);;
+      const categoryList = response.data.map(category => category.category);
+      const uniqueCategories = categoryList.filter((value, index, self) => self.indexOf(value) === index);
+      return uniqueCategories;
+    } catch (err){
+      console.log('Error getting categories')
+    }
+  }
 }
 
 export { Api, baseUrl };

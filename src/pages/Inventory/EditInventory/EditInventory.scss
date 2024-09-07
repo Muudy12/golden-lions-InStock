@@ -145,7 +145,8 @@
     }
 
     &__radio-btn {
-        appearance: none;
+       // appearance: none;
+        position: relative;
         margin: 0;
         font: inherit;
         color: currentColor;
@@ -155,12 +156,25 @@
         border-radius: 50%;
         margin: 0 .5rem 0 0 ;
 
-        &:checked{
-            box-sizing: border-box;
-            margin: 0 0.5rem 0 0 ;
-            background-color:  $primary-element-color;
-            border: .0625rem solid $secondary-cloud-color;
-            border-radius: 50%;
-        }
+        // &::after{
+        //     content: "";
+        //     width: 0.5rem;
+        //     height: 0.5rem;
+        //     position: absolute;
+        //     top: 50%;
+        //     left: 50%;
+        //     border-radius: 50%;
+        //     background-color: $primary-element-color;
+        //     transform: translate(-50%,-50%);
+        //}
+        // {
+        //     box-sizing: border-box;
+        //     margin: 0 0.5rem 0 0 ;
+        //     background-color:  $primary-element-color;
+        //     border: .0625rem solid $secondary-cloud-color;
+        //     border-radius: 50%;
+        // }
+
+
     }
 }
