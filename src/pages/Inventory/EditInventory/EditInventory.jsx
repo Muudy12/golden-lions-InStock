@@ -148,7 +148,6 @@ function EditInventory() {
 
     try {
       await api.editInventory(inventoryId, formData);
-      alert(`${formData.item_name} updated successfully`);
       handlePageChange();
     } catch (err) {
       console.error('Unable to edit item', err)

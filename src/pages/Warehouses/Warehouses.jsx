@@ -23,12 +23,10 @@ function Warehouses() {
   }, []); // removed the detect warehouses because it was causing infinite loop/re-rending
 
   const editWarehouse = (warehouseId) => {
-    alert("Edit Clicked!");
     navigate(`/warehouses/${warehouseId}/edit`);
   };
 
   const addWarehouse = () => {
-    alert("Add Warehouse Clicked!");
     navigate(`/warehouses/add`);
   };
 
