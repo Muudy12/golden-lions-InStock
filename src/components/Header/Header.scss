@@ -1,59 +1,77 @@
-@import '../../styles/global.scss';
+@import "../../styles/global.scss";
 
 body {
-    background: linear-gradient( rgb(35, 41, 64) 14rem,
-    rgba(255, 255, 255, 1) 0rem);
-    min-height: 100vh;
-    @include tablet {
-        background: linear-gradient( rgb(35, 41, 64) 10rem,
-        rgba(255, 255, 255, 1) 0rem);
-    }
+  background: linear-gradient(
+    rgb(35, 41, 64) 12.5rem,
+    rgba(255, 255, 255, 1) 0rem
+  );
+  min-height: 100vh;
+  @include tablet {
+    background: linear-gradient(
+      rgb(35, 41, 64) 11.625rem,
+      rgba(255, 255, 255, 1) 0rem
+    );
+  }
 }
 
 .header {
-    display: flex;
-    flex-direction: column;
-    gap: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+
+  @include tablet {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+  &-logo {
+    width: 8.0369rem;
+    height: 1.75rem;
+    margin: auto;
     @include tablet {
-        flex-direction: row;
-        justify-content: space-between;
-        align-items: center;
+      margin: 0;
     }
-    &-logo {
-        width: 8.0369rem;
-        height: 1.75rem;
-        margin: auto;
-        @include tablet {
-            margin: 0;
-        }
+  }
+  &-link {
+    align-self: center;
+  }
+  &-links {
+    display: flex;
+    justify-content: space-around;
+    @include tablet {
+      gap: 2rem;
     }
-    &-link {
-        align-self: center;
+
+    & h3 {
+      margin: 0;
     }
-    &-links {
-        display: flex;
-        justify-content: space-around;
-        @include tablet {
-            gap: 2rem;
-        }
-        &__item {
-            text-decoration: none;
-            color: $secondary-cloud-color;
-            &:hover{
-                text-decoration: underline;
-            }
-            @include tablet {
-                padding: .5rem 1rem;
-            }
-        }
-        .active-link {
-            background-color: $primary-text-color;
-            color: $primary-white-color;
-            padding: .8125rem 2.25rem;
-            border-radius: 1.25rem;
-            @include tablet {
-                padding: .5rem 1rem;
-            }
-        }
+
+    &__item {
+      display: flex;
+      box-sizing: border-box;
+      border-radius: 1.25rem;
+      align-items: center;
+      justify-content: center;
+      height: 2.25rem;
+      width: 10.25rem;
+      font-size: 0.8125rem;
+      text-decoration: none;
+      color: $secondary-cloud-color;
+      &:hover {
+        text-decoration: underline;
+      }
+      @include tablet {
+        padding: 0.5rem 1rem;
+      }
     }
+    .active-link {
+      background-color: $primary-text-color;
+      color: $primary-white-color;
+      //padding: .8125rem 2.25rem;
+      //border-radius: 1.25rem;
+      @include tablet {
+        padding: 0.5rem 1rem;
+      }
+    }
+  }
 }
