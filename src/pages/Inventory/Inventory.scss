@@ -59,6 +59,7 @@
 
       & .inventory-item {
         &__title {
+          @include arrow-animation;
           order: 0;
         }
 

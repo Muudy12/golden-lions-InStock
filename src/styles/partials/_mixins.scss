@@ -568,7 +568,7 @@
 
 @mixin arrow-animation{
   svg {
-    transition: transform 0.5s ease;
+    transition: transform 0.3s ease;
   }
   &:hover svg {
     transform: translateX(4px);
