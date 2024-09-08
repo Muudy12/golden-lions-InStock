@@ -65,12 +65,14 @@ class Api {
     }
   }
 
+
+
   async getInventoryItemDetails( inventoryId) {
     try {
       const response = await axios.get(`${baseUrl}/inventories/${inventoryId}`);
       return response.data;
     } catch (err) {
-      console.log(`Failed to get inventory item with id: ${inventoryId} `);
+      console.log(`Failed to get inventory item with id: ${inventoryId}.`);
     }
   }
 
