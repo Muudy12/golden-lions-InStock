@@ -39,7 +39,7 @@
   border-radius: 0.2rem;
   box-shadow: 0 0.2rem 0.5rem 0 rgba($primary-text-color, 0.1);
   margin-top: 1.5rem;
-  min-width: 21.4375rem;
+  min-width: 18rem;
   @include responsiveListContainer();
 }
 
@@ -485,7 +485,7 @@
 @mixin detailsContainer {
   margin-top: 1.5rem;
   padding-top: 0.58rem;
-  min-width: 21.4375rem;
+  min-width: 20rem;
   width: 100%;
 
   @include tablet {
