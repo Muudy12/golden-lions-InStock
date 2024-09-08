@@ -8,17 +8,19 @@ import editIcon from "../../../assets/icons/edit-white-24px.svg";
 import "./InventoryDetails.scss";
 
 function InventoryDetails() {
+  const previousUrl = sessionStorage.getItem('previousUrl');
+
   const api = new Api();
   const [inventoryItem, setInventoryItem] = useState({});
   const params = useParams();
 
   const getInventoryItemDetails = async () => {
-    const response = await api.getInventoryItemDetails(
-      params.warehouseId,
-      params.inventoryId
-    );
-    console.log(response);
-    setInventoryItem(response);
+    try {
+      const response = await api.getInventoryItemDetails(params.inventoryId);
+      setInventoryItem(response);
+    } catch (error) {
+      console.log(error)
+    }
   };
 
   useEffect(() => {
@@ -30,7 +32,7 @@ function InventoryDetails() {
       <div className="inventory-details">
         <section className="inventory">
           <section className="inventory__header">
-            <Link to={`/warehouses/${params.warehouseId}`}>
+            <Link to={previousUrl}>
               <ReactSVG src={backIcon} />
             </Link>
             {inventoryItem ? (
