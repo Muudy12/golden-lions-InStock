@@ -158,13 +158,13 @@ function EditInventory() {
         <img className="edit-inventory__arrow-icon" src={ArrowBackIcon} onClick={handlePageChange} />
         <h1 className="edit-inventory__title-heading">Edit Inventory Item</h1>
       </header>
-      <form ref={formRef} className="form">
-        <div className="form__container">
-          <section className="form__section">
-            <h2 className="form__title">Item Details</h2>
-            <h3 className="form__label">Item Name</h3>
+      <form ref={formRef} className="edit-inv-form">
+        <div className="edit-inv-form__container">
+          <section className="edit-inv-form__section">
+            <h2 className="edit-inv-form__title">Item Details</h2>
+            <h3 className="edit-inv-form__label">Item Name</h3>
             <input
-              className="form__input"
+              className="edit-inv-form__input"
               type="text"
               placeholder="Television"
               name="item_name"
@@ -172,18 +172,18 @@ function EditInventory() {
               onChange={handleInputChange} />
             <FormError isValid={formErrors.item_name.isValid} errorMessage={formErrors.item_name.errorMessage} />
 
-            <h3 className="form__label">Description</h3>
+            <h3 className="edit-inv-form__label">Description</h3>
             <textarea
-              className="form__textarea"
+              className="edit-inv-form__textarea"
               placeholder='This 50", 4K LED TV provides a crystal-clear picture and vivid colors.'
               value={formData.description}
               onChange={handleInputChange}
               name="description" />
             <FormError isValid={formErrors.description.isValid} errorMessage={formErrors.description.errorMessage} />
 
-            <h3 className="form__label">Category</h3>
-            <div className="form__custom-select">
-              <select className="form__select"
+            <h3 className="edit-inv-form__label">Category</h3>
+            <div className="edit-inv-form__custom-select">
+              <select className="edit-inv-form__select"
                 type="text"
                 name="category"
                 onChange={handleInputChange} >
@@ -196,11 +196,11 @@ function EditInventory() {
 
           </section>
 
-          <aside className="form__aside">
-            <h2 className="form__title">Item Availability</h2>
-            <h3 className="form__label">Status</h3>
-            <label htmlFor='in-stock' className={`form__status ${!inStock ? "" : "form__status--selected"}`} >
-              <input className="form__radio-btn"
+          <aside className="edit-inv-form__aside">
+            <h2 className="edit-inv-form__title">Item Availability</h2>
+            <h3 className="edit-inv-form__label">Status</h3>
+            <label htmlFor='in-stock' className={`edit-inv-form__status ${!inStock ? "" : "edit-inv-form__status--selected"}`} >
+              <input className="edit-inv-form__radio-btn"
                 type="radio"
                 name="status"
                 id="in-stock"
@@ -208,12 +208,12 @@ function EditInventory() {
                 checked={formData.status === 'In Stock'}
                 onChange={handleInStockChange}
               />
-              <span className="form__radio-circle"></span>
+              <span className="edit-inv-form__radio-circle"></span>
               In Stock
             </label>
 
-            <label htmlFor='out-of-stock' className={`form__status ${inStock ? "" : "form__status--selected"}`}>
-              <input className="form__radio-btn"
+            <label htmlFor='out-of-stock' className={`edit-inv-form__status ${inStock ? "" : "edit-inv-form__status--selected"}`}>
+              <input className="edit-inv-form__radio-btn"
                 type="radio"
                 name="status"
                 id="out-of-stock"
@@ -221,12 +221,12 @@ function EditInventory() {
                 checked={formData.status === 'Out of Stock'}
                 onChange={handleInStockChange}
               />
-              <span className="form__radio-circle"></span>
+              <span className="edit-inv-form__radio-circle"></span>
               Out of Stock</label>
             {inStock &&
               <>
-                <h3 className="form__label">Quantity</h3>
-                <input className="form__input form__input--quantity"
+                <h3 className="edit-inv-form__label">Quantity</h3>
+                <input className="edit-inv-form__input edit-inv-form__input--quantity"
                   type="text" placeholder="500"
                   name="quantity"
                   value={formData.quantity}
@@ -234,9 +234,9 @@ function EditInventory() {
               </>}
             <FormError isValid={formErrors.quantity.isValid} errorMessage={formErrors.quantity.errorMessage} />
 
-            <h3 className="form__label">Warehouse</h3>
-            <div className="form__custom-select">
-              <select className="form__select"
+            <h3 className="edit-inv-form__label">Warehouse</h3>
+            <div className="edit-inv-form__custom-select">
+              <select className="edit-inv-form__select"
                 type="text"
                 name="warehouse_id"
                 onChange={handleInputChange} >
