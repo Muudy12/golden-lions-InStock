@@ -19,6 +19,7 @@ function Inventory({ warehouseId }) {
   };
 
   const goToDetail = (inventoryId) => {
+    sessionStorage.setItem('previousUrl', window.location.pathname)
     navigate(`/inventory/${inventoryId}`);
   };
 

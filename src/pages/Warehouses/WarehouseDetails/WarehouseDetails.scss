@@ -39,7 +39,7 @@
 .warehouse-information {
     @include flex-column(2rem);
     padding: 2rem;
-    @include border-bottom;
+    padding-bottom: 0;
     & * {
         margin: 0;
     }
@@ -55,12 +55,12 @@
         }
     }
     &__contact {
-        @include container-flex(space-between);
+        @include container-flex(center, space-between);
         padding-bottom: 1rem;
         @include tablet {
-            gap: 5rem;
+            gap: 2rem;
             border-left: 1px solid $secondary-cloud-color;
-            padding-left: 5rem;
+            padding-left: 2rem;
             @include desktop {
                 padding-left: 3rem;
             }
@@ -68,6 +68,7 @@
     }
     @include tablet {
         flex-direction: row;
-        justify-content: space-between;
+        justify-content: flex-start;
+        gap: 20%;
     }
 }
