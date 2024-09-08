@@ -8,10 +8,10 @@
     width: 100%;
     border-radius: 0.2rem;
     box-shadow: 0 0.2rem 0.5rem 0 rgba($primary-text-color, 0.1);
-    margin: 2rem 0;
+    margin: 1.5rem 0;
 
     @include tablet {
-        margin: 1rem 0 4rem;
+        margin-top: 1.7rem;
     }
 
     @include desktop {
@@ -30,7 +30,7 @@
 
         @include tablet {
             flex-direction: row;
-            padding: 1.3rem 2rem 1rem;
+            padding: 2rem 1.5rem 1.3rem !important;
         }
 
         &-heading {

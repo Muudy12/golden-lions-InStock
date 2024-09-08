@@ -10,7 +10,7 @@
     box-shadow: 0 0.2rem 0.5rem 0 rgba($primary-text-color, 0.1);
     margin: 2rem 0;
     @include tablet{
-        margin: 1rem  0rem  4rem  0rem;
+        margin-top: 1.7rem;
     }
     &__header{
         width: 100%;
@@ -23,7 +23,7 @@
         border-bottom: 0.1rem solid $secondary-cloud-color;
         box-sizing: border-box;
         @include tablet{
-            padding: 1rem  0rem  .8rem  2rem;
+            padding: 1.5rem 1.5rem 1.3rem !important;
         }
         &-icon{
             padding-top: 1rem;

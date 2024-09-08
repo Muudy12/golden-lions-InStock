@@ -480,17 +480,24 @@
   margin-top: 1.5rem;
   padding-top: 0.58rem;
   min-width: 21.4375rem;
+  width: 100%;
 
   @include tablet {
     margin-top: 1.7rem;
     padding-top: 0.3rem;
+    min-width: 44rem;
+  }
+
+  @include desktop {
+    min-width: 63.75;
   }
 }
 
 @mixin detailsTitle {
   padding: 1.5rem 1.5rem 1.3rem;
 
-  & section {
+  & section,
+  & div {
     gap: 0.5rem;
     display: flex;
     align-items: center;
