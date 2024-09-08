@@ -11,7 +11,7 @@
     margin: 2rem 0;
 
     @include tablet {
-        margin: 1rem 0 4rem;
+        margin: 1.5rem 0 4rem;
     }
 
     @include desktop {
@@ -38,7 +38,7 @@
 
         @include tablet {
             flex-direction: row;
-            padding: 1.3rem 2rem 1rem;
+            padding: 2rem 2rem 1.5rem;
         }
 
     &-heading {
@@ -104,7 +104,7 @@
     @include tablet {
       padding: 0 2rem 1.5rem 2rem;
       border-bottom: none;
-      border-right: 0.1rem solid #bdc5d5;
+      border-right: 0.1rem solid $secondary-cloud-color;
     }
   }
 
@@ -158,6 +158,7 @@
     @include formStyling;
     width: 100%;
     height: 2.25rem;
+    font-family: "Titillium Web";
   }
 
   &__status {
