@@ -12,11 +12,13 @@ function Warehouses() {
   const api = new Api();
   const navigate = useNavigate();
   const [warehouses, setWarehouses] = useState([]);
+  const [renderWarehouses, setRenderWarehouses] = useState([]);
 
   useEffect(() => {
     const getAllWarehouses = async () => {
       const data = await api.getAllWarehouses();
       setWarehouses(data);
+      setRenderWarehouses(data);
     };
 
     getAllWarehouses();
@@ -40,6 +42,16 @@ function Warehouses() {
     setWarehouses(warehouses.filter((wh) => wh.id !== warehouseId));
   }
 
+  const handleSearch = (event) => {
+    event.preventDefault()
+    const keyword = event.target.value;
+    const searchResult = warehouses.filter((item)=>(
+      Object.values(item).some(value => 
+      value.toString().toLowerCase().includes(keyword.toLowerCase())
+    )))
+    setRenderWarehouses(searchResult);
+  }
+
   return (
     <div className="warehouses-container">
       <div className="warehouses">
@@ -56,6 +68,7 @@ function Warehouses() {
                 name="search"
                 placeholder="Search..."
                 className="options__search-form-input"
+                onChange={handleSearch}
               />
             </form>
             <button className="options__add-btn" onClick={addWarehouse}>
@@ -84,7 +97,7 @@ function Warehouses() {
           <h3>ACTIONS</h3>
         </div>
         {warehouses &&
-          warehouses.map((w, index) => {
+          renderWarehouses.map((w, index) => {
             return (
               <div key={index} className="warehouses__list-item warehouse-item">
                 <h3

@@ -102,7 +102,7 @@ function InventoryCard({cardTitle, inventoryItem}) {
             name="category" 
             value={inventoryItemData.category}
             onChange={handleChange}>
-              <option defaultValue="Please select">Please select</option>
+              <option value="Please select">Please select</option>
               {categoryTypes?.map((type,idx)=>(
                 <option key={idx} value={type}>{type}</option>
               ))}
@@ -153,7 +153,7 @@ function InventoryCard({cardTitle, inventoryItem}) {
             name="warehouse_id"
             value={inventoryItemData.warehouse_id}
             onChange={handleChange}>
-              <option defaultValue="Please select">Please select</option>
+              <option value="Please select">Please select</option>
               {warehouseTypes?.map((type,idx)=>(
                 <option key={idx} value={type.match(warehouseIdRegex)[1]}>{type.match(warehouseNameRegex)[1]}</option>
               ))}
@@ -161,11 +161,11 @@ function InventoryCard({cardTitle, inventoryItem}) {
           </div>
         </div>
         {createInventoryPage && <div className='inventory-card__form-buttons'>
-          <button className='inventory-card__form-buttons-cancel'>Cancel</button>
+          <button className='inventory-card__form-buttons-cancel' onClick={handlePageChange} >Cancel</button>
           <button className='inventory-card__form-buttons-add' type="submit">+ Add Item</button>
           </div>}
           {!createInventoryPage && <div className='inventory-card__form-buttons'>
-          <button className='inventory-card__form-buttons-cancel'>Cancel</button>
+          <button className='inventory-card__form-buttons-cancel' onClick={handlePageChange} >Cancel</button>
           <button className='inventory-card__form-buttons-save' type="submit">Save</button>
           </div>}
       
