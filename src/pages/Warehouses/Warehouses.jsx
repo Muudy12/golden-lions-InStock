@@ -14,6 +14,7 @@ function Warehouses() {
   const [warehouses, setWarehouses] = useState([]);
 
   useEffect(() => {
+    document.title = "InStock - Warehouses";
     const getAllWarehouses = async () => {
       const data = await api.getAllWarehouses();
       setWarehouses(data);

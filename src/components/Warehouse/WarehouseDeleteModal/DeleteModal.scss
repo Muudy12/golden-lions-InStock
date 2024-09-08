@@ -85,7 +85,7 @@
 
     &__cancel-btn {
         background-color: $primary-white-color;
-        border: .0625rem solid $secondary-cloud-color;
+        border: .0625rem solid $secondary-cloud-color !important;
         @include roundButton;
 
         &:hover {

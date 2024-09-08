@@ -24,6 +24,7 @@ function Inventory({ warehouseId }) {
   };
 
   useEffect(() => {
+    document.title = "InStock - Inventory";
     const getInventoryList = async () => {
       let response;
       if (warehouseId !== undefined) {
@@ -135,7 +136,7 @@ function Inventory({ warehouseId }) {
                   inventoryId={inventoryItem.id}
                   updateInventoryList={updateInventoryList}
                 />
-                <ReactSVG src={EditIcon} onClick={() => navigate(`/inventory/${inventoryItem.warehouse_id}/edit`, {state: {from: location.pathname}})}/>
+                <ReactSVG src={EditIcon} onClick={() => navigate(`/inventory/${inventoryItem.id}/edit`, {state: {from: location.pathname}})}/>
               </h3>
             </div>
           );

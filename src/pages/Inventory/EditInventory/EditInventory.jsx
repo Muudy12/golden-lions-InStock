@@ -58,9 +58,9 @@ function EditInventory() {
 
   const getWarehouses = async () => {
     const data = await api.getAllWarehouses();
+
     const uniqueWarehouses = data.filter((value, index, self) =>
       index === self.findIndex((warehouse) => warehouse.id === value.id));
-    console.log(uniqueWarehouses)
     setAllWarehouses(uniqueWarehouses)
   }
 
@@ -87,8 +87,7 @@ function EditInventory() {
     document.title = "InStock - Edit Inventory"
     getCurrentItem();
     getWarehouses();
-  }, [inventoryId]
-  )
+  }, [inventoryId])
 
 
   const getUniqueCategories = (currentCategory) => (allCategories.filter(category => category !== currentCategory))
@@ -186,7 +185,8 @@ function EditInventory() {
             <div className="form__custom-select">
               <select className="form__select"
                 type="text"
-                name="category" >
+                name="category"
+                onChange={handleInputChange} >
                 <option defaultValue={formData.category} >{formData.category}</option>
                 {getUniqueCategories(formData.category).map((category, index) => (
                   <option key={index} value={category}>{category}</option>
@@ -199,7 +199,7 @@ function EditInventory() {
           <aside className="form__aside">
             <h2 className="form__title">Item Availability</h2>
             <h3 className="form__label">Status</h3>
-            <label htmlFor='in-stock' className="form__status" >
+            <label htmlFor='in-stock' className={`form__status ${!inStock ? "" : "form__status--selected"}`} >
               <input className="form__radio-btn"
                 type="radio"
                 name="status"
@@ -212,7 +212,7 @@ function EditInventory() {
               In Stock
             </label>
 
-            <label htmlFor='out-of-stock' className="form__status">
+            <label htmlFor='out-of-stock' className={`form__status ${inStock ? "" : "form__status--selected"}`}>
               <input className="form__radio-btn"
                 type="radio"
                 name="status"
@@ -239,15 +239,18 @@ function EditInventory() {
               <select className="form__select"
                 type="text"
                 name="warehouse_id"
-                defaultValue={formData.warehouse_id}>
-                {allWarehouses.map((warehouse) => (
+                onChange={handleInputChange} >
+                {allWarehouses.length > 0 && (
+                  <option defaultValue={formData.warehouse_id} value={formData.warehouse_id} >{allWarehouses.find(warehouse => warehouse.id === formData.warehouse_id)?.warehouse_name || "Please Select"}</option>
+                )}
+
+                {allWarehouses.filter(warehouse => warehouse.id !== formData.warehouse_id)
+                .map((warehouse) => (
                   <option key={warehouse.id} value={warehouse.id}>{warehouse.warehouse_name}</option>
                 ))}
               </select>
             </div>
-
           </aside>
-
         </div>
       </form>
       <div className="edit-inventory__bottom">
