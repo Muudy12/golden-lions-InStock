@@ -42,27 +42,27 @@
     @include flex-column;
     padding: 2rem;
     @include border-bottom;
-    
     & * {
         margin: 0;
     }
     &__overview {
         @include tablet {
-        border-right: 1px solid $secondary-cloud-color;
-        width: 40%;
-        padding-right: 5rem;
+            border-right: 1px solid $secondary-cloud-color;
+            width: 40%;
+            padding-right: 5rem;
         }
     }
     &__description {
+        margin-bottom: 1rem;
         &--text {
         @include description-text;
         }
     }
     &__status {
-        @include container-flex;
-        gap: 6rem;
-        @include desktop {
-        padding-left: 3rem;
+        @include container-flex(center, flex-start);
+        & {
+            gap: 6rem;
+            margin-bottom: 1rem;
         }
     }
     @include tablet {

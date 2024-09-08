@@ -24,6 +24,7 @@ function WarehouseDetails() {
 
   useEffect(() => {
     getWarehouse();
+    document.title = "Warehouse - Details";
   }, [params.warehouseId]);
 
   return (
