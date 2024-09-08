@@ -29,63 +29,61 @@ function WarehouseDetails() {
 
   return (
     <>
-      <div className="warehouse-details-container">
-        <div className="warehouse-details">
-          <section className="warehouse">
-            <section className="warehouse__header">
-              <Link to="/warehouses">
-                <ReactSVG src={backIcon} />
-              </Link>
-              {warehouse ? (
-                <h1 className="warehouse__header--title">
-                  {warehouse.warehouse_name}
-                </h1>
-              ) : (
-                <p>Loading...</p>
-              )}
-            </section>
-            <div className="warehouse__header--wrapper">
-              <Link
-                className="warehouse__header--wrapper-link"
-                to={`/warehouses/${params.warehouseId}/edit`}
-              >
-                <ReactSVG
-                  className="warehouse__header--wrapper-editIcon"
-                  src={editIcon}
-                />
-                <span>Edit</span>
-              </Link>
-            </div>
+      <div className="warehouse-details">
+        <section className="warehouse">
+          <section className="warehouse__header">
+            <Link to="/warehouses">
+              <ReactSVG src={backIcon} />
+            </Link>
+            {warehouse ? (
+              <h1 className="warehouse__header--title">
+                {warehouse.warehouse_name}
+              </h1>
+            ) : (
+              <p>Loading...</p>
+            )}
           </section>
-          <section className="warehouse-information">
+          <div className="warehouse__header--wrapper">
+            <Link
+              className="warehouse__header--wrapper-link"
+              to={`/warehouses/${params.warehouseId}/edit`}
+            >
+              <ReactSVG
+                className="warehouse__header--wrapper-editIcon"
+                src={editIcon}
+              />
+              <span>Edit</span>
+            </Link>
+          </div>
+        </section>
+        <section className="warehouse-information">
+          <div>
+            <h3>WAREHOUSE ADDRESS:</h3>
+            <p className="warehouse-information__address">
+              <span className="warehouse-information__address--street">
+                {warehouse.address},
+              </span>
+              <span>
+                {warehouse.city}, {warehouse.country}
+              </span>
+            </p>
+          </div>
+
+          <section className="warehouse-information__contact">
             <div>
-              <h3>WAREHOUSE ADDRESS:</h3>
-              <p className="warehouse-information__address">
-                <span className="warehouse-information__address--street">
-                  {warehouse.address},
-                </span>
-                <span>
-                  {warehouse.city}, {warehouse.country}
-                </span>
-              </p>
+              <h3>CONTACT NAME:</h3>
+              <p>{warehouse.contact_name}</p>
+              <p>{warehouse.contact_position}</p>
             </div>
 
-            <section className="warehouse-information__contact">
-              <div>
-                <h3>CONTACT NAME:</h3>
-                <p>{warehouse.contact_name}</p>
-                <p>{warehouse.contact_position}</p>
-              </div>
-
-              <div>
-                <h3>CONTACT INFORMATION:</h3>
-                <p>{warehouse.contact_phone}</p>
-                <p>{warehouse.contact_email}</p>
-              </div>
-            </section>
+            <div>
+              <h3>CONTACT INFORMATION:</h3>
+              <p>{warehouse.contact_phone}</p>
+              <p>{warehouse.contact_email}</p>
+            </div>
           </section>
-          <Inventory warehouseId={params.warehouseId} />
-        </div>
+        </section>
+        <Inventory warehouseId={params.warehouseId} />
       </div>
     </>
   );
