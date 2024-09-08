@@ -61,7 +61,7 @@
     &__status {
         @include container-flex(center, flex-start);
         & {
-            gap: 6rem;
+            gap: 4rem;
             margin-bottom: 1rem;
         }
     }
