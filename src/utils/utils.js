@@ -56,12 +56,23 @@ class Api {
     }
   }
 
-  async getInventoryItemDetails(warehouseId, inventoryId) {
+  async editOneItem() {
     try {
-      const response = await axios.get(`${baseUrl}/warehouses/${warehouseId}/inventories/${inventoryId}`);
+      const response = await axios.put(`${baseUrl}/inventories/:id`);
       return response.data;
     } catch (err) {
-      console.log(`Failed to get inventory item with id: ${inventoryId} for warehouse with id: ${warehouseId}.`);
+      console.log(`Failed to get an item.`);
+    }
+  }
+
+
+
+  async getInventoryItemDetails( inventoryId) {
+    try {
+      const response = await axios.get(`${baseUrl}/inventories/${inventoryId}`);
+      return response.data;
+    } catch (err) {
+      console.log(`Failed to get inventory item with id: ${inventoryId}.`);
     }
   }
 
@@ -74,6 +85,25 @@ class Api {
     }
   }
 
+  async getInventoryCategories() {
+    try{
+      const response = await axios.get(`${baseUrl}/inventories`);;
+      const categoryList = response.data.map(category => category.category);
+      const uniqueCategories = categoryList.filter((value, index, self) => self.indexOf(value) === index);
+      return uniqueCategories;
+    } catch (err){
+      console.log('Error getting categories')
+    }
+  }
+
+  async editInventory ( inventoryId, inventoryItemData) {
+    try{
+      const response = await axios.put(`${baseUrl}/inventories/${inventoryId}`, inventoryItemData);
+      return response.data;
+    } catch (err){
+      console.log('Error getting categories')
+    }
+  }
   async updateWarehouse(warehouseId, warehouseData) {
   try {
     const response = await axios.put(`${baseUrl}/warehouses/${warehouseId}`, warehouseData);

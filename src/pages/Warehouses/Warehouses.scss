@@ -3,6 +3,10 @@
 .warehouses {
   @include displayListContainer();
 
+  &-container {
+    @include displayMainContainer();
+  }
+
   &__title {
     @include displayListTitle();
 
@@ -19,6 +23,9 @@
 
       &__add-btn {
         @include displayListTitle__options-add-btn();
+        @include tablet {
+          width: 10.5rem;
+        }
       }
     }
   }
@@ -28,8 +35,30 @@
       @include displayList-headers();
 
       @include tablet {
+        & h3:nth-of-type(1) {
+          width: 8rem;
+        }
+
         & h3:nth-of-type(2) {
-          min-width: 17rem !important;
+          width: 10rem;
+        }
+
+        & h3:nth-of-type(3) {
+          width: 8rem;
+        }
+
+        & h3:nth-of-type(5) {
+          width: 10rem;
+        }
+
+        & h3:nth-of-type(5) {
+          width: 8rem;
+        }
+      }
+
+      @include desktop {
+        & h3:nth-of-type(2) {
+          min-width: 17rem;
         }
       }
     }
@@ -47,6 +76,27 @@
 
     &-item {
       & .warehouse-item {
+        @include tablet {
+          & h3:nth-of-type(1) {
+            width: 8rem;
+          }
+
+          & h3:nth-of-type(2) {
+            width: 10rem;
+          }
+
+          & h3:nth-of-type(3) {
+            width: 8rem;
+          }
+
+          & h3:nth-of-type(5) {
+            width: 10rem;
+          }
+
+          & h3:nth-of-type(5) {
+            width: 8rem;
+          }
+        }
         &__title {
           order: 0;
         }
@@ -64,7 +114,11 @@
           @include desktop {
             flex-direction: row;
             align-items: center;
-            min-width: 17rem !important;
+            min-width: 17rem;
+
+            & span {
+              min-width: fit-content;
+            }
           }
         }
 

@@ -3,6 +3,10 @@
 .inventories {
   @include displayListContainer();
 
+  &-container {
+    @include displayMainContainer();
+  }
+
   &__title {
     @include displayListTitle();
 
@@ -19,6 +23,10 @@
 
       &__add-btn {
         @include displayListTitle__options-add-btn();
+
+        @include tablet {
+          width: 8rem;
+        }
       }
     }
   }
