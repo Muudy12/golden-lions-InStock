@@ -1,207 +1,205 @@
 @import "../../../styles/global.scss";
 
 .edit-inventory {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: $primary-white-color;
+  width: 100%;
+  border-radius: 0.2rem;
+  box-shadow: 0 0.2rem 0.5rem 0 rgba($primary-text-color, 0.1);
+  margin: 1.5rem 0 2rem;
+  min-width: 21.4375rem;
+  @include tablet {
+    margin-top: 1.7rem;
+    margin-bottom: 15rem;
+  }
+
+  @include desktop {
+    margin-bottom: 3rem;
+  }
+
+  &__title {
     display: flex;
-    flex-direction: column;
+    justify-content: flex-start;
     align-items: center;
-    background-color: $primary-white-color;
+    gap: 0.25rem;
     width: 100%;
-    border-radius: 0.2rem;
-    box-shadow: 0 0.2rem 0.5rem 0 rgba($primary-text-color, 0.1);
-    margin: 1.5rem 0;
+    padding: 2rem 1rem 1.5rem;
+    border-bottom: 0.1rem solid $secondary-cloud-color;
+    box-sizing: border-box;
 
     @include tablet {
-        margin-top: 1.7rem;
+      flex-direction: row;
+      padding: 2rem 1.5rem 1.3rem !important;
     }
 
-    @include desktop {
-        margin-bottom: 5rem;
+    &-heading {
+      align-self: flex-start;
+      margin: 0;
     }
+  }
 
-    &__title {
-        display: flex;
-        justify-content: flex-start;
-        align-items: center;
-        gap: 0.25rem;
-        width: 100%;
-        padding: 1.5rem 0rem 1.5rem .75rem;
-        border-bottom: 0.1rem solid $secondary-cloud-color;
-        box-sizing: border-box;
+  &__bottom {
+    width: calc(100% - 2rem);
+    padding: 1rem;
+    display: flex;
+    gap: 1rem;
+    background-color: $background-light-grey;
 
-        @include tablet {
-            flex-direction: row;
-            padding: 2rem 1.5rem 1.3rem !important;
-        }
-
-        &-heading {
-            align-self: flex-start;
-            margin: 0;
-        }
+    @include tablet {
+      justify-content: flex-end;
+      width: calc(100% - 4rem);
+      padding: 1rem 2rem;
     }
+  }
 
-    &__bottom {
-        width: calc(100% - 2rem);
-        padding: 1rem;
-        display: flex;
-        gap: 1rem;
-        background-color: $background-light-grey;
+  &__cancel-btn {
+    @include roundButton;
+    width: 100%;
+    border: 0.1rem solid $secondary-cloud-color;
+    color: $secondary-slate-color;
+    background-color: $primary-white-color;
 
-        @include tablet {
-            justify-content: flex-end;
-            width: calc(100% - 4rem);
-            padding: 1rem 2rem;
-        }
+    &:hover {
+      border-color: $primary-element-color;
+      color: $primary-element-color;
     }
+  }
 
-    &__cancel-btn {
-        @include roundButton;
-        width: 100%;
-        border: 0.1rem solid $secondary-cloud-color;
-        color: $secondary-slate-color;
-        background-color: $primary-white-color;
+  &__save-btn {
+    @include roundButton;
+    width: 100%;
+    background-color: $primary-element-color;
+    color: $primary-white-color;
 
-        &:hover {
-            border-color: $primary-element-color;
-            color: $primary-element-color;
-        }
+    &:hover {
+      background-color: $background-graphite-color;
     }
-
-    &__save-btn {
-        @include roundButton;
-        width: 100%;
-        background-color: $primary-element-color;
-        color: $primary-white-color;
-
-        &:hover {
-            background-color: $background-graphite-color;
-        }
-    }
+  }
 }
 
 .form {
+  width: 100%;
+
+  &__container {
+    @include tablet {
+      display: flex;
+      padding: 1.5rem 0 1rem 0;
+    }
+  }
+
+  &__section {
+    width: calc(100% - 2rem);
+    padding: 0 1rem 1.5rem 1rem;
+    border-bottom: 0.1rem solid $secondary-cloud-color;
+
+    @include tablet {
+      padding: 0 2rem 1.5rem 2rem;
+      border-bottom: none;
+      border-right: 0.1rem solid #bdc5d5;
+    }
+  }
+
+  &__aside {
+    width: calc(100% - 2rem);
+    padding: 0 1rem 1rem 1rem;
+
+    @include tablet {
+      padding: 0 2rem 1.5rem 2rem;
+    }
+  }
+
+  &__label {
+    margin: 0;
+    padding: 1rem 0rem 0.25rem 0rem;
+  }
+
+  &__input {
+    @include formStyling;
+    width: calc(100% - 1.65rem);
+    height: 2.25rem;
+
+    &--quantity {
+      @include desktop {
+        width: 7.625rem;
+      }
+    }
+  }
+
+  &__textarea {
+    @include formStyling;
+    width: calc(100% - 2.2rem);
+    height: 7.5rem;
+    padding: 0.5rem 1rem;
+    font-family: "Titillium Web";
+    resize: none;
+  }
+
+  &__custom-select {
+    position: relative;
+  }
+
+  &__custom-select select {
+    appearance: none;
+    background-image: url("../../../assets/icons/arrow_drop_down-24px.svg");
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+  }
+
+  &__select {
+    @include formStyling;
     width: 100%;
+    height: 2.25rem;
+  }
 
-    &__container {
-        @include tablet {
-            display: flex;
-            padding: 1.5rem 0 1rem 0;
-        }
+  &__status {
+    color: $secondary-slate-color;
+    width: 100%;
+    position: relative;
+    padding-right: 3rem;
+    padding-left: 0.9rem;
+    cursor: pointer;
+    font-weight: 400;
+
+    &--selected {
+      color: $primary-text-color;
     }
+  }
+  input[type="radio"] {
+    opacity: 0;
+  }
 
-    &__section {
-        width: calc(100% - 2rem);
-        padding: 0 1rem 1.5rem 1rem;
-        border-bottom: 0.1rem solid $secondary-cloud-color;
+  &__radio-circle {
+    margin-right: 4px;
+    height: 0.85rem;
+    width: 0.85rem;
+    padding: 1px;
+    position: absolute;
+    left: 0;
+    background-color: $primary-white-color;
+    border: 1px solid $secondary-cloud-color;
+    color: $secondary-slate-color;
+    border-radius: 50%;
+  }
+  input[type="radio"]:checked + .form__radio-circle {
+    border: 1px solid $primary-element-color;
+  }
 
-        @include tablet {
-            padding: 0 2rem 1.5rem 2rem;
-            border-bottom: none;
-            border-right: 0.1rem solid #BDC5D5;
-        }
-    }
+  input[type="radio"]:checked + .form__radio-circle::after {
+    content: "";
+    width: 0.45rem;
+    height: 0.45rem;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    border-radius: 50%;
+    background-color: $primary-element-color;
+    transform: translate(-50%, -50%);
+  }
 
-    &__aside {
-        width: calc(100% - 2rem);
-        padding: 0 1rem 1rem 1rem;
-
-        @include tablet {
-            padding: 0 2rem 1.5rem 2rem;
-        }
-    }
-
-    &__label {
-        margin: 0;
-        padding: 1rem 0rem .25rem 0rem;
-    }
-
-    &__input {
-        @include formStyling;
-        width: calc(100% - 1.65rem);
-        height: 2.25rem;
-
-        &--quantity {
-            @include desktop {
-                width: 7.625rem;
-            }
-        }
-    }
-
-    &__textarea {
-        @include formStyling;
-        width: calc(100% - 2.2rem);
-        height: 7.5rem;
-        padding: 0.5rem 1rem;
-        font-family: 'Titillium Web';
-        resize: none;
-    }
-
-    &__custom-select{
-        position: relative;
-    }
-
-    &__custom-select select {
-        appearance: none;
-        background-image: url('../../../assets/icons/arrow_drop_down-24px.svg');
-        background-repeat: no-repeat;
-        background-position: right 10px center;
-    }
-
-    &__select {
-        @include formStyling;
-        width: 100%;
-        height: 2.25rem;
-    }
-
-
-    &__status{
-        color: $secondary-slate-color;
-        width: 100%;
-        position: relative;
-        padding-right: 3rem;
-        padding-left: 0.9rem;
-        cursor: pointer;
-        font-weight: 400;
-
-        &--selected{
-            color: $primary-text-color;
-        }
-    }
-    input[type="radio"]{
-        opacity: 0;
-    }
-
-    &__radio-circle {
-        margin-right: 4px;
-        height: 0.85rem;
-        width: 0.85rem;
-        padding: 1px;
-        position: absolute;
-        left: 0;
-        background-color: $primary-white-color;
-        border: 1px solid $secondary-cloud-color;
-        color: $secondary-slate-color;
-        border-radius: 50%;
-    }
-    input[type='radio']:checked + .form__radio-circle {
-        border: 1px solid $primary-element-color;
-    }
-
-    input[type="radio"]:checked +  .form__radio-circle::after{
-        content: "";
-        width: 0.45rem;
-        height: 0.45rem;
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        border-radius: 50%;
-        background-color: $primary-element-color;
-        transform: translate(-50%,-50%);
-    }
-
-    &__radio-btn{
-        margin: 0;
-        width: .5rem;
-    }
-
-
+  &__radio-btn {
+    margin: 0;
+    width: 0.5rem;
+  }
 }
