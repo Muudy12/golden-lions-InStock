@@ -5,7 +5,9 @@ body {
     rgb(35, 41, 64) 12.5rem,
     rgba(255, 255, 255, 1) 0rem
   );
+
   min-height: 100vh;
+
   @include tablet {
     background: linear-gradient(
       rgb(35, 41, 64) 11.625rem,
@@ -24,26 +26,47 @@ body {
     justify-content: space-between;
     align-items: center;
   }
+
   &-logo {
     width: 8.0369rem;
     height: 1.75rem;
     margin: auto;
+
     @include tablet {
       margin: 0;
     }
   }
+
   &-link {
     align-self: center;
   }
+
   &-links {
     display: flex;
     justify-content: space-around;
+
     @include tablet {
-      gap: 2rem;
+      gap: 1rem;
     }
 
     & h3 {
       margin: 0;
+
+      &:first-of-type {
+        width: 10.25rem;
+
+        @include tablet {
+          width: 6.6875rem;
+        }
+      }
+
+      &:last-of-type {
+        width: 10.1875rem;
+
+        @include tablet {
+          width: 5.625rem;
+        }
+      }
     }
 
     &__item {
@@ -53,25 +76,22 @@ body {
       align-items: center;
       justify-content: center;
       height: 2.25rem;
-      width: 10.25rem;
       font-size: 0.8125rem;
       text-decoration: none;
       color: $secondary-cloud-color;
+
       &:hover {
         text-decoration: underline;
       }
+
       @include tablet {
-        padding: 0.5rem 1rem;
+        font-size: 0.875rem;
       }
     }
+
     .active-link {
       background-color: $primary-text-color;
       color: $primary-white-color;
-      //padding: .8125rem 2.25rem;
-      //border-radius: 1.25rem;
-      @include tablet {
-        padding: 0.5rem 1rem;
-      }
     }
   }
 }

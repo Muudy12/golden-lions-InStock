@@ -10,42 +10,48 @@
   &__title {
     @include displayListTitle();
 
-    &-heading {
-      @include displayListTitle__header();
-    }
-
     & .options {
-      @include displayListTitle__options();
-
-      &__search-form {
-        @include displayListTitle__options-search();
-      }
+      @include displayListTitleOptions();
 
       &__add-btn {
-        @include displayListTitle__options-add-btn();
-
         @include tablet {
-          width: 8rem;
+          width: 8rem !important;
         }
       }
     }
   }
 
   &__list {
-    &-headers {
-      @include displayList-headers();
+    @include tablet {
+      justify-content: space-between;
 
-      @include tablet {
-        @include inventoryListColumnWidths();
+      & h3 {
+        flex: none;
+        width: 7rem;
+
+        &:nth-of-type(1) {
+          width: 8rem;
+        }
+
+        &:nth-of-type(3) {
+          width: 6rem;
+        }
+
+        &:nth-of-type(4) {
+          width: 3rem;
+        }
+
+        &:nth-of-type(5) {
+          width: 6rem;
+        }
       }
+    }
+    &-headers {
+      @include displayListHeaders();
     }
 
     &-item {
-      @include displayList-item();
-
-      @include tablet {
-        @include inventoryListColumnWidths();
-      }
+      @include displayListItem();
 
       & .inventory-item {
         &__title {
