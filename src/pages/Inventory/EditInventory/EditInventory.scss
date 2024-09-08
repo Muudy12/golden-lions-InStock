@@ -160,6 +160,11 @@
         padding-right: 3rem;
         padding-left: 0.9rem;
         cursor: pointer;
+        font-weight: 400;
+
+        &--selected{
+            color: $primary-text-color;
+        }
     }
     input[type="radio"]{
         opacity: 0;
