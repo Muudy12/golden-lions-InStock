@@ -13,6 +13,11 @@ function Warehouses() {
   const navigate = useNavigate();
   const [warehouses, setWarehouses] = useState([]);
   const [renderWarehouses, setRenderWarehouses] = useState([]);
+  const [ascendingOrder, setAscendingOrder] = useState({
+    warehouse_name:true,
+    address:true,
+    contact_name:true,
+    contact_email:true,});
 
   useEffect(() => {
     document.title = "InStock - Warehouses";
@@ -53,6 +58,19 @@ function Warehouses() {
     setRenderWarehouses(searchResult);
   }
 
+  const handleSort = async (event, columnName) => {
+    event.preventDefault();
+    setAscendingOrder((preState)=> ({
+      ...preState, 
+      [columnName]: !preState[columnName]
+    }))
+    const order = ascendingOrder[columnName]? "asc":"desc";
+    const queryString = "?"+"sort_by="+columnName+"&"+"order_by="+order;
+    const response = await api.getAllWarehouses(queryString);
+    setWarehouses(response);
+    setRenderWarehouses(response);
+  }
+
   return (
     <div className="warehouses-container">
       <div className="warehouses">
@@ -81,19 +99,19 @@ function Warehouses() {
         <div className="warehouses__list-headers">
           <h3>
             WAREHOUSE
-            <ReactSVG src={SortIcon} />
+            <ReactSVG src={SortIcon} onClick={(event)=>handleSort(event, "warehouse_name")}/>
           </h3>
           <h3>
             ADDRESS
-            <ReactSVG src={SortIcon} />
+            <ReactSVG src={SortIcon} onClick={(event)=>handleSort(event, "address")}/>
           </h3>
           <h3>
             CONTACT NAME
-            <ReactSVG src={SortIcon} />
+            <ReactSVG src={SortIcon} onClick={(event)=>handleSort(event, "contact_name")}/>
           </h3>
           <h3>
             CONTACT INFORMATION
-            <ReactSVG src={SortIcon} />
+            <ReactSVG src={SortIcon} onClick={(event)=>handleSort(event, "contact_email")}/>
           </h3>
           <h3>ACTIONS</h3>
         </div>
