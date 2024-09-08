@@ -1,6 +1,6 @@
 import { Link, useNavigate } from 'react-router-dom';
 import { ReactSVG } from "react-svg";
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Api } from "../../../utils/utils";
 import { initialWarehouseInfo, initialFormErrors, handleValidation, handleSubmitForm } from '../../../utils/WarehouseUtils';
 import ArrowBackIcon from "../../../assets/icons/arrow_back-24px.svg";
@@ -16,6 +16,11 @@ function AddNewWarehouse() {
   const [warehouseInfo, setWarehouseInfo] = useState(initialWarehouseInfo)
   // State to track validation errors for the form fields
   const [formErrors, setFormErrors] = useState(initialFormErrors)
+
+  // Set the page title
+  useEffect(() => {
+    document.title = "InStock - Add New Warehouse";
+  }, []);
 
   const submitFormHandler = async (event) => {
     handleSubmitForm(

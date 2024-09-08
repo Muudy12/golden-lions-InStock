@@ -19,6 +19,7 @@ function EditWarehouse() {
   const [formErrors, setFormErrors] = useState(initialFormErrors)
 
   useEffect(() => {
+    document.title = "InStock - Edit Warehouse"; // Set the page title
     const getWarehouseInfo = async () => {
       try {
         const warehouse = await api.getWarehouseById(warehouseId);
