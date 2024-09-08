@@ -1,82 +1,113 @@
-import React from 'react'
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import { ReactSVG } from "react-svg";
+import { useState, useEffect } from 'react';
+import { Api } from "../../../utils/utils";
+import { validateForm } from '../../../utils/FormValidation';
 import ArrowBackIcon from "../../../assets/icons/arrow_back-24px.svg";
 import ErrorIcon from "../../../assets/icons/error-24px.svg";
 import './AddNewWarehouse.scss';
-import { useState } from 'react';
 
 function AddNewWarehouse() {
-  // Use navigate hook to redirect to the warehouse page after form submission or cancellation
+
+  const api =new Api();
+  const { warehouseId } = useParams();
   const warehousesPageNavigator = useNavigate();
 
-  // State to keep tracking validation for each field
-  const [formErrors, setFormErrors] = useState({
-    name: true,
-    street: true,
-    city: true,
-    country: true,
-    contactName: true,
-    position: true,
-    phone: true,
-    email: true
+  const [warehouseInfo, setWarehouseInfo] = useState({
+    name: '',
+    street: '',
+    city: '',
+    country: '',
+    contactName: '',
+    position: '',
+    phone: '',
+    email: ''
   });
+
+  const [formErrors, setFormErrors] = useState({
+    name: { isValid: true, errorMessage: '' },
+    street: { isValid: true, errorMessage: '' },
+    city: { isValid: true, errorMessage: '' },
+    country: { isValid: true, errorMessage: '' },
+    contactName: { isValid: true, errorMessage: '' },
+    position: { isValid: true, errorMessage: '' },
+    phone: { isValid: true, errorMessage: '' },
+    email: { isValid: true, errorMessage: '' }
+  });
+
+  useEffect(() => {
+    const getWarehouseInfo = async () => {
+      try {
+        const warehouse = await api.getWarehouseById(warehouseId);
+        setWarehouseInfo({
+          name: warehouse.warehouse_name,
+          street: warehouse.address,
+          city: warehouse.city,
+          country: warehouse.country,
+          contactName: warehouse.contact_name,
+          position: warehouse.contact_position,
+          phone: warehouse.contact_phone,
+          email: warehouse.contact_email
+        });
+      } catch (error) {
+        console.error("There is an error fetching warehouse information.", error);
+      }
+    };
+    getWarehouseInfo();
+  }, [warehouseId]);
 
   // Validation of individual fields
   const validationHandler = (event) => {
     const { name, value } = event.target;
+    const { isValid, errorMessage } = validateForm(name, value);
 
-    //Regex for phone and email validation
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    const phoneRegex = /^\+?(\d{1,3})?[-.\s]?\(?(\d{3})\)?[-.\s]?\d{3}[-.\s]?\d{4}$/;
-    let isValid = true;
-
-    if (name === "email") {
-      isValid = emailRegex.test(value);
-    } else if (name === "phone") {
-      isValid = phoneRegex.test(value);
-    } else {
-      isValid = value.trim() !== ''
-    }
+    setWarehouseInfo({
+      ...warehouseInfo,
+      [name]: value
+    });
 
     setFormErrors(currentErrors => ({
       ...currentErrors,
-      [name]: isValid,
+      [name]: { isValid, errorMessage }
     }));
   };
 
-  const submitFormHandler = (event) => {
+  const submitFormHandler = async (event) => {
     event.preventDefault();
 
-    const formData = new FormData(event.target);
-    let valid = true;
-    let notValid = {};
+    // Check if there are any invalid fields
+    const formIsValid = Object.values(formErrors).every(error => error.isValid) &&
+                        Object.values(warehouseInfo).every(value => value.trim() !== '');
 
-    for (const [formItem, value] of formData.entries()) {
-      if (value.trim() === '') {
-        notValid[formItem] = false;
-        valid = false;
-      } else {
-        notValid[formItem] = true;
+    if (formIsValid) {
+      try {
+        await api.updateWarehouse(warehouseId, {
+          warehouse_name: warehouseInfo.name.trim(),
+          address: warehouseInfo.street.trim(),
+          city: warehouseInfo.city.trim(),
+          country: warehouseInfo.country.trim(),
+          contact_name: warehouseInfo.contactName.trim(),
+          contact_position: warehouseInfo.position.trim(),
+          contact_phone: warehouseInfo.phone.trim(),
+          contact_email: warehouseInfo.email.trim()
+        });
+        alert('Warehouse updated successfully!');
+        warehousesPageNavigator('/warehouses');
+      } catch (error) {
+        console.log("There is an error editing the warehouse.", error);
       }
-    }
-
-    setFormErrors(notValid);
-
-    if (valid) {
-      alert('Form is submitted successfully!');
-      warehousesPageNavigator('/warehouses');
     } else {
-      alert('Please fill in all the fields.')
+      alert('Please fill out all the fields .');
     }
   };
+
   return (
     <div className="add">
       <div className="add__header">
         <Link  to="/warehouses">
           <ReactSVG className="add__header-icon" src={ArrowBackIcon} />
         </Link>
-        <h1 className="add__header-title">Add New Warehouse</h1>
+        <h1 className="add__header-title">add Warehouse</h1>
       </div>
       <form className="add__form-wrapper" onSubmit={submitFormHandler}>
         <div className="add__form">
@@ -87,92 +118,97 @@ function AddNewWarehouse() {
             <div className="add__form-item">
               <h3 className="add__form-item-label">Warehouse Name</h3>
               <input
-                className={`add__form-item-input ${!formErrors.name && 'invalid'}`}
+                className={`add__form-item-input ${!formErrors.name.isValid && 'invalid'}`}
                 type="text"
                 placeholder="Warehouse Name"
                 name="name"
-                onBlur={validationHandler}
+                value={warehouseInfo.name || ''}
+                onChange={validationHandler}
               />
-              {!formErrors.name && (
+              {!formErrors.name.isValid && (
                 <div className="add__form-item-input-error">
                   <ReactSVG className="add__form-item-input-error-icon" src={ErrorIcon} />
-                  <p className="add__form-item-input-error-message  small">This field is required</p>
+                  <p className="add__form-item-input-error-message small">{formErrors.name.errorMessage}</p>
                 </div>
               )}
             </div>
 
-            {/* Warehouse Street Address */}
+            {/* Street Address */}
             <div className="add__form-item">
               <h3 className="add__form-item-label">Street Address</h3>
               <input
-                className={`add__form-item-input ${!formErrors.street && 'invalid'}`}
+                className={`add__form-item-input ${!formErrors.street.isValid && 'invalid'}`}
                 type="text"
                 placeholder="Street Address"
                 name="street"
-                onBlur={validationHandler}
+                value={warehouseInfo.street || ''}
+                onChange={validationHandler}
               />
-              {!formErrors.street && (
+              {!formErrors.street.isValid && (
                 <div className="add__form-item-input-error">
                   <ReactSVG className="add__form-item-input-error-icon" src={ErrorIcon} />
-                  <p className="add__form-item-input-error-message  small">This field is required</p>
+                  <p className="add__form-item-input-error-message small">{formErrors.street.errorMessage}</p>
                 </div>
               )}
             </div>
 
-            {/* Warehouse City */}
+            {/* City */}
             <div className="add__form-item">
               <h3 className="add__form-item-label">City</h3>
               <input
-                className={`add__form-item-input ${!formErrors.city && 'invalid'}`}
+                className={`add__form-item-input ${!formErrors.city.isValid && 'invalid'}`}
                 type="text"
                 placeholder="City"
                 name="city"
-                onBlur={validationHandler}
+                value={warehouseInfo.city || ''}
+                onChange={validationHandler}
               />
-              {!formErrors.city && (
+              {!formErrors.city.isValid && (
                 <div className="add__form-item-input-error">
                   <ReactSVG className="add__form-item-input-error-icon" src={ErrorIcon} />
-                  <p className="add__form-item-input-error-message  small">This field is required</p>
+                  <p className="add__form-item-input-error-message small">{formErrors.city.errorMessage}</p>
                 </div>
               )}
             </div>
 
-            {/* Warehouse Country */}
+            {/* Country */}
             <div className="add__form-item">
               <h3 className="add__form-item-label">Country</h3>
               <input
-                className={`add__form-item-input ${!formErrors.country && 'invalid'}`}
+                className={`add__form-item-input ${!formErrors.country.isValid && 'invalid'}`}
                 type="text"
                 placeholder="Country"
                 name="country"
-                onBlur={validationHandler}
+                value={warehouseInfo.country || ''}
+                onChange={validationHandler}
               />
-              {!formErrors.country && (
+              {!formErrors.country.isValid && (
                 <div className="add__form-item-input-error">
                   <ReactSVG className="add__form-item-input-error-icon" src={ErrorIcon} />
-                  <p className="add__form-item-input-error-message  small">This field is required</p>
+                  <p className="add__form-item-input-error-message small">{formErrors.country.errorMessage}</p>
                 </div>
               )}
             </div>
           </div>
 
-
           <div className="add__form-contact">
             <h2 className="add__form-contact-title">Contact Details</h2>
+
             {/* Contact Name */}
             <div className="add__form-item">
               <h3 className="add__form-item-label">Contact Name</h3>
               <input
-                className={`add__form-item-input ${!formErrors.contactName && 'invalid'}`}
+                className={`add__form-item-input ${!formErrors.contactName.isValid && 'invalid'}`}
                 type="text"
                 placeholder="Contact Name"
                 name="contactName"
-                onBlur={validationHandler}
+                value={warehouseInfo.contactName || ''}
+                onChange={validationHandler}
               />
-              {!formErrors.contactName && (
+              {!formErrors.contactName.isValid && (
                 <div className="add__form-item-input-error">
                   <ReactSVG className="add__form-item-input-error-icon" src={ErrorIcon} />
-                  <p className="add__form-item-input-error-message  small">This field is required</p>
+                  <p className="add__form-item-input-error-message small">{formErrors.contactName.errorMessage}</p>
                 </div>
               )}
             </div>
@@ -181,16 +217,17 @@ function AddNewWarehouse() {
             <div className="add__form-item">
               <h3 className="add__form-item-label" htmlFor="add__form-contact-position">Position</h3>
               <input
-                className={`add__form-item-input ${!formErrors.position && 'invalid'}`}
+                className={`add__form-item-input ${!formErrors.position.isValid && 'invalid'}`}
                 type="text"
                 placeholder="Position"
                 name="position"
-                onBlur={validationHandler}
+                value={warehouseInfo.position || ''}
+                onChange={validationHandler}
               />
-              {!formErrors.position && (
+              {!formErrors.position.isValid && (
                 <div className="add__form-item-input-error">
                   <ReactSVG className="add__form-item-input-error-icon" src={ErrorIcon} />
-                  <p className="add__form-item-input-error-message  small">This field is required</p>
+                  <p className="add__form-item-input-error-message small">{formErrors.position.errorMessage}</p>
                 </div>
               )}
             </div>
@@ -199,16 +236,17 @@ function AddNewWarehouse() {
             <div className="add__form-item">
               <h3 className="add__form-item-label">Phone Number</h3>
               <input
-                className={`add__form-item-input ${!formErrors.phone && 'invalid'}`}
+                className={`add__form-item-input ${!formErrors.phone.isValid && 'invalid'}`}
                 type="text"
                 placeholder="Phone Number"
                 name="phone"
-                onBlur={validationHandler}
+                value={warehouseInfo.phone || ''}
+                onChange={validationHandler}
               />
-              {!formErrors.phone && (
+              {!formErrors.phone.isValid && (
                 <div className="add__form-item-input-error">
                   <ReactSVG className="add__form-item-input-error-icon" src={ErrorIcon} />
-                  <p className="add__form-item-input-error-message  small">This field is required</p>
+                  <p className="add__form-item-input-error-message small">{formErrors.phone.errorMessage}</p>
                 </div>
               )}
             </div>
@@ -217,16 +255,17 @@ function AddNewWarehouse() {
             <div className="add__form-item">
               <h3 className="add__form-item-label">Email</h3>
               <input
-                className={`add__form-item-input ${!formErrors.email && 'invalid'}`}
+                className={`add__form-item-input ${!formErrors.email.isValid && 'invalid'}`}
                 type="text"
                 placeholder="Email"
                 name="email"
-                onBlur={validationHandler}
+                value={warehouseInfo.email || ''}
+                onChange={validationHandler}
               />
-              {!formErrors.email && (
+              {!formErrors.email.isValid && (
                 <div className="add__form-item-input-error">
                   <ReactSVG className="add__form-item-input-error-icon" src={ErrorIcon} />
-                  <p className="add__form-item-input-error-message  small">This field is required</p>
+                  <p className="add__form-item-input-error-message small">{formErrors.email.errorMessage}</p>
                 </div>
               )}
             </div>
@@ -235,11 +274,12 @@ function AddNewWarehouse() {
 
         <div className="add__form-buttons">
           <Link className="add__form-buttons-cancel" to="/warehouses">Cancel</Link>
-          <button className="add__form-buttons-addWarehouse" type="submit">+ Add Warehouse</button>
+          <button className="add__form-buttons-save" type="submit">Save</button>
         </div>
       </form>
-    </div >
-  )
+    </div>
+  );
 }
 
-export default AddNewWarehouse
+export default AddNewWarehouse;
+

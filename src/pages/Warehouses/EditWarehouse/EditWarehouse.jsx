@@ -2,6 +2,7 @@ import { Link, useNavigate, useParams } from 'react-router-dom';
 import { ReactSVG } from "react-svg";
 import { useState, useEffect } from 'react';
 import { Api } from "../../../utils/utils";
+import { validateForm } from '../../../utils/FormValidation';
 import ArrowBackIcon from "../../../assets/icons/arrow_back-24px.svg";
 import ErrorIcon from "../../../assets/icons/error-24px.svg";
 import './EditWarehouse.scss';
@@ -58,33 +59,7 @@ function EditWarehouse() {
   // Validation of individual fields
   const validationHandler = (event) => {
     const { name, value } = event.target;
-
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    const phoneRegex = /^\+?(\d{1,3})?[-.\s]?\(?(\d{3})\)?[-.\s]?\d{3}[-.\s]?\d{4}$/;
-
-    let isValid = true;
-    let errorMessage = '';
-
-    if (name === "email") {
-      if (value.trim() === '') {
-        isValid = false;
-        errorMessage = 'This field is required';
-      } else if (!emailRegex.test(value)) {
-        isValid = false;
-        errorMessage = 'Please enter a valid email';
-      }
-    } else if (name === "phone") {
-      if (value.trim() === '') {
-        isValid = false;
-        errorMessage = 'This field is required';
-      } else if (!phoneRegex.test(value)) {
-        isValid = false;
-        errorMessage = 'Please enter a valid phone number';
-      }
-    } else if (value.trim() === '') {
-      isValid = false;
-      errorMessage = 'This field is required';
-    }
+    const { isValid, errorMessage } = validateForm(name, value);
 
     setWarehouseInfo({
       ...warehouseInfo,
