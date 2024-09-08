@@ -85,6 +85,7 @@ function EditInventory() {
   }
   useEffect(() => {
     document.title = "InStock - Edit Inventory"
+    console.log(location)
     getCurrentItem();
     getWarehouses();
   }, [inventoryId])
@@ -121,13 +122,7 @@ function EditInventory() {
   }
 
   const handlePageChange = () => {
-    if (location.state?.from?.includes('/warehouses')) {
-      navigate(`/warehouses/${formData.warehouse_id}`);
-    } else if (location.state?.from?.includes('/inventory')) {
-      navigate(`/inventory`);
-    } else {
-      navigate(`/warehouses/${formData.warehouse_id}`);
-    }
+    navigate(location.state?.from)
   }
 
   const handleSubmit = async (event) => {

@@ -13,16 +13,11 @@ function DeleteInventory({ inventoryId, updateInventoryList }) {
   const [isOpen, setIsOpen] = useState(false);
   const api = new Api();
 
-  useEffect(() => {
-    const getInventoryName = async () => {
-      const inventories = await api.getAllInventories();
-      const inv = inventories.find((i) => i.id === inventoryId);
-      setInventoryName(inv.item_name);
-    };
-    getInventoryName();
-  }, [isOpen]);
 
-  const openModal = () => {
+  const openModal = async () => {
+    const inventories = await api.getAllInventories();
+    const inv = inventories.find((i) => i.id === inventoryId);
+    setInventoryName(inv.item_name);
     setIsOpen(true);
   };
 
