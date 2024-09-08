@@ -91,7 +91,6 @@ function EditWarehouse() {
           contact_phone: warehouseInfo.phone.trim(),
           contact_email: warehouseInfo.email.trim()
         });
-        alert('Warehouse updated successfully!');
         warehousesPageNavigator('/warehouses');
       } catch (error) {
         console.log("There is an error editing the warehouse.", error);
