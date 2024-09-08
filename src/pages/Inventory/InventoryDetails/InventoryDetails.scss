@@ -1,50 +1,37 @@
 @import "../../../styles/global.scss";
+@import "../../../styles/partials/mixins.scss";
 
 .inventory-details {
-    background-color: $primary-white-color;
-    border-radius: .25rem;
-    box-shadow: 0 0.2rem 0.5rem 0 rgba(19, 24, 44, 0.1);
-    margin: 2rem 0;
+    @include details-background;
 }
 
 .inventory {
     padding: 1rem;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    border-bottom: .0625rem solid $secondary-cloud-color;
+    @include container-flex(center, space-between);
+    @include border-bottom;
     &__header {
-        display: flex;
-        align-items: flex-end;
-        gap: 1rem;
+        @include container-flex(flex-end);
         color: $primary-text-color;
         &--title {
-            margin: 0;
+        margin: 0;
         }
         &--wrapper {
             background-color: $primary-element-color;
-            border-radius: 50%;
-            padding: .75rem;
+            @include responsive-border-radius;
+            @include responsive-padding(0.75rem, 0.375rem 1rem);
+            
             & > svg, div {
                 display: flex;
             }
+
             &-link {
-                span {
-                    display: none;
-                }
-            }
-            @include tablet {
-                border-radius: 2.5rem;
-                padding: .375rem 1rem;
-                &-link {
-                    display: flex;
-                    align-items: center;
-                    gap: .5rem;
-                    text-decoration: none;
-                    color: $primary-white-color;
-                    span {
-                        display: inline;
-                    }
+                @include hidden-span;
+                @include tablet {
+                display: flex;
+                align-items: center;
+                gap: .5rem;
+                text-decoration: none;
+                color: $primary-white-color;
                 }
             }
         }
@@ -52,45 +39,30 @@
 }
 
 .inventory-information {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
+    @include flex-column;
     padding: 2rem;
-    border-bottom: .0625rem solid $secondary-cloud-color;
+    @include border-bottom;
+    
     & * {
         margin: 0;
     }
-    & > * {
-        display: flex;
-        flex-direction: column;
-        gap: 1rem;
-    }
     &__overview {
         @include tablet {
-            border-right: 1px solid $secondary-cloud-color;
-            width: 40%;
-            padding-right: 5rem;
+        border-right: 1px solid $secondary-cloud-color;
+        width: 40%;
+        padding-right: 5rem;
         }
-    }
-    .label {
-        color: $secondary-slate-color;
-    }
-    p {
-        color: $primary-text-color;
     }
     &__description {
         &--text {
-            display: inline;
-            @include tablet {
-                display: block;
-            }
+        @include description-text;
         }
     }
     &__status {
-        display: flex;
+        @include container-flex;
         gap: 6rem;
         @include desktop {
-            padding-left: 3rem;
+        padding-left: 3rem;
         }
     }
     @include tablet {
@@ -100,27 +72,11 @@
 }
 
 .inventory__status {
-    height: 24px;
-    padding-left: 8px;
-    padding-right: 8px;
-    border-radius: 20px;
-    order: 0;
-
-    @include tablet{
-    height: 26px;
-    }
-
-    @include desktop{
-    height: 26px;
-    }
+    @include responsive-status;
     &--green {
-        color: $supporting-green-color;
-        background-color: rgba($supporting-green-color,0.07);
-        font-weight: 600;
+        @include status-color($supporting-green-color);
     }
-    
     &--red {
-        color: $supporting-red-color;
-        background-color: rgba($supporting-red-color,0.07);
+        @include status-color($supporting-red-color);
     }
 }
