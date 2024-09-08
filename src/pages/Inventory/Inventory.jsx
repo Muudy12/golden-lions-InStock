@@ -1,6 +1,6 @@
 import { React, useState, useEffect } from "react";
 import { ReactSVG } from "react-svg";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import "./Inventory.scss";
 import { Api } from "./../../utils/utils.js";
 import EditIcon from "../../assets/icons/edit-24px.svg";
@@ -10,6 +10,7 @@ import DeleteInventory from "../../components/Inventory/DeleteModal/DeleteModal.
 
 function Inventory({ warehouseId }) {
   const navigate = useNavigate();
+  const location = useLocation();
   const api = new Api();
   const [inventoryList, setInventoryList] = useState([]);
 
@@ -134,7 +135,7 @@ function Inventory({ warehouseId }) {
                   inventoryId={inventoryItem.id}
                   updateInventoryList={updateInventoryList}
                 />
-                <ReactSVG src={EditIcon} />
+                <ReactSVG src={EditIcon} onClick={() => navigate(`/inventory/${inventoryItem.warehouse_id}/edit`, {state: {from: location.pathname}})}/>
               </h3>
             </div>
           );
