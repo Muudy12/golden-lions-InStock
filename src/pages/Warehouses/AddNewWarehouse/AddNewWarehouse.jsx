@@ -2,9 +2,9 @@ import { Link, useNavigate } from 'react-router-dom';
 import { ReactSVG } from "react-svg";
 import { useState } from 'react';
 import { Api } from "../../../utils/utils";
-import { validateForm } from '../../../utils/FormValidation';
+import { validateForm } from '../../../utils/WarehouseFormValidationUtils';
 import ArrowBackIcon from "../../../assets/icons/arrow_back-24px.svg";
-import ErrorIcon from "../../../assets/icons/error-24px.svg";
+import WarehouseForm from '../../../components/Warehouse/WarehouseForm/WarehouseForm';
 import './AddNewWarehouse.scss';
 
 function AddNewWarehouse() {
@@ -90,179 +90,23 @@ function AddNewWarehouse() {
   };
 
   return (
-    <div className="add">
-      <div className="add__header">
+    <div className="form">
+      <div className="form__header">
         <Link  to="/warehouses">
-          <ReactSVG className="add__header-icon" src={ArrowBackIcon} />
+          <ReactSVG className="form__header-icon" src={ArrowBackIcon} />
         </Link>
-        <h1 className="add__header-title">add Warehouse</h1>
+        <h1 className="form__header-title">add Warehouse</h1>
       </div>
-      <form className="add__form-wrapper" onSubmit={submitFormHandler}>
-        <div className="add__form">
-          <div className="add__form-warehouse">
-            <h2 className="add__form-warehouse-title">Warehouse Details</h2>
-
-            {/* Warehouse Name */}
-            <div className="add__form-item">
-              <h3 className="add__form-item-label">Warehouse Name</h3>
-              <input
-                className={`add__form-item-input ${!formErrors.name.isValid && 'invalid'}`}
-                type="text"
-                placeholder="Warehouse Name"
-                name="name"
-                value={warehouseInfo.name || ''}
-                onChange={validationHandler}
-              />
-              {!formErrors.name.isValid && (
-                <div className="add__form-item-input-error">
-                  <ReactSVG className="add__form-item-input-error-icon" src={ErrorIcon} />
-                  <p className="add__form-item-input-error-message small">{formErrors.name.errorMessage}</p>
-                </div>
-              )}
-            </div>
-
-            {/* Street Address */}
-            <div className="add__form-item">
-              <h3 className="add__form-item-label">Street Address</h3>
-              <input
-                className={`add__form-item-input ${!formErrors.street.isValid && 'invalid'}`}
-                type="text"
-                placeholder="Street Address"
-                name="street"
-                value={warehouseInfo.street || ''}
-                onChange={validationHandler}
-              />
-              {!formErrors.street.isValid && (
-                <div className="add__form-item-input-error">
-                  <ReactSVG className="add__form-item-input-error-icon" src={ErrorIcon} />
-                  <p className="add__form-item-input-error-message small">{formErrors.street.errorMessage}</p>
-                </div>
-              )}
-            </div>
-
-            {/* City */}
-            <div className="add__form-item">
-              <h3 className="add__form-item-label">City</h3>
-              <input
-                className={`add__form-item-input ${!formErrors.city.isValid && 'invalid'}`}
-                type="text"
-                placeholder="City"
-                name="city"
-                value={warehouseInfo.city || ''}
-                onChange={validationHandler}
-              />
-              {!formErrors.city.isValid && (
-                <div className="add__form-item-input-error">
-                  <ReactSVG className="add__form-item-input-error-icon" src={ErrorIcon} />
-                  <p className="add__form-item-input-error-message small">{formErrors.city.errorMessage}</p>
-                </div>
-              )}
-            </div>
-
-            {/* Country */}
-            <div className="add__form-item">
-              <h3 className="add__form-item-label">Country</h3>
-              <input
-                className={`add__form-item-input ${!formErrors.country.isValid && 'invalid'}`}
-                type="text"
-                placeholder="Country"
-                name="country"
-                value={warehouseInfo.country || ''}
-                onChange={validationHandler}
-              />
-              {!formErrors.country.isValid && (
-                <div className="add__form-item-input-error">
-                  <ReactSVG className="add__form-item-input-error-icon" src={ErrorIcon} />
-                  <p className="add__form-item-input-error-message small">{formErrors.country.errorMessage}</p>
-                </div>
-              )}
-            </div>
-          </div>
-
-          <div className="add__form-contact">
-            <h2 className="add__form-contact-title">Contact Details</h2>
-
-            {/* Contact Name */}
-            <div className="add__form-item">
-              <h3 className="add__form-item-label">Contact Name</h3>
-              <input
-                className={`add__form-item-input ${!formErrors.contactName.isValid && 'invalid'}`}
-                type="text"
-                placeholder="Contact Name"
-                name="contactName"
-                value={warehouseInfo.contactName || ''}
-                onChange={validationHandler}
-              />
-              {!formErrors.contactName.isValid && (
-                <div className="add__form-item-input-error">
-                  <ReactSVG className="add__form-item-input-error-icon" src={ErrorIcon} />
-                  <p className="add__form-item-input-error-message small">{formErrors.contactName.errorMessage}</p>
-                </div>
-              )}
-            </div>
-
-            {/* Position */}
-            <div className="add__form-item">
-              <h3 className="add__form-item-label" htmlFor="add__form-contact-position">Position</h3>
-              <input
-                className={`add__form-item-input ${!formErrors.position.isValid && 'invalid'}`}
-                type="text"
-                placeholder="Position"
-                name="position"
-                value={warehouseInfo.position || ''}
-                onChange={validationHandler}
-              />
-              {!formErrors.position.isValid && (
-                <div className="add__form-item-input-error">
-                  <ReactSVG className="add__form-item-input-error-icon" src={ErrorIcon} />
-                  <p className="add__form-item-input-error-message small">{formErrors.position.errorMessage}</p>
-                </div>
-              )}
-            </div>
-
-            {/* Phone Number */}
-            <div className="add__form-item">
-              <h3 className="add__form-item-label">Phone Number</h3>
-              <input
-                className={`add__form-item-input ${!formErrors.phone.isValid && 'invalid'}`}
-                type="text"
-                placeholder="Phone Number"
-                name="phone"
-                value={warehouseInfo.phone || ''}
-                onChange={validationHandler}
-              />
-              {!formErrors.phone.isValid && (
-                <div className="add__form-item-input-error">
-                  <ReactSVG className="add__form-item-input-error-icon" src={ErrorIcon} />
-                  <p className="add__form-item-input-error-message small">{formErrors.phone.errorMessage}</p>
-                </div>
-              )}
-            </div>
-
-            {/* Email */}
-            <div className="add__form-item">
-              <h3 className="add__form-item-label">Email</h3>
-              <input
-                className={`add__form-item-input ${!formErrors.email.isValid && 'invalid'}`}
-                type="text"
-                placeholder="Email"
-                name="email"
-                value={warehouseInfo.email || ''}
-                onChange={validationHandler}
-              />
-              {!formErrors.email.isValid && (
-                <div className="add__form-item-input-error">
-                  <ReactSVG className="add__form-item-input-error-icon" src={ErrorIcon} />
-                  <p className="add__form-item-input-error-message small">{formErrors.email.errorMessage}</p>
-                </div>
-              )}
-            </div>
-          </div>
-        </div>
-
-        <div className="add__form-buttons">
-          <Link className="add__form-buttons-cancel" to="/warehouses">Cancel</Link>
-          <button className="add__form-buttons-addWarehouse" type="submit">+ Add Warehouse</button>
+      <form className="form__wrapper" onSubmit={submitFormHandler}>
+        <WarehouseForm
+        warehouseInfo={warehouseInfo}
+        formErrors={formErrors}
+        validationHandler={validationHandler}
+        submitFormHandler={submitFormHandler}
+        />
+        <div className="form__element-buttons">
+          <Link className="form__element-buttons-cancel" to="/warehouses">Cancel</Link>
+          <button className="form__element-buttons-addWarehouse" type="submit">+ Add Warehouse</button>
         </div>
       </form>
     </div>
