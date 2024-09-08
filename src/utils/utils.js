@@ -82,6 +82,15 @@ class Api {
     console.log(`Failed to update warehouse with id: ${warehouseId}`, err);
   }
 }
+
+async addWarehouse(warehouseData) {
+  try {
+    const response = await axios.post(`${baseUrl}/warehouses`, warehouseData);
+    return response.data;
+  } catch (err) {
+    console.log("Failed to add the new warehouse", err);
+  }
+}
 }
 
 

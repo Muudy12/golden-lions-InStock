@@ -35,27 +35,6 @@ function AddNewWarehouse() {
     email: { isValid: true, errorMessage: '' }
   });
 
-  useEffect(() => {
-    const getWarehouseInfo = async () => {
-      try {
-        const warehouse = await api.getWarehouseById(warehouseId);
-        setWarehouseInfo({
-          name: warehouse.warehouse_name,
-          street: warehouse.address,
-          city: warehouse.city,
-          country: warehouse.country,
-          contactName: warehouse.contact_name,
-          position: warehouse.contact_position,
-          phone: warehouse.contact_phone,
-          email: warehouse.contact_email
-        });
-      } catch (error) {
-        console.error("There is an error fetching warehouse information.", error);
-      }
-    };
-    getWarehouseInfo();
-  }, [warehouseId]);
-
   // Validation of individual fields
   const validationHandler = (event) => {
     const { name, value } = event.target;
@@ -81,7 +60,7 @@ function AddNewWarehouse() {
 
     if (formIsValid) {
       try {
-        await api.updateWarehouse(warehouseId, {
+        await api.addWarehouse({
           warehouse_name: warehouseInfo.name.trim(),
           address: warehouseInfo.street.trim(),
           city: warehouseInfo.city.trim(),
@@ -91,10 +70,9 @@ function AddNewWarehouse() {
           contact_phone: warehouseInfo.phone.trim(),
           contact_email: warehouseInfo.email.trim()
         });
-        alert('Warehouse updated successfully!');
         warehousesPageNavigator('/warehouses');
       } catch (error) {
-        console.log("There is an error editing the warehouse.", error);
+        console.log("There is an error adding the new warehouse.", error);
       }
     } else {
       alert('Please fill out all the fields .');
@@ -274,7 +252,7 @@ function AddNewWarehouse() {
 
         <div className="add__form-buttons">
           <Link className="add__form-buttons-cancel" to="/warehouses">Cancel</Link>
-          <button className="add__form-buttons-save" type="submit">Save</button>
+          <button className="add__form-buttons-addWarehouse" type="submit">+ Add Warehouse</button>
         </div>
       </form>
     </div>
