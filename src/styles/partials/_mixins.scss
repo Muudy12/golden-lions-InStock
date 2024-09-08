@@ -11,6 +11,10 @@
   height: 36px;
   width: 100%;
   padding: 0.45rem;
+  border: none;
+  cursor: pointer;
+  font-family: "Titillium Web";
+
 
   @include tablet {
     padding: 0 1rem;

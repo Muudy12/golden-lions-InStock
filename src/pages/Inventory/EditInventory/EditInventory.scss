@@ -1,38 +1,45 @@
 @import "../../../styles/global.scss";
 
 .edit-inventory {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  background-color: $primary-white-color;
-  width: 100%;
-  border-radius: 0.2rem;
-  box-shadow: 0 0.2rem 0.5rem 0 rgba($primary-text-color, 0.1);
-  margin: 1.5rem 0 2rem;
-  min-width: 21.4375rem;
-  @include tablet {
-    margin-top: 1.7rem;
-    margin-bottom: 15rem;
-  }
-
-  @include desktop {
-    margin-bottom: 3rem;
-  }
-
-  &__title {
     display: flex;
-    justify-content: flex-start;
+    flex-direction: column;
     align-items: center;
-    gap: 0.25rem;
+    background-color: $primary-white-color;
     width: 100%;
-    padding: 2rem 1rem 1.5rem;
-    border-bottom: 0.1rem solid $secondary-cloud-color;
-    box-sizing: border-box;
+    border-radius: 0.2rem;
+    box-shadow: 0 0.2rem 0.5rem 0 rgba($primary-text-color, 0.1);
+    margin: 2rem 0;
 
     @include tablet {
-      flex-direction: row;
-      padding: 2rem 1.5rem 1.3rem !important;
+        margin: 1.5rem 0 4rem;
     }
+
+    @include desktop {
+        margin-bottom: 5rem;
+    }
+
+    &__arrow-icon{
+        display: inline-block;
+        transition: transform 0.3s ease;
+
+        &:hover{
+            transform: translateX(-4px);
+        }
+    }
+    &__title {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        gap: 0.25rem;
+        width: 100%;
+        padding: 1.5rem 0rem 1.5rem .75rem;
+        border-bottom: 0.1rem solid $secondary-cloud-color;
+        box-sizing: border-box;
+
+        @include tablet {
+            flex-direction: row;
+            padding: 2rem 2rem 1.5rem;
+        }
 
     &-heading {
       align-self: flex-start;
@@ -79,7 +86,7 @@
   }
 }
 
-.form {
+.edit-inv-form {
   width: 100%;
 
   &__container {
@@ -97,7 +104,7 @@
     @include tablet {
       padding: 0 2rem 1.5rem 2rem;
       border-bottom: none;
-      border-right: 0.1rem solid #bdc5d5;
+      border-right: 0.1rem solid $secondary-cloud-color;
     }
   }
 
@@ -151,6 +158,7 @@
     @include formStyling;
     width: 100%;
     height: 2.25rem;
+    font-family: "Titillium Web";
   }
 
   &__status {
