@@ -450,7 +450,7 @@
 }
 
 @mixin responsive-status($height-default: 1.5rem, $height-tablet: 1.625rem) {
-  height: $height-default;
+  min-height: $height-default;
   @include tablet {
     height: $height-tablet;
   }
