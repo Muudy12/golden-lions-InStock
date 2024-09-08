@@ -113,19 +113,15 @@ function EditInventory() {
       ...previous,
       status,
     }));
-
-    if(formData.status === 'Out of Stock'){
-      setFormData((previousFormData) => ({
-        ...previousFormData,
-        quantity: 0,
-      }))
-    }
+    setFormData((previousFormData) => ({
+      ...previousFormData,
+      quantity: status === 'Out of Stock' ? 0 : 1,
+    }))
 
     setInStock(status === 'In Stock')
   }
 
   const handlePageChange = () => {
-    console.log('location state from :', location.state?.from)
     if (location.state?.from?.includes('/warehouses')) {
       navigate(`/warehouses/${formData.warehouse_id}`);
     } else if (location.state?.from?.includes('/inventory')) {
@@ -236,7 +232,7 @@ function EditInventory() {
                   value={formData.quantity}
                   onChange={handleInputChange} />
               </>}
-              <FormError isValid={formErrors.quantity.isValid} errorMessage={formErrors.quantity.errorMessage} />
+            <FormError isValid={formErrors.quantity.isValid} errorMessage={formErrors.quantity.errorMessage} />
 
             <h3 className="form__label">Warehouse</h3>
             <div className="form__custom-select">
