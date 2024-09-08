@@ -25,7 +25,8 @@ function InventoryDetails() {
 
   useEffect(() => {
     getInventoryItemDetails();
-  }, [params.inventoryId, params.warehouseId]);
+    document.title = "Warehouse - Details";
+  }, [params.inventoryId]);
 
   return (
     <>
@@ -46,7 +47,7 @@ function InventoryDetails() {
           <div className="inventory__header--wrapper">
             <Link
               className="inventory__header--wrapper-link"
-              to={`/warehouse/${params.warehouseId}/${params.inventoryId}/edit`}
+              to={`/inventory/${params.inventoryId}/edit`}
             >
               <ReactSVG
                 className="inventory__header--wrapper-editIcon"
