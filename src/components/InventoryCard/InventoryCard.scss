@@ -37,7 +37,6 @@
     &__form-wrapper{
         width: 100%;
         padding-top: 1.5rem;
-        padding-bottom: 1rem;
         @include tablet{
             flex-direction: row;
         }
@@ -57,6 +56,7 @@
             padding: 1rem  .25rem  .25rem  .25rem;
         }
         &-input{
+            @include formStyling;
             border-radius: 1.25rem;
             border: 0.1rem solid $secondary-cloud-color;
             height: 2.25rem;
@@ -69,6 +69,10 @@
             height: 2.75rem;
             padding-left: 1rem;
             color: $secondary-slate-color;
+            appearance: none;
+            background-image: url('../../assets/icons/arrow_drop_down-24px.svg');
+            background-repeat: no-repeat;
+            background-position: right 10px center;
         }
         &-radios{
             & h4{
@@ -88,6 +92,10 @@
             padding-right: 5rem;
             padding-left: 1.3rem;
             cursor: pointer;
+
+            &--selected{
+                color: $primary-text-color;
+            }
         }
 
         input[type="radio"]{
@@ -157,17 +165,26 @@
                 padding-bottom: .5rem;
             }
         }
-        &-buttons{
+        &-buttons{          
             display: flex;
             flex-direction: row;
             justify-content: center;
             padding: 1.5rem  1.5rem  .5rem  1.5rem;
             gap: 1rem;
-            @include tablet{
+            width: calc(100% - 2rem);
+            padding: 1rem;
+            display: flex;
+            gap: 1rem;
+            background-color: $background-light-grey;
+
+            @include tablet {
                 justify-content: flex-end;
-                padding-right: 2rem;
+                width: calc(100% - 4rem);
+                padding: 1rem 2rem;
             }
+
             &-save{
+                @include roundButton;
                 border-radius: 1.25rem;
                 height: 2.25rem;
                 background-color: $primary-element-color;
@@ -186,6 +203,7 @@
                 }
             }
             &-add{
+                @include roundButton;
                 border-radius: 1.25rem;
                 height: 2.25rem;
                 background-color: $primary-element-color;
