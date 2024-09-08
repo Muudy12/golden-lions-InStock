@@ -615,7 +615,9 @@
 }
 
 @mixin responsive-padding($padding-default: 1rem, $padding-tablet: 0.375rem 1rem) {
-  padding: $padding-default;
+  & {
+    padding: $padding-default;
+  }
   @include tablet {
     padding: $padding-tablet;
   }
