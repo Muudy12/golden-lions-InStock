@@ -88,7 +88,7 @@ function InventoryCard({cardTitle, inventoryItem}) {
               required
             />
             <h3 className="inventory-card__form-label">Description</h3>
-            <input
+            <textarea
               className="inventory-card__form-input"
               type="text"
               placeholder="Please enter a brief item description..."
