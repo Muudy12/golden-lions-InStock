@@ -6,10 +6,10 @@ body {
   position: relative;
 
   @include tablet {
-    padding: 2rem;
+    padding: 1.6875rem 2rem;
   }
 
   @include desktop {
-    padding: 1rem 7rem;
+    padding: 1.6875rem 8.125rem;
   }
 }

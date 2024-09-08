@@ -9,7 +9,7 @@
   height: 100%;
   align-items: center;
   justify-content: center;
-  background-color: rgba($color: $background-graphite-color, $alpha: 0.5);
+  background-color: rgba($color: $background-graphite-color, $alpha: 0.8);
 
   &__modal {
     display: flex;
@@ -32,7 +32,7 @@
       width: 42rem;
       height: 16.375rem;
       position: absolute;
-      top: 10.8rem;
+      top: 11.5rem;
       border-radius: 0.2rem;
     }
 

@@ -23,6 +23,7 @@
   height: 100%;
   display: flex;
   justify-content: center;
+  margin-bottom: 2.5rem;
 }
 
 @mixin displayListContainer {
@@ -40,7 +41,7 @@
 
 @mixin responsiveListContainer {
   @include tablet {
-    margin: 1.5rem 0 4rem;
+    margin: 1.6875rem 0 2.3rem;
     min-width: 44rem;
 
     & div h3:last-of-type {
@@ -49,7 +50,7 @@
   }
 
   @include desktop {
-    margin-bottom: 5rem;
+    margin-bottom: 0;
     min-width: 63.75rem;
 
     & div {
@@ -206,8 +207,8 @@
   display: flex;
   flex-wrap: wrap;
   border-top: 0.0835rem solid $secondary-cloud-color;
-  padding-top: 0.5rem;
-  padding-bottom: 0.5rem;
+  padding-top: 0.6rem;
+  padding-bottom: 0.8rem;
   box-sizing: border-box;
   width: 100%;
   justify-content: space-between;
@@ -244,6 +245,10 @@
     flex-wrap: wrap;
     font-weight: 400;
 
+    &:first-of-type {
+      font-weight: 600;
+    }
+
     & span {
       font-size: 0.8125rem;
       line-height: 1.25rem;
@@ -274,6 +279,7 @@
       font-weight: 600;
       color: $secondary-slate-color;
       width: 100%;
+      padding-bottom: 0.25rem;
 
       @include tablet {
         display: none;
@@ -290,7 +296,8 @@
       }
 
       & svg {
-        height: 1.2rem;
+        height: 1.25rem;
+        width: 1.25rem;
         display: flex;
         align-self: flex-end;
         box-sizing: border-box;
