@@ -578,6 +578,7 @@
     color: $secondary-slate-color;
     padding: 0 12px;
     color: $primary-text-color;
+    font-family:  'Titillium Web';
 
     &:focus{
         border: 1.6px solid  $primary-element-color;
@@ -662,5 +663,3 @@
     display: block;
   }
 }
-
-
