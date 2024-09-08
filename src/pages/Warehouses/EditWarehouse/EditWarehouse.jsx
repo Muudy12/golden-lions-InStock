@@ -39,22 +39,6 @@ function EditWarehouse() {
     getWarehouseInfo();
   }, [warehouseId]);
 
-  // Validation of individual fields
-  // const validationHandler = (event) => {
-  //   const { name, value } = event.target;
-  //   const { isValid, errorMessage } = validateForm(name, value);
-
-  //   setWarehouseInfo({
-  //     ...warehouseInfo,
-  //     [name]: value
-  //   });
-
-  //   setFormErrors(currentErrors => ({
-  //     ...currentErrors,
-  //     [name]: { isValid, errorMessage }
-  //   }));
-  // };
-
   const submitFormHandler = async (event) => {
     handleSubmitForm(
       event,
