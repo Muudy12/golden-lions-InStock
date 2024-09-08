@@ -1,4 +1,4 @@
-import { useParams, Link } from "react-router-dom";
+import { useParams, Link, useLocation, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { Api } from "../../../utils/utils";
 import { ReactSVG } from "react-svg";
@@ -9,7 +9,8 @@ import "./InventoryDetails.scss";
 
 function InventoryDetails() {
   const previousUrl = sessionStorage.getItem('previousUrl');
-
+  const location = useLocation();
+  const navigate = useNavigate();
   const api = new Api();
   const [inventoryItem, setInventoryItem] = useState({});
   const params = useParams();
@@ -45,16 +46,17 @@ function InventoryDetails() {
             )}
           </section>
           <div className="inventory__header--wrapper">
-            <Link
+            <div
               className="inventory__header--wrapper-link"
-              to={`/inventory/${params.inventoryId}/edit`}
+              onClick={() => navigate(`/inventory/${params.inventoryId}/edit`, {state: {from: location.pathname}})}
             >
               <ReactSVG
                 className="inventory__header--wrapper-editIcon"
                 src={editIcon}
+
               />
               <span>Edit</span>
-            </Link>
+            </div>
           </div>
         </section>
 
