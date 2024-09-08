@@ -46,8 +46,8 @@ function InventoryCard({cardTitle, inventoryItem}) {
   }, []);
 
   const warehouseTypes = Array.from(
-    new Set(inventoryList.map((item)=>([item.warehouse_name, item.warehouse_id])).map(JSON.stringify)));
-  const categoryTypes = Array.from(new Set(inventoryList.map((item)=>(item.category))));
+    new Set(inventoryList?.map((item)=>([item.warehouse_name, item.warehouse_id])).map(JSON.stringify)));
+  const categoryTypes = Array.from(new Set(inventoryList?.map((item)=>(item.category))));
 
   const handleChange = (event) => {
     const { name, value, type, checked } = event.target;
