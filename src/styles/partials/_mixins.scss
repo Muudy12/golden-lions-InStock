@@ -565,3 +565,12 @@
   margin: 0;
   padding: 1rem 1.5rem;
 }
+
+@mixin arrow-animation{
+  svg {
+    transition: transform 0.3s ease;
+  }
+  &:hover svg {
+    transform: translateX(4px);
+  }
+}

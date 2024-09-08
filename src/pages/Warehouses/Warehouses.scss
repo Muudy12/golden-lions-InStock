@@ -71,6 +71,7 @@
       & .warehouse-item {
         &__title {
           order: 0;
+          @include arrow-animation;
         }
 
         &__address {
