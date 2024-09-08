@@ -6,11 +6,12 @@
   padding: 0.45rem;
   border: none;
   cursor: pointer;
+  font-family: "Titillium Web";
 
-  @include tablet {
-    padding: 0 1rem;
-    width: fit-content;
-  }
+    @include tablet {
+        padding: 0 1rem;
+        width: fit-content;
+    }
 }
 
 @mixin displayMainContainer {
@@ -572,16 +573,20 @@
 }
 
 @mixin formStyling {
-  border-radius: 1.25rem;
-  border: 0.1rem solid $secondary-cloud-color;
-  color: $secondary-slate-color;
-  padding: 0 0.75rem;
-  color: $primary-text-color;
+    border-radius: 1.25rem;
+    border: 0.1rem solid $secondary-cloud-color;
+    color: $secondary-slate-color;
+    padding: 0 0.75rem;
+    color: $primary-text-color;
 
-  &:focus {
-    border: 0.1rem solid $primary-element-color;
-    outline: none;
-  }
+    &:focus{
+        border: 0.1rem solid  $primary-element-color;
+        outline: none;
+    }
+
+    &::placeholder{
+        font-family:  'Titillium Web';
+    }
 }
 
 @mixin details-background {
@@ -653,4 +658,5 @@
     display: block;
   }
 }
+
 

@@ -157,8 +157,8 @@
         color: $secondary-slate-color;
         width: 100%;
         position: relative;
-        padding-right: 5rem;
-        padding-left: 0.75rem;
+        padding-right: 3rem;
+        padding-left: 0.9rem;
         cursor: pointer;
     }
     input[type="radio"]{
@@ -167,8 +167,8 @@
 
     &__radio-circle {
         margin-right: 4px;
-        height: 0.75rem;
-        width: 0.75rem;
+        height: 0.85rem;
+        width: 0.85rem;
         padding: 1px;
         position: absolute;
         left: 0;
