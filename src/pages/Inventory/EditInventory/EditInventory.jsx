@@ -60,7 +60,6 @@ function EditInventory() {
     const data = await api.getAllWarehouses();
     const uniqueWarehouses = data.filter((value, index, self) =>
       index === self.findIndex((warehouse) => warehouse.id === value.id));
-    console.log(uniqueWarehouses)
     setAllWarehouses(uniqueWarehouses)
   }
 
