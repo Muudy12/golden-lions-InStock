@@ -1,5 +1,4 @@
-import { validateForm } from './FormValidation';
-import { Api } from './utils';
+import { validateForm } from './WarehouseFormValidationUtils';
 
 // Initialize warehouse info and form errors
 export const initialWarehouseInfo = {
@@ -42,7 +41,7 @@ export const handleValidation = (event, warehouseInfo, setWarehouseInfo, setForm
 };
 
 // Submitting the form handler
-export const handleSubmitForm = async (event, warehouseInfo, formErrors, apiCall, onSuccess, onFailure) => {
+export const handleSubmitForm = async (event, warehouseInfo, formErrors, apiCall, successHandler, errorHandler) => {
     event.preventDefault();
 
     const errorState = { ...formErrors };
@@ -60,7 +59,7 @@ export const handleSubmitForm = async (event, warehouseInfo, formErrors, apiCall
             await apiCall();
             successHandler();
         } catch (error) {
-            FailureHandler(error);
+            errorHandler(error);
         }
     } else {
         alert('Please fill out all the fields.');
