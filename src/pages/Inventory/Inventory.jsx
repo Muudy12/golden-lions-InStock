@@ -9,8 +9,6 @@ import SortIcon from "../../assets/icons/sort-24px.svg";
 import DeleteInventory from "../../components/Inventory/DeleteModal/DeleteModal.jsx";
 
 function Inventory({ warehouseId }) {
-  document.title = "Instock - Inventory"
-
   const navigate = useNavigate();
   const location = useLocation();
   const api = new Api();
@@ -27,6 +25,7 @@ function Inventory({ warehouseId }) {
   };
 
   useEffect(() => {
+    document.title = "InStock - Inventory";
     const getInventoryList = async () => {
       let response;
       if (warehouseId !== undefined) {

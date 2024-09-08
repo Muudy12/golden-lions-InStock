@@ -1,10 +1,10 @@
-import React from 'react'
-import { Link, useNavigate } from 'react-router-dom';
+import React from "react";
+import { Link, useNavigate } from "react-router-dom";
 import { ReactSVG } from "react-svg";
 import ArrowBackIcon from "../../../assets/icons/arrow_back-24px.svg";
 import ErrorIcon from "../../../assets/icons/error-24px.svg";
-import './AddNewWarehouse.scss';
-import { useState } from 'react';
+import "./AddNewWarehouse.scss";
+import { useState } from "react";
 
 function AddNewWarehouse() {
   // Use navigate hook to redirect to the warehouse page after form submission or cancellation
@@ -19,7 +19,7 @@ function AddNewWarehouse() {
     contactName: true,
     position: true,
     phone: true,
-    email: true
+    email: true,
   });
 
   // Validation of individual fields
@@ -36,10 +36,10 @@ function AddNewWarehouse() {
     } else if (name === "phone") {
       isValid = phoneRegex.test(value);
     } else {
-      isValid = value.trim() !== ''
+      isValid = value.trim() !== "";
     }
 
-    setFormErrors(currentErrors => ({
+    setFormErrors((currentErrors) => ({
       ...currentErrors,
       [name]: isValid,
     }));
@@ -53,7 +53,7 @@ function AddNewWarehouse() {
     let notValid = {};
 
     for (const [formItem, value] of formData.entries()) {
-      if (value.trim() === '') {
+      if (value.trim() === "") {
         notValid[formItem] = false;
         valid = false;
       } else {
@@ -64,16 +64,16 @@ function AddNewWarehouse() {
     setFormErrors(notValid);
 
     if (valid) {
-      alert('Form is submitted successfully!');
-      warehousesPageNavigator('/warehouses');
+      alert("Form is submitted successfully!");
+      warehousesPageNavigator("/warehouses");
     } else {
-      alert('Please fill in all the fields.')
+      alert("Please fill in all the fields.");
     }
   };
   return (
     <div className="add">
       <div className="add__header">
-        <Link  to="/warehouses">
+        <Link to="/warehouses">
           <ReactSVG className="add__header-icon" src={ArrowBackIcon} />
         </Link>
         <h1 className="add__header-title">Add New Warehouse</h1>
@@ -87,7 +87,9 @@ function AddNewWarehouse() {
             <div className="add__form-item">
               <h3 className="add__form-item-label">Warehouse Name</h3>
               <input
-                className={`add__form-item-input ${!formErrors.name && 'invalid'}`}
+                className={`add__form-item-input ${
+                  !formErrors.name && "invalid"
+                }`}
                 type="text"
                 placeholder="Warehouse Name"
                 name="name"
@@ -95,8 +97,13 @@ function AddNewWarehouse() {
               />
               {!formErrors.name && (
                 <div className="add__form-item-input-error">
-                  <ReactSVG className="add__form-item-input-error-icon" src={ErrorIcon} />
-                  <p className="add__form-item-input-error-message  small">This field is required</p>
+                  <ReactSVG
+                    className="add__form-item-input-error-icon"
+                    src={ErrorIcon}
+                  />
+                  <p className="add__form-item-input-error-message  small">
+                    This field is required
+                  </p>
                 </div>
               )}
             </div>
@@ -105,7 +112,9 @@ function AddNewWarehouse() {
             <div className="add__form-item">
               <h3 className="add__form-item-label">Street Address</h3>
               <input
-                className={`add__form-item-input ${!formErrors.street && 'invalid'}`}
+                className={`add__form-item-input ${
+                  !formErrors.street && "invalid"
+                }`}
                 type="text"
                 placeholder="Street Address"
                 name="street"
@@ -113,8 +122,13 @@ function AddNewWarehouse() {
               />
               {!formErrors.street && (
                 <div className="add__form-item-input-error">
-                  <ReactSVG className="add__form-item-input-error-icon" src={ErrorIcon} />
-                  <p className="add__form-item-input-error-message  small">This field is required</p>
+                  <ReactSVG
+                    className="add__form-item-input-error-icon"
+                    src={ErrorIcon}
+                  />
+                  <p className="add__form-item-input-error-message  small">
+                    This field is required
+                  </p>
                 </div>
               )}
             </div>
@@ -123,7 +137,9 @@ function AddNewWarehouse() {
             <div className="add__form-item">
               <h3 className="add__form-item-label">City</h3>
               <input
-                className={`add__form-item-input ${!formErrors.city && 'invalid'}`}
+                className={`add__form-item-input ${
+                  !formErrors.city && "invalid"
+                }`}
                 type="text"
                 placeholder="City"
                 name="city"
@@ -131,8 +147,13 @@ function AddNewWarehouse() {
               />
               {!formErrors.city && (
                 <div className="add__form-item-input-error">
-                  <ReactSVG className="add__form-item-input-error-icon" src={ErrorIcon} />
-                  <p className="add__form-item-input-error-message  small">This field is required</p>
+                  <ReactSVG
+                    className="add__form-item-input-error-icon"
+                    src={ErrorIcon}
+                  />
+                  <p className="add__form-item-input-error-message  small">
+                    This field is required
+                  </p>
                 </div>
               )}
             </div>
@@ -141,7 +162,9 @@ function AddNewWarehouse() {
             <div className="add__form-item">
               <h3 className="add__form-item-label">Country</h3>
               <input
-                className={`add__form-item-input ${!formErrors.country && 'invalid'}`}
+                className={`add__form-item-input ${
+                  !formErrors.country && "invalid"
+                }`}
                 type="text"
                 placeholder="Country"
                 name="country"
@@ -149,13 +172,17 @@ function AddNewWarehouse() {
               />
               {!formErrors.country && (
                 <div className="add__form-item-input-error">
-                  <ReactSVG className="add__form-item-input-error-icon" src={ErrorIcon} />
-                  <p className="add__form-item-input-error-message  small">This field is required</p>
+                  <ReactSVG
+                    className="add__form-item-input-error-icon"
+                    src={ErrorIcon}
+                  />
+                  <p className="add__form-item-input-error-message  small">
+                    This field is required
+                  </p>
                 </div>
               )}
             </div>
           </div>
-
 
           <div className="add__form-contact">
             <h2 className="add__form-contact-title">Contact Details</h2>
@@ -163,7 +190,9 @@ function AddNewWarehouse() {
             <div className="add__form-item">
               <h3 className="add__form-item-label">Contact Name</h3>
               <input
-                className={`add__form-item-input ${!formErrors.contactName && 'invalid'}`}
+                className={`add__form-item-input ${
+                  !formErrors.contactName && "invalid"
+                }`}
                 type="text"
                 placeholder="Contact Name"
                 name="contactName"
@@ -171,17 +200,29 @@ function AddNewWarehouse() {
               />
               {!formErrors.contactName && (
                 <div className="add__form-item-input-error">
-                  <ReactSVG className="add__form-item-input-error-icon" src={ErrorIcon} />
-                  <p className="add__form-item-input-error-message  small">This field is required</p>
+                  <ReactSVG
+                    className="add__form-item-input-error-icon"
+                    src={ErrorIcon}
+                  />
+                  <p className="add__form-item-input-error-message  small">
+                    This field is required
+                  </p>
                 </div>
               )}
             </div>
 
             {/* Position */}
             <div className="add__form-item">
-              <h3 className="add__form-item-label" htmlFor="add__form-contact-position">Position</h3>
+              <h3
+                className="add__form-item-label"
+                htmlFor="add__form-contact-position"
+              >
+                Position
+              </h3>
               <input
-                className={`add__form-item-input ${!formErrors.position && 'invalid'}`}
+                className={`add__form-item-input ${
+                  !formErrors.position && "invalid"
+                }`}
                 type="text"
                 placeholder="Position"
                 name="position"
@@ -189,8 +230,13 @@ function AddNewWarehouse() {
               />
               {!formErrors.position && (
                 <div className="add__form-item-input-error">
-                  <ReactSVG className="add__form-item-input-error-icon" src={ErrorIcon} />
-                  <p className="add__form-item-input-error-message  small">This field is required</p>
+                  <ReactSVG
+                    className="add__form-item-input-error-icon"
+                    src={ErrorIcon}
+                  />
+                  <p className="add__form-item-input-error-message  small">
+                    This field is required
+                  </p>
                 </div>
               )}
             </div>
@@ -199,7 +245,9 @@ function AddNewWarehouse() {
             <div className="add__form-item">
               <h3 className="add__form-item-label">Phone Number</h3>
               <input
-                className={`add__form-item-input ${!formErrors.phone && 'invalid'}`}
+                className={`add__form-item-input ${
+                  !formErrors.phone && "invalid"
+                }`}
                 type="text"
                 placeholder="Phone Number"
                 name="phone"
@@ -207,8 +255,13 @@ function AddNewWarehouse() {
               />
               {!formErrors.phone && (
                 <div className="add__form-item-input-error">
-                  <ReactSVG className="add__form-item-input-error-icon" src={ErrorIcon} />
-                  <p className="add__form-item-input-error-message  small">This field is required</p>
+                  <ReactSVG
+                    className="add__form-item-input-error-icon"
+                    src={ErrorIcon}
+                  />
+                  <p className="add__form-item-input-error-message  small">
+                    This field is required
+                  </p>
                 </div>
               )}
             </div>
@@ -217,7 +270,9 @@ function AddNewWarehouse() {
             <div className="add__form-item">
               <h3 className="add__form-item-label">Email</h3>
               <input
-                className={`add__form-item-input ${!formErrors.email && 'invalid'}`}
+                className={`add__form-item-input ${
+                  !formErrors.email && "invalid"
+                }`}
                 type="text"
                 placeholder="Email"
                 name="email"
@@ -225,8 +280,13 @@ function AddNewWarehouse() {
               />
               {!formErrors.email && (
                 <div className="add__form-item-input-error">
-                  <ReactSVG className="add__form-item-input-error-icon" src={ErrorIcon} />
-                  <p className="add__form-item-input-error-message  small">This field is required</p>
+                  <ReactSVG
+                    className="add__form-item-input-error-icon"
+                    src={ErrorIcon}
+                  />
+                  <p className="add__form-item-input-error-message  small">
+                    This field is required
+                  </p>
                 </div>
               )}
             </div>
@@ -234,12 +294,16 @@ function AddNewWarehouse() {
         </div>
 
         <div className="add__form-buttons">
-          <Link className="add__form-buttons-cancel" to="/warehouses">Cancel</Link>
-          <button className="add__form-buttons-addWarehouse" type="submit">+ Add Warehouse</button>
+          <Link className="add__form-buttons-cancel" to="/warehouses">
+            Cancel
+          </Link>
+          <button className="add__form-buttons-addWarehouse" type="submit">
+            + Add Warehouse
+          </button>
         </div>
       </form>
-    </div >
-  )
+    </div>
+  );
 }
 
-export default AddNewWarehouse
+export default AddNewWarehouse;
