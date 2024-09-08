@@ -19,6 +19,12 @@
 
       &__search-form {
         @include displayListTitle__options-search();
+
+        &__btn{
+          background-image: url('../../assets/icons/search-24px.svg');
+          background-repeat: no-repeat;
+          background-position: right 10px center;
+        }
       }
 
       &__add-btn {
@@ -69,6 +75,7 @@
           display: flex;
           align-items: center;
           justify-content: center;
+          font-weight: 600;
 
           @include tablet {
             height: 26px;

@@ -57,11 +57,11 @@
         }
         &-input{
             @include formStyling;
-            border-radius: 1.25rem;
+            &{border-radius: 1.25rem;
             border: 0.1rem solid $secondary-cloud-color;
             height: 2.25rem;
             padding-left: 1rem;
-            color: $secondary-slate-color;
+            color: $secondary-slate-color;}
         }
         &-dropdown{
             border-radius: 1.25rem;
@@ -151,11 +151,11 @@
 
             textarea {
                 @include formStyling;
-                width: calc(100% - 2.2rem);
+                &{width: calc(100% - 2.2rem);
                 height: 7.5rem;
                 padding: 0.5rem 1rem;
                 font-family: 'Titillium Web';
-                resize: none;
+                resize: none;}
             }
         }
         &-availability{
@@ -192,8 +192,7 @@
                 padding: 1rem 2rem;
             }
 
-            &-save{
-                @include roundButton;
+            &-save{               
                 border-radius: 1.25rem;
                 height: 2.25rem;
                 background-color: $primary-element-color;
@@ -202,6 +201,7 @@
                 display: flex;
                 justify-content: center;
                 align-items: center;
+                @include roundButton;
                 @include tablet{
                     flex: 0;
                     height: 2.375rem;
@@ -211,8 +211,7 @@
                     background-color: $background-graphite-color;
                 }
             }
-            &-add{
-                @include roundButton;
+            &-add{               
                 border-radius: 1.25rem;
                 height: 2.25rem;
                 background-color: $primary-element-color;
@@ -221,6 +220,7 @@
                 display: flex;
                 justify-content: center;
                 align-items: center;
+                @include roundButton;
                 @include tablet{     
                     white-space: nowrap; 
                     flex: 0;         
@@ -231,7 +231,9 @@
                     background-color: $background-graphite-color;
                 }
             }
-            &-cancel{
+            &-cancel{  
+                @include roundButton;   
+                &{          
                 border-radius: 1.25rem;
                 border: 0.1rem solid $secondary-cloud-color;
                 flex: 1;
@@ -239,6 +241,7 @@
                 justify-content: center;
                 align-items: center;
                 color: $secondary-slate-color;
+                background-color: $primary-white-color;}
                 @include tablet{
                     flex: 0;
                     height: 2.375rem;
