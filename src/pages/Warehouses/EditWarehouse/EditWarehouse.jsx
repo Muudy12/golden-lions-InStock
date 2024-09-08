@@ -96,7 +96,7 @@ function EditWarehouse() {
         console.log("There is an error editing the warehouse.", error);
       }
     } else {
-      alert('Please fill out all the fields .');
+      alert('Please fill out all the fields.');
     }
   };
 

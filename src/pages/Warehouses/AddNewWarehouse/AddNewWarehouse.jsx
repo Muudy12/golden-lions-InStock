@@ -1,6 +1,6 @@
-import { Link, useNavigate, useParams } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { ReactSVG } from "react-svg";
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { Api } from "../../../utils/utils";
 import { validateForm } from '../../../utils/FormValidation';
 import ArrowBackIcon from "../../../assets/icons/arrow_back-24px.svg";
@@ -10,7 +10,6 @@ import './AddNewWarehouse.scss';
 function AddNewWarehouse() {
 
   const api =new Api();
-  const { warehouseId } = useParams();
   const warehousesPageNavigator = useNavigate();
 
   const [warehouseInfo, setWarehouseInfo] = useState({
@@ -53,6 +52,17 @@ function AddNewWarehouse() {
 
   const submitFormHandler = async (event) => {
     event.preventDefault();
+    
+    let errorState = { ...formErrors };
+    Object.keys(warehouseInfo).forEach((formInput) => {
+      const { isValid, errorMessage } = validateForm(formInput, warehouseInfo[formInput]);
+      errorState = {
+        ...errorState,
+        [formInput]: { isValid, errorMessage }
+      };
+    });
+  
+    setFormErrors(errorState);
 
     // Check if there are any invalid fields
     const formIsValid = Object.values(formErrors).every(error => error.isValid) &&
@@ -75,7 +85,7 @@ function AddNewWarehouse() {
         console.log("There is an error adding the new warehouse.", error);
       }
     } else {
-      alert('Please fill out all the fields .');
+      alert('Please fill out all the fields.');
     }
   };
 
