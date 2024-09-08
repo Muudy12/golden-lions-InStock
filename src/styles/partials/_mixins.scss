@@ -414,6 +414,7 @@
 
 @mixin container-flex($align: center, $justify: space-between, $gap: 16px) {
   display: flex;
+  flex-wrap: wrap;
   align-items: $align;
   justify-content: $justify;
   gap: $gap;
@@ -451,6 +452,7 @@
 
 @mixin responsive-status($height-default: 1.5rem, $height-tablet: 1.625rem) {
   min-height: $height-default;
+  text-wrap: nowrap;
   @include tablet {
     height: $height-tablet;
   }
