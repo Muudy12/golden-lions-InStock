@@ -10,21 +10,12 @@
   &__title {
     @include displayListTitle();
 
-    &-heading {
-      @include displayListTitle__header();
-    }
-
     & .options {
-      @include displayListTitle__options();
-
-      &__search-form {
-        @include displayListTitle__options-search();
-      }
+      @include displayListTitleOptions();
 
       &__add-btn {
-        @include displayListTitle__options-add-btn();
         @include tablet {
-          width: 10.5rem;
+          width: 10.5rem !important;
         }
       }
     }
@@ -32,7 +23,7 @@
 
   &__list {
     &-headers {
-      @include displayList-headers();
+      @include displayListHeaders();
 
       @include tablet {
         & h3:nth-of-type(1) {
@@ -64,7 +55,7 @@
     }
 
     &-item {
-      @include displayList-item();
+      @include displayListItem();
 
       @include tablet {
         &:nth-of-type(2) {
