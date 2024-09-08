@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 import { Api } from "../../../utils/utils";
-import Inventory from '../../Inventory/Inventory.jsx';
+import Inventory from "../../Inventory/Inventory.jsx";
 import { ReactSVG } from "react-svg";
 import backIcon from "../../../assets/icons/arrow_back-24px.svg";
 import editIcon from "../../../assets/icons/edit-white-24px.svg";
@@ -60,8 +60,12 @@ function WarehouseDetails() {
           <div>
             <h3>WAREHOUSE ADDRESS:</h3>
             <p className="warehouse-information__address">
-              <span className="warehouse-information__address--street">{warehouse.address},</span>
-              <span>{warehouse.city}, {warehouse.country}</span>
+              <span className="warehouse-information__address--street">
+                {warehouse.address},
+              </span>
+              <span>
+                {warehouse.city}, {warehouse.country}
+              </span>
             </p>
           </div>
 
@@ -79,7 +83,7 @@ function WarehouseDetails() {
             </div>
           </section>
         </section>
-        <Inventory warehouseId={params.warehouseId}/>
+        <Inventory warehouseId={params.warehouseId} />
       </div>
     </>
   );

@@ -13,6 +13,7 @@ function Inventory({ warehouseId }) {
   const location = useLocation();
   const api = new Api();
   const [inventoryList, setInventoryList] = useState([]);
+  const [renderInventoryList, setRenderInventoryList] = useState([]);
 
   const addInventory = () => {
     navigate("/inventory/add");
@@ -24,6 +25,7 @@ function Inventory({ warehouseId }) {
   };
 
   useEffect(() => {
+    document.title = "InStock - Inventory";
     const getInventoryList = async () => {
       let response;
       if (warehouseId !== undefined) {
@@ -32,6 +34,7 @@ function Inventory({ warehouseId }) {
         response = await api.getAllInventories();
       }
       setInventoryList(response);
+      setRenderInventoryList(response);
     };
     getInventoryList();
   }, []);
@@ -40,6 +43,16 @@ function Inventory({ warehouseId }) {
   // This function is passed as props to delete modal:
   function updateInventoryList(invId) {
     setInventoryList(inventoryList.filter((inv) => inv.id !== invId));
+  }
+
+  const handleSearch = (event) => {
+    event.preventDefault()
+    const keyword = event.target.value;
+    const searchResult = inventoryList.filter((item)=>(
+      Object.values(item).some(value => 
+      value.toString().toLowerCase().includes(keyword.toLowerCase())
+    )))
+    setRenderInventoryList(searchResult);
   }
 
   return (
@@ -59,6 +72,7 @@ function Inventory({ warehouseId }) {
                   name="search"
                   placeholder="Search..."
                   className="options__search-form-input"
+                  onChange={handleSearch}
                 />
               </form>
               <button className="options__add-btn" onClick={addInventory}>
@@ -92,7 +106,7 @@ function Inventory({ warehouseId }) {
           <h3>ACTIONS</h3>
         </div>
 
-        {inventoryList?.map((inventoryItem, index) => {
+        {renderInventoryList?.map((inventoryItem, index) => {
           return (
             <div key={index} className="inventories__list-item inventory-item">
               <h3 className="inventory-item__title" data-label="INVENTORY ITEM">

@@ -10,51 +10,44 @@
   &__title {
     @include displayListTitle();
 
-    &-heading {
-      @include displayListTitle__header();
-    }
-
     & .options {
-      @include displayListTitle__options();
-
-      &__search-form {
-        @include displayListTitle__options-search();
-      }
+      @include displayListTitleOptions();
 
       &__add-btn {
-        @include displayListTitle__options-add-btn();
         @include tablet {
-          width: 10.5rem;
+          width: 10.5rem !important;
         }
+      }
+    }
+  }
+
+  & h3 {
+    @include tablet {
+      &:nth-of-type(1) {
+        width: 8rem;
+      }
+
+      &:nth-of-type(2) {
+        width: 10rem;
+      }
+
+      &:nth-of-type(3) {
+        width: 8rem;
+      }
+
+      &:nth-of-type(4) {
+        min-width: 10rem;
+      }
+
+      &:nth-of-type(5) {
+        width: 8rem;
       }
     }
   }
 
   &__list {
     &-headers {
-      @include displayList-headers();
-
-      @include tablet {
-        & h3:nth-of-type(1) {
-          width: 8rem;
-        }
-
-        & h3:nth-of-type(2) {
-          width: 10rem;
-        }
-
-        & h3:nth-of-type(3) {
-          width: 8rem;
-        }
-
-        & h3:nth-of-type(5) {
-          width: 10rem;
-        }
-
-        & h3:nth-of-type(5) {
-          width: 8rem;
-        }
-      }
+      @include displayListHeaders();
 
       @include desktop {
         & h3:nth-of-type(2) {
@@ -64,7 +57,7 @@
     }
 
     &-item {
-      @include displayList-item();
+      @include displayListItem();
 
       @include tablet {
         &:nth-of-type(2) {
@@ -76,27 +69,6 @@
 
     &-item {
       & .warehouse-item {
-        @include tablet {
-          & h3:nth-of-type(1) {
-            width: 8rem;
-          }
-
-          & h3:nth-of-type(2) {
-            width: 10rem;
-          }
-
-          & h3:nth-of-type(3) {
-            width: 8rem;
-          }
-
-          & h3:nth-of-type(5) {
-            width: 10rem;
-          }
-
-          & h3:nth-of-type(5) {
-            width: 8rem;
-          }
-        }
         &__title {
           order: 0;
         }

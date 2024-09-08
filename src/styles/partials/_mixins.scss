@@ -1,18 +1,26 @@
+@mixin buttonBase {
+  border: none;
+  cursor: pointer;
+  font-family: "Titillium Web";
+}
+
 @mixin roundButton {
+  @include buttonBase;
   font-weight: 400;
   border-radius: 20px;
   height: 36px;
   width: 100%;
-  padding: 7.2px;
+  padding: 0.45rem;
   border: none;
   cursor: pointer;
   font-family: "Titillium Web";
   background-color: $primary-white-color;
 
-    @include tablet {
-        padding: 0 16px;
-        width: fit-content;
-    }
+
+  @include tablet {
+    padding: 0 1rem;
+    width: fit-content;
+  }
 }
 
 @mixin displayMainContainer {
@@ -20,6 +28,7 @@
   height: 100%;
   display: flex;
   justify-content: center;
+  margin-bottom: 2.5rem;
 }
 
 @mixin displayListContainer {
@@ -28,85 +37,96 @@
   align-items: center;
   background-color: $primary-white-color;
   width: 100%;
-  border-radius: 3.2px;
-  box-shadow: 0 3.2px 8px 0 rgba($primary-text-color, 0.1);
-  margin: 32px 0;
-  min-width: 343px;
+  border-radius: 0.2rem;
+  box-shadow: 0 0.2rem 0.5rem 0 rgba($primary-text-color, 0.1);
+  margin-top: 1.5rem;
+  min-width: 21.4375rem;
+  @include responsiveListContainer();
+}
 
+@mixin responsiveListContainer {
   @include tablet {
-    margin: 16px 0 64px;
-    min-width: 704px;
+    margin: 1.6875rem 0 2.3rem;
+    min-width: 44rem;
 
-    & div {
-      & h3 {
-        &:last-of-type {
-          max-width: 80px !important;
-        }
-      }
+    & div h3:last-of-type {
+      max-width: 5rem !important;
     }
   }
 
   @include desktop {
-    margin-bottom: 80px;
-    min-width: 1020px;
+    margin-bottom: 0;
+    min-width: 63.75rem;
 
     & div {
       gap: 16px;
       min-width: fit-content;
 
-      & h3 {
-        &:nth-of-type(2) {
-          padding-right: 32px;
-        }
+      & h3:nth-of-type(2) {
+        padding-right: 2rem;
       }
     }
   }
 }
 
 @mixin displayListTitle {
+  @include listSidePadding();
   display: flex;
   flex-direction: column;
   width: 100%;
   align-items: center;
-  padding-top: 14.4px;
-  padding-bottom: 4.8px;
-  @include listSidePadding();
+  padding-top: 0.9rem;
+  padding-bottom: 0.3rem;
   box-sizing: border-box;
+
+  & h1 {
+    align-self: flex-start;
+    margin-bottom: 0;
+    font-size: 1.75rem;
+
+    @include tablet {
+      margin: 0;
+      font-size: 2rem;
+    }
+  }
 
   @include tablet {
     flex-direction: row;
     justify-content: space-between;
-    padding-top: 32px;
-    padding-bottom: 20.8px;
+    padding-top: 2rem;
+    padding-bottom: 1.35rem;
   }
 }
 
-@mixin displayListTitle__header {
-  align-self: flex-start;
-  margin-bottom: 0;
-  font-size: 28px;
+@mixin searchFormButtonHeight {
+  height: 2.25rem;
+  border-radius: 2rem;
 
   @include tablet {
-    margin: 0;
-    font-size: 32px;
+    height: 2.375rem;
   }
 }
 
-@mixin input-button-height {
-  height: 36px;
-  border-radius: 32px;
-
-  @include tablet {
-    height: 35.2px;
-  }
-}
-
-@mixin displayListTitle__options {
+@mixin displayListTitleOptions {
   display: flex;
   flex-direction: column;
   width: 100%;
   padding: 16px 0;
   gap: 16px;
+
+  & button,
+  & form {
+    @include searchFormButtonHeight();
+    box-sizing: border-box;
+  }
+
+  & form {
+    @include displaySearchForm();
+  }
+
+  & button {
+    @include displayAddBtn();
+  }
 
   @include tablet {
     flex-direction: row;
@@ -115,15 +135,18 @@
   }
 }
 
-@mixin displayListTitle__options-search {
+@mixin displaySearchForm {
   width: 100%;
   position: relative;
-  @include input-button-height();
-  border: 1.6px solid $secondary-cloud-color;
+  border: 0.1rem solid $secondary-cloud-color;
   overflow: hidden;
 
   @include tablet {
     width: 185px;
+  }
+
+  @include desktop {
+    width: 17.125rem;
   }
 
   &::after {
@@ -148,44 +171,27 @@
     border-color: $primary-element-color;
   }
 
-  &-input {
+  & input {
+    @include buttonBase();
     width: 90%;
     height: 100%;
-    outline: none;
-    border: none;
     box-sizing: border-box;
-    padding: 16px;
     display: flex;
-    flex-direction: column;
     align-items: center;
-    background-color: $primary-white-color;
-    width: 100%;
-    padding: 0;
-    @include listSidePadding();
-    box-sizing: border-box;
-    background-color: $background-light-grey;
-    justify-content: space-between;
-  }
+    font-size: 0.77rem;
+    padding: 1rem;
 
-  & h3 {
     @include tablet {
-      font-size: 12px;
-      line-height: 18px;
-      font-weight: 600;
-      display: flex;
-      align-items: center;
-      color: $secondary-slate-color;
-      width: 128px;
+      padding: 0.8rem;
+      font-size: 0.8rem;
+      width: 85%;
+    }
 
-      &:last-of-type {
-        justify-content: end;
-      }
+    &:focus {
+      outline: none;
 
-      & svg {
-        height: 16px;
-        display: flex;
-        align-items: center;
-        cursor: pointer;
+      &::placeholder {
+        opacity: 0;
       }
     }
   }
@@ -201,12 +207,13 @@
   }
 }
 
-@mixin displayList-item {
+@mixin displayListItem {
+  @include listSidePadding();
   display: flex;
   flex-wrap: wrap;
-  border-top: 1.336px solid $secondary-cloud-color;
-  padding: 8px;
-  @include listSidePadding();
+  border-top: 0.0835rem solid $secondary-cloud-color;
+  padding-top: 0.6rem;
+  padding-bottom: 0.8rem;
   box-sizing: border-box;
   width: 100%;
   justify-content: space-between;
@@ -243,6 +250,10 @@
     flex-wrap: wrap;
     font-weight: 400;
 
+    &:first-of-type {
+      font-weight: 600;
+    }
+
     & span {
       font-size: 13px;
       line-height: 20px;
@@ -259,235 +270,6 @@
         line-height: 22px;
       }
     }
-  }
-
-  &::before {
-    content: attr(data-label);
-    display: block;
-    position: relative;
-    font-size: 11px;
-    line-height: 16px;
-    font-weight: 600;
-    color: $secondary-slate-color;
-    width: 100%;
-
-    @include tablet {
-      flex-direction: row;
-      justify-content: space-between;
-      padding-top: 28.8px;
-      padding-bottom: 20.8px;
-    }
-  }
-}
-
-@mixin displayListTitle__header {
-  align-self: flex-start;
-  margin-bottom: 0;
-  font-size: 28px;
-
-  @include tablet {
-    margin: 0;
-    font-size: 32px;
-  }
-}
-
-@mixin input-button-height {
-  height: 36px;
-  border-radius: 32px;
-
-  @include tablet {
-    height: 38px;
-  }
-}
-
-@mixin displayListTitle__options {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  padding: 16px 0;
-  gap: 16px;
-
-  @include tablet {
-    flex-direction: row;
-    width: fit-content;
-    padding: 0;
-  }
-}
-
-@mixin displayListTitle__options-search {
-  width: 100%;
-  position: relative;
-  @include input-button-height();
-  border: 1.6px solid $secondary-cloud-color;
-  overflow: hidden;
-
-  @include tablet {
-    width: 185px;
-  }
-
-  @include desktop {
-    width: 274px;
-  }
-
-  &::after {
-    content: "";
-    display: flex;
-    width: 32px;
-    height: 100%;
-    position: absolute;
-    top: 0;
-    right: 8px;
-    background-image: url("../../assets/icons/search-1.5rem.svg");
-    background-position: center;
-    background-size: 1.8em;
-    background-repeat: no-repeat;
-
-    @include tablet {
-      background-size: 1.5em;
-    }
-  }
-
-  &:focus-within {
-    border-color: $primary-element-color;
-  }
-
-  &-input {
-    width: 90%;
-    height: 100%;
-    outline: none;
-    border: none;
-    box-sizing: border-box;
-    padding: 16px;
-    display: flex;
-    align-items: center;
-    font-size: 12.32px;
-    padding-top: 16px;
-    font-family: "Titillium Web";
-
-    @include tablet {
-      padding: 12.8px;
-      font-size: 12.8px;
-      width: 85%;
-    }
-
-    &:focus::placeholder {
-      opacity: 0;
-    }
-  }
-}
-
-@mixin displayListTitle__options-add-btn {
-  width: 100%;
-  @include input-button-height();
-  @include primaryCta();
-}
-
-@mixin primaryCta {
-  background-color: $primary-element-color;
-  color: $primary-white-color;
-  outline: none;
-  border: none;
-  cursor: pointer;
-  font-size: 12.8px;
-  padding: 7.2px 16px;
-  font-weight: 600;
-  box-sizing: border-box;
-  font-family: "Titillium Web";
-
-  &:hover {
-    background-color: $background-graphite-color;
-  }
-}
-
-@mixin displayList-headers {
-  display: none;
-
-  @include tablet {
-    display: flex;
-    width: 100%;
-    padding: 0;
-    @include listSidePadding();
-    box-sizing: border-box;
-    background-color: $background-light-grey;
-
-    & h3 {
-      font-size: 10.4px;
-      font-weight: 600;
-      flex: 1;
-      display: flex;
-      align-items: center;
-      color: $secondary-slate-color;
-
-      &:last-of-type {
-        justify-content: end;
-      }
-
-      & svg {
-        height: 16px;
-        display: flex;
-        align-items: center;
-        cursor: pointer;
-      }
-    }
-  }
-}
-
-@mixin listSidePadding() {
-  padding-left: 24px;
-  padding-right: 24px;
-
-  @include tablet {
-    padding-left: 32px;
-    padding-right: 32px;
-  }
-}
-
-@mixin displayList-item {
-  display: flex;
-  flex-wrap: wrap;
-  border-top: 1.336px solid $secondary-cloud-color;
-  padding: 8px;
-  @include listSidePadding();
-  box-sizing: border-box;
-  width: 100%;
-  justify-content: space-between;
-
-  @include tablet {
-    padding-top: 16px;
-    padding-bottom: 16px;
-    flex-wrap: nowrap;
-
-    &:nth-of-type(2) {
-      border-top: 0;
-      padding-top: 8px;
-      padding-bottom: 8px;
-    }
-  }
-
-  @include desktop {
-    padding-top: 8px;
-    padding-bottom: 8px;
-  }
-
-  &:hover {
-    background-color: rgba($primary-element-color, 0.1);
-  }
-
-  & h3 {
-    width: 50%;
-    position: relative;
-    font-size: 12.8px;
-    margin: 8px 0;
-    display: flex;
-    align-items: center;
-    flex-wrap: wrap;
-    font-weight: 400;
-
-    @include tablet {
-      width: 128px;
-      flex-wrap: nowrap;
-      font-size: 14px;
-    }
 
     @include desktop {
       flex: 1;
@@ -497,10 +279,12 @@
       content: attr(data-label);
       display: block;
       position: relative;
-      font-size: 10.4px;
+      font-size: 0.6875rem;
+      line-height: 1rem;
       font-weight: 600;
       color: $secondary-slate-color;
       width: 100%;
+      padding-bottom: 0.25rem;
 
       @include tablet {
         display: none;
@@ -517,7 +301,8 @@
       }
 
       & svg {
-        height: 19.2px;
+        height: 1.25rem;
+        width: 1.25rem;
         display: flex;
         align-self: flex-end;
         box-sizing: border-box;
@@ -548,54 +333,84 @@
   }
 }
 
-@mixin inventoryListColumnWidths {
-  justify-content: space-between;
+@mixin displayAddBtn {
+  @include buttonBase;
+  width: 100%;
+  background-color: $primary-element-color;
+  color: $primary-white-color;
+  outline: none;
+  font-size: 0.8rem;
+  padding: 0.45rem 1rem;
+  font-weight: 600;
+  box-sizing: border-box;
+
+  &:hover {
+    background-color: $background-graphite-color;
+  }
+}
+
+@mixin displayListHeaders {
+  display: none;
+
+  @include tablet {
+    @include listSidePadding();
+    display: flex;
+    width: 100%;
+    padding: 0;
+    box-sizing: border-box;
+    background-color: $background-light-grey;
+    justify-content: space-between;
+  }
 
   & h3 {
-    flex: none;
-    width: 112px;
+    @include tablet {
+      font-size: 0.75rem;
+      line-height: 1.125rem;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      color: $secondary-slate-color;
 
-    &:nth-of-type(1) {
-      width: 128px;
+      &:last-of-type {
+        justify-content: end;
+      }
+
+      & svg {
+        height: 1rem;
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+      }
     }
 
-    &:nth-of-type(3) {
-      width: 96px;
-    }
-
-    &:nth-of-type(4) {
-      width: 48px;
-    }
-
-    &:nth-of-type(5) {
-      width: 96px;
+    @include desktop {
+      flex: 1;
     }
   }
 }
 
 @mixin formStyling {
-    border-radius: 20px;
-    border: 1.6px solid $secondary-cloud-color;
-    color: $secondary-slate-color;
-    padding: 0 12px;
-    color: $primary-text-color;
-    font-family:  'Titillium Web';
+  border-radius: 1.25rem;
+  border: 0.1rem solid $secondary-cloud-color;
+  color: $secondary-slate-color;
+  padding: 0 0.75rem;
+  color: $primary-text-color;
 
-    &:focus{
-        border: 1.6px solid  $primary-element-color;
-        outline: none;
-    }
+  &:focus {
+    border: 0.1rem solid $primary-element-color;
+    outline: none;
+  }
 
-    &::placeholder{
-        font-family:  'Titillium Web';
-    }
+  &::placeholder {
+    font-family: "Titillium Web";
+  }
 }
 
 @mixin details-background {
   background-color: $primary-white-color;
-  border-radius: 4px;
-  box-shadow: 0 3.2px 8px 0 rgba(19, 24, 44, 0.1);
-  margin: 32px 0;
+  border-radius: 0.25rem;
+  box-shadow: 0 0.2rem 0.5rem 0 rgba(19, 24, 44, 0.1);
+  margin: 2rem 0;
 }
 
 @mixin container-flex($align: center, $justify: space-between, $gap: 16px) {
@@ -616,10 +431,11 @@
   }
 }
 
-@mixin responsive-padding($padding-default: 16px, $padding-tablet: 6px 16px) {
-  & {
-    padding: $padding-default;
-  }
+@mixin responsive-padding(
+  $padding-default: 1rem,
+  $padding-tablet: 0.375rem 1rem
+) {
+  padding: $padding-default;
   @include tablet {
     padding: $padding-tablet;
   }
@@ -649,7 +465,7 @@
   background-color: rgba($color, 0.07);
   font-weight: 600;
   border-radius: 1.25rem;
-  padding: 0 .5rem;
+  padding: 0 0.5rem;
 }
 
 @mixin flex-column($gap: 16px) {
@@ -663,4 +479,90 @@
   @include tablet {
     display: block;
   }
+}
+
+@mixin detailsContainer {
+  margin-top: 1.5rem;
+  padding-top: 0.58rem;
+  min-width: 21.4375rem;
+  width: 100%;
+
+  @include tablet {
+    margin-top: 1.7rem;
+    padding-top: 0.3rem;
+    min-width: 44rem;
+  }
+
+  @include desktop {
+    min-width: 63.75;
+  }
+}
+
+@mixin detailsTitle {
+  padding: 1.5rem 1.5rem 1.3rem;
+
+  & section,
+  & div {
+    gap: 0.5rem;
+    display: flex;
+    align-items: center;
+
+    & a {
+      height: 1.5rem;
+      width: 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      & div {
+        display: flex;
+        margin-top: 0.05rem;
+        margin-left: 0.05rem;
+        width: 100%;
+        height: 100%;
+      }
+    }
+  }
+
+  & > div {
+    display: flex;
+    box-sizing: border-box;
+    width: 2.25rem;
+    height: 2.25rem;
+    align-items: center;
+    justify-content: center;
+
+    @include tablet {
+      width: 5.0625rem;
+      height: 2.375rem;
+    }
+
+    & a {
+      display: flex;
+      box-sizing: border-box;
+      height: 1.25rem;
+      width: 1.25rem;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      color: $primary-white-color;
+
+      & div {
+        display: flex;
+        width: 100%;
+        height: 100%;
+        align-items: center;
+        justify-content: center;
+      }
+    }
+  }
+
+  @include tablet {
+    padding: 1.7rem 2rem 1.3rem;
+  }
+}
+
+@mixin detailsInformation {
+  margin: 0;
+  padding: 1rem 1.5rem;
 }
