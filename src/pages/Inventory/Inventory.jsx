@@ -14,6 +14,12 @@ function Inventory({ warehouseId }) {
   const api = new Api();
   const [inventoryList, setInventoryList] = useState([]);
   const [renderInventoryList, setRenderInventoryList] = useState([]);
+  const [ascendingOrder, setAscendingOrder] = useState({
+    item_name:true,
+    category:true,
+    status:true,
+    quantity:true,
+    warehouse_name:true,});
 
   const addInventory = () => {
     navigate("/inventory/add");
@@ -55,6 +61,19 @@ function Inventory({ warehouseId }) {
     setRenderInventoryList(searchResult);
   }
 
+  const handleSort = async (event, columnName) => {
+    event.preventDefault();
+    setAscendingOrder((preState)=> ({
+      ...preState, 
+      [columnName]: !preState[columnName]
+    }))
+    const order = ascendingOrder[columnName]? "asc":"desc";
+    const queryString = "?"+"sort_by="+columnName+"&"+"order_by="+order;
+    const response = await api.getAllInventories(queryString);
+    setInventoryList(response);
+    setRenderInventoryList(response);
+  }
+
   return (
     <div className="inventories-container">
       <div className="inventories">
@@ -85,23 +104,23 @@ function Inventory({ warehouseId }) {
         <div className="inventories__list-headers">
           <h3>
             INVENTORY ITEM
-            <ReactSVG src={SortIcon} />
+            <ReactSVG src={SortIcon} onClick={(event)=>handleSort(event, "item_name")}/>
           </h3>
           <h3>
             CATEGORY
-            <ReactSVG src={SortIcon} />
+            <ReactSVG src={SortIcon} onClick={(event)=>handleSort(event, "category")}/>
           </h3>
           <h3>
             STATUS
-            <ReactSVG src={SortIcon} />
+            <ReactSVG src={SortIcon} onClick={(event)=>handleSort(event, "status")}/>
           </h3>
           <h3>
             QTY
-            <ReactSVG src={SortIcon} />
+            <ReactSVG src={SortIcon} onClick={(event)=>handleSort(event, "quantity")}/>
           </h3>
           <h3>
             WAREHOUSE
-            <ReactSVG src={SortIcon} />
+            <ReactSVG src={SortIcon} onClick={(event)=>handleSort(event, "warehouse_name")}/>
           </h3>
           <h3>ACTIONS</h3>
         </div>

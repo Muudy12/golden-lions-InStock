@@ -7,9 +7,10 @@ class Api {
     this.baseUrl = baseUrl;
   }
 
-  async getAllWarehouses() {
+  async getAllWarehouses(queryString) {
     try {
-      const response = await axios.get(`${this.baseUrl}/warehouses`);
+      const qs = queryString? queryString:"";
+      const response = await axios.get(`${this.baseUrl}/warehouses${qs}`);
       return response.data;
     } catch (err) {
       console.log(`Failed to get all warehouses.`);
@@ -34,9 +35,10 @@ class Api {
     }
   }
 
-  async getAllInventories() {
+  async getAllInventories(queryString) {
     try {
-      const response = await axios.get(`${baseUrl}/inventories`);
+      const qs = queryString? queryString:"";
+      const response = await axios.get(`${baseUrl}/inventories${qs}`);
       return response.data;
     } catch (err) {
       console.log(`Failed to get all inventories.`);
