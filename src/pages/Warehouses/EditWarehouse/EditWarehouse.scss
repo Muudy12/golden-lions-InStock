@@ -1,24 +1,7 @@
 @import "../../../styles/global.scss";
 
 .form {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  background-color: $primary-white-color;
-  width: 100%;
-  border-radius: 0.2rem;
-  box-shadow: 0 0.2rem 0.5rem 0 rgba($primary-text-color, 0.1);
-  margin: 1.5rem 0 2rem;
-  min-width: 21.4375rem;
-
-  @include tablet {
-    margin-top: 1.7rem;
-    margin-bottom: 15rem;
-  }
-
-  @include desktop {
-    margin-bottom: 3rem;
-  }
+  @include displayListContainer;
 
   &__header {
     width: 100%;
