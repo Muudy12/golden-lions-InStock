@@ -426,16 +426,16 @@
 
 @mixin responsive-border-radius($radius-default: 50%, $radius-tablet: 40px) {
   border-radius: $radius-default;
+
   @include tablet {
     border-radius: $radius-tablet;
   }
 }
 
-@mixin responsive-padding(
-  $padding-default: 1rem,
-  $padding-tablet: 0.375rem 1rem
-) {
+@mixin responsive-padding($padding-default: 1rem,
+  $padding-tablet: 0.375rem 1rem) {
   padding: $padding-default;
+
   @include tablet {
     padding: $padding-tablet;
   }
@@ -444,6 +444,7 @@
 @mixin hidden-span {
   span {
     display: none;
+
     @include tablet {
       display: inline;
     }
@@ -453,9 +454,11 @@
 @mixin responsive-status($height-default: 1.5rem, $height-tablet: 1.625rem) {
   min-height: $height-default;
   text-wrap: nowrap;
+
   @include tablet {
     height: $height-tablet;
   }
+
   @include desktop {
     height: $height-tablet;
   }
@@ -477,6 +480,7 @@
 
 @mixin description-text {
   display: inline;
+
   @include tablet {
     display: block;
   }
@@ -525,7 +529,7 @@
     }
   }
 
-  & > div {
+  &>div {
     display: flex;
     box-sizing: border-box;
     width: 2.25rem;
@@ -568,16 +572,17 @@
   padding: 1rem 1.5rem;
 }
 
-@mixin arrow-animation{
+@mixin arrow-animation {
   svg {
     transition: transform 0.3s ease;
   }
+
   &:hover svg {
     transform: translateX(4px);
   }
 }
 
-@mixin displayListContainer-alt{
+@mixin displayListContainer-alt {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -629,9 +634,10 @@
   }
 }
 
-@mixin form-wrapper{
+@mixin form-wrapper {
   width: 100%;
   padding-top: 1.5rem;
+
   @include tablet {
     flex-direction: row;
   }
@@ -671,5 +677,31 @@
     flex: 0;
     height: 2.375rem;
     padding: 0rem 1rem;
+  }
+}
+
+@mixin element-base {
+  display: flex;
+  flex-direction: column;
+  padding: 0rem 1.5rem;
+  border-bottom: 0.1rem solid $secondary-cloud-color;
+
+  @include tablet {
+    flex: 1;
+    padding: 0rem 2rem;
+    border-bottom: none;
+  }
+
+  @include desktop {
+    padding: 0.5rem 3rem;
+  }
+}
+
+@mixin title-base {
+  margin: 0;
+  padding-bottom: 1.5rem;
+
+  @include tablet {
+    padding-bottom: 2rem;
   }
 }

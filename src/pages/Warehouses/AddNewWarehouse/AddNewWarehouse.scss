@@ -1,7 +1,7 @@
 @import "../../../styles/global.scss";
 
 .form {
-  @include displayListContainer;
+  @include displayListContainer-alt;
 
   &__header {
     @include displayListHeaders-alt;

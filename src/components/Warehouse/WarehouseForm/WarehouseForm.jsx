@@ -1,4 +1,4 @@
-import FormInput from "../FormInput/WarehouseFormInput";
+import WarehouseFormInput from "../WarehouseFormInput/WarehouseFormInput.jsx";
 import "./WarehouseForm.scss"
 
 function WarehouseForm({ warehouseInfo, formErrors, validationHandler }) {
@@ -9,7 +9,7 @@ function WarehouseForm({ warehouseInfo, formErrors, validationHandler }) {
                 <h2 className="form__element-warehouse-title">Warehouse Details</h2>
 
                 {/* Warehouse Name */}
-                <FormInput
+                <WarehouseFormInput
                     label="Warehouse Name"
                     name="name"
                     value={warehouseInfo.name}
@@ -18,7 +18,7 @@ function WarehouseForm({ warehouseInfo, formErrors, validationHandler }) {
                 />
 
                 {/* Street Address */}
-                <FormInput
+                <WarehouseFormInput
                     label="Street Address"
                     name="street"
                     value={warehouseInfo.street}
@@ -27,7 +27,7 @@ function WarehouseForm({ warehouseInfo, formErrors, validationHandler }) {
                 />
 
                 {/* City */}
-                <FormInput
+                <WarehouseFormInput
                     label="City"
                     name="city"
                     value={warehouseInfo.city}
@@ -36,7 +36,7 @@ function WarehouseForm({ warehouseInfo, formErrors, validationHandler }) {
                 />
 
                 {/* Country */}
-                <FormInput
+                <WarehouseFormInput
                     label="Country"
                     name="country"
                     value={warehouseInfo.country}
@@ -50,7 +50,7 @@ function WarehouseForm({ warehouseInfo, formErrors, validationHandler }) {
                 <h2 className="form__element-contact-title">Contact Details</h2>
 
                 {/* Contact Name */}
-                <FormInput
+                <WarehouseFormInput
                     label="Contact Name"
                     name="contactName"
                     value={warehouseInfo.contactName}
@@ -59,7 +59,7 @@ function WarehouseForm({ warehouseInfo, formErrors, validationHandler }) {
                 />
 
                 {/* Position */}
-                <FormInput
+                <WarehouseFormInput
                     label="Position"
                     name="position"
                     value={warehouseInfo.position}
@@ -68,7 +68,7 @@ function WarehouseForm({ warehouseInfo, formErrors, validationHandler }) {
                 />
 
                 {/* Phone Number */}
-                <FormInput
+                <WarehouseFormInput
                     label="Phone Number"
                     name="phone"
                     value={warehouseInfo.phone}
@@ -77,7 +77,7 @@ function WarehouseForm({ warehouseInfo, formErrors, validationHandler }) {
                 />
 
                 {/* Email */}
-                <FormInput
+                <WarehouseFormInput
                     label="Email"
                     name="email"
                     value={warehouseInfo.email}
