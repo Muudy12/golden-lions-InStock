@@ -586,6 +586,7 @@
   border-radius: 0.2rem;
   box-shadow: 0 0.2rem 0.5rem 0 rgba($primary-text-color, 0.1);
   margin: 1.5rem 0 2rem;
+  min-width: 18rem;
 
   @include tablet {
     margin-top: 1.7rem;
@@ -596,4 +597,79 @@
     margin-bottom: 3rem;
   }
 
+}
+
+@mixin displayListHeaders-alt {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 2rem 1rem 1.5rem;
+  border-bottom: 0.1rem solid $secondary-cloud-color;
+  box-sizing: border-box;
+
+  @include tablet {
+    padding: 2rem 1.5rem 1.3rem !important;
+  }
+
+  &-icon {
+    padding-top: 0.5rem;
+  }
+
+  &-title {
+    margin: 0;
+    font-size: 1.75rem;
+
+    @include tablet {
+      font-size: 2rem;
+      line-height: 2.5rem;
+    }
+  }
+}
+
+@mixin form-wrapper{
+  width: 100%;
+  padding-top: 1.5rem;
+  @include tablet {
+    flex-direction: row;
+  }
+}
+
+@mixin buttons-wrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  padding: 1rem 1.5rem;
+  gap: 1rem;
+  background-color: $background-light-grey;
+
+  @include tablet {
+    justify-content: flex-end;
+    padding-right: 2rem;
+    padding-top: 1rem;
+    margin-top: 1.5rem;
+  }
+
+  @include desktop {
+    padding-right: 3rem;
+  }
+
+}
+
+@mixin button-base-alt {
+  all: unset;
+  border-radius: 1.25rem;
+  height: 2.25rem;
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  @include tablet {
+    flex: 0;
+    height: 2.375rem;
+    padding: 0rem 1rem;
+  }
 }
