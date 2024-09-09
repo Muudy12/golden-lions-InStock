@@ -18,14 +18,7 @@
         margin-bottom: 5rem;
     }
 
-    &__arrow-icon{
-        display: inline-block;
-        transition: transform 0.3s ease;
 
-        &:hover{
-            transform: translateX(-4px);
-        }
-    }
     &__title {
         display: flex;
         justify-content: flex-start;
