@@ -85,7 +85,6 @@ function EditInventory() {
   }
   useEffect(() => {
     document.title = "InStock - Edit Inventory"
-    console.log(location)
     getCurrentItem();
     getWarehouses();
   }, [inventoryId])
