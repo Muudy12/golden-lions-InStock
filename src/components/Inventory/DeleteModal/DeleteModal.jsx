@@ -1,43 +1,34 @@
 import "./DeleteModal.scss";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { ReactSVG } from "react-svg";
 import CloseIcon from "../../../assets/icons/close-24px.svg";
-import { Api } from "../../../utils/utils";
 import ReactModal from "react-modal";
 import DeleteIcon from "../../../assets/icons/delete_outline-24px.svg";
+import { Api } from "../../../utils/utils";
 
 ReactModal.setAppElement("#root");
 
-function DeleteInventory({ inventoryId, updateInventoryList }) {
-  const [inventoryName, setInventoryName] = useState("");
+function DeleteInventory({ inventoryId, inventoryName, updateInventoryList }) {
   const [isOpen, setIsOpen] = useState(false);
   const api = new Api();
 
+  const openModal = () => setIsOpen(true);
 
-  const openModal = async () => {
-    const inventories = await api.getAllInventories();
-    const inv = inventories.find((i) => i.id === inventoryId);
-    setInventoryName(inv.item_name);
-    setIsOpen(true);
-  };
+  const closeModal = () => setIsOpen(false);
 
-  const closeModal = () => {
+  const deleteInventory = async () => {
+    try {
+      const response = await api.deleteInventoryById(inventoryId);
+      updateInventoryList(inventoryId);
+    } catch (error) {
+      console.error("Error deleting warehouse", error);
+    }
     setIsOpen(false);
   };
 
-  function deleteInventory(inventoryId) {
-    const deleteItem = async () => {
-      await api.deleteInventoryById(inventoryId);
-      updateInventoryList(inventoryId);
-    };
-
-    deleteItem();
-    closeModal();
-  }
-
   return (
     <>
-      <ReactSVG src={DeleteIcon} onClick={() => openModal()} />
+      <ReactSVG src={DeleteIcon} onClick={openModal} />
       <ReactModal
         isOpen={isOpen}
         onRequestClose={closeModal}
@@ -66,7 +57,7 @@ function DeleteInventory({ inventoryId, updateInventoryList }) {
             </button>
             <button
               className="button__delete btn"
-              onClick={() => deleteInventory(inventoryId)}
+              onClick={() => deleteInventory()}
             >
               Delete
             </button>

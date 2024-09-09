@@ -14,10 +14,11 @@ function Warehouses() {
   const [warehouses, setWarehouses] = useState([]);
   const [renderWarehouses, setRenderWarehouses] = useState([]);
   const [ascendingOrder, setAscendingOrder] = useState({
-    warehouse_name:true,
-    address:true,
-    contact_name:true,
-    contact_email:true,});
+    warehouse_name: true,
+    address: true,
+    contact_name: true,
+    contact_email: true,
+  });
 
   useEffect(() => {
     document.title = "InStock - Warehouses";
@@ -28,7 +29,7 @@ function Warehouses() {
     };
 
     getAllWarehouses();
-  }, []); // removed the detect warehouses because it was causing infinite loop/re-rending
+  }, []);
 
   const editWarehouse = (warehouseId) => {
     navigate(`/warehouses/${warehouseId}/edit`);
@@ -46,30 +47,33 @@ function Warehouses() {
   //// Had to pass this function as prop to the delete modal:
   function updateWarehouseList(warehouseId) {
     setWarehouses(warehouses.filter((wh) => wh.id !== warehouseId));
+    setRenderWarehouses(renderWarehouses.filter((wh) => wh.id !== warehouseId));
   }
 
   const handleSearch = (event) => {
-    event.preventDefault()
+    event.preventDefault();
     const keyword = event.target.value;
-    const searchResult = warehouses.filter((item)=>(
-      Object.values(item).some(value => 
-      value.toString().toLowerCase().includes(keyword.toLowerCase())
-    )))
+    const searchResult = warehouses.filter((item) =>
+      Object.values(item).some((value) =>
+        value.toString().toLowerCase().includes(keyword.toLowerCase())
+      )
+    );
     setRenderWarehouses(searchResult);
-  }
+  };
 
   const handleSort = async (event, columnName) => {
     event.preventDefault();
-    setAscendingOrder((preState)=> ({
-      ...preState, 
-      [columnName]: !preState[columnName]
-    }))
-    const order = ascendingOrder[columnName]? "asc":"desc";
-    const queryString = "?"+"sort_by="+columnName+"&"+"order_by="+order;
+    setAscendingOrder((preState) => ({
+      ...preState,
+      [columnName]: !preState[columnName],
+    }));
+    const order = ascendingOrder[columnName] ? "asc" : "desc";
+    const queryString =
+      "?" + "sort_by=" + columnName + "&" + "order_by=" + order;
     const response = await api.getAllWarehouses(queryString);
     setWarehouses(response);
     setRenderWarehouses(response);
-  }
+  };
 
   return (
     <div className="warehouses-container">
@@ -99,66 +103,74 @@ function Warehouses() {
         <div className="warehouses__list-headers">
           <h3>
             WAREHOUSE
-            <ReactSVG src={SortIcon} onClick={(event)=>handleSort(event, "warehouse_name")}/>
+            <ReactSVG
+              src={SortIcon}
+              onClick={(event) => handleSort(event, "warehouse_name")}
+            />
           </h3>
           <h3>
             ADDRESS
-            <ReactSVG src={SortIcon} onClick={(event)=>handleSort(event, "address")}/>
+            <ReactSVG
+              src={SortIcon}
+              onClick={(event) => handleSort(event, "address")}
+            />
           </h3>
           <h3>
             CONTACT NAME
-            <ReactSVG src={SortIcon} onClick={(event)=>handleSort(event, "contact_name")}/>
+            <ReactSVG
+              src={SortIcon}
+              onClick={(event) => handleSort(event, "contact_name")}
+            />
           </h3>
           <h3>
             CONTACT INFORMATION
-            <ReactSVG src={SortIcon} onClick={(event)=>handleSort(event, "contact_email")}/>
+            <ReactSVG
+              src={SortIcon}
+              onClick={(event) => handleSort(event, "contact_email")}
+            />
           </h3>
           <h3>ACTIONS</h3>
         </div>
-        {warehouses &&
-          renderWarehouses.map((w, index) => {
-            return (
-              <div key={index} className="warehouses__list-item warehouse-item">
-                <h3
-                  className="warehouse-item__title"
-                  data-label="WAREHOUSE"
-                  onClick={() => goToDetail(w.id)}
-                >
-                  <span className="warehouse-item__title-name">
-                    {w.warehouse_name}
-                  </span>
-                  <ReactSVG src={ChevronIcon} />
-                </h3>
-                <h3 className="warehouse-item__address" data-label="ADDRESS">
-                  <span>{w.address},&nbsp;</span>
-                  <span>
-                    {w.city},&nbsp;{w.country}
-                  </span>
-                </h3>
-                <h3 className="warehouse-item__name" data-label="CONTACT NAME">
-                  {w.contact_name}
-                </h3>
-                <h3
-                  className="warehouse-item__information"
-                  data-label="CONTACT INFORMATION"
-                >
-                  <span>{w.contact_phone}</span>
-                  <span>{w.contact_email}</span>
-                </h3>
-                <h3 className="warehouse-item__actions" data-label="ACTIONS">
-                  <DeleteModal
-                    warehouseName={w.warehouse_name}
-                    warehouseId={w.id}
-                    updateWarehouseList={updateWarehouseList}
-                  />
-                  <ReactSVG
-                    src={EditIcon}
-                    onClick={() => editWarehouse(w.id)}
-                  />
-                </h3>
-              </div>
-            );
-          })}
+        {renderWarehouses?.map((w, index) => {
+          return (
+            <div key={index} className="warehouses__list-item warehouse-item">
+              <h3
+                className="warehouse-item__title"
+                data-label="WAREHOUSE"
+                onClick={() => goToDetail(w.id)}
+              >
+                <span className="warehouse-item__title-name">
+                  {w.warehouse_name}
+                </span>
+                <ReactSVG src={ChevronIcon} />
+              </h3>
+              <h3 className="warehouse-item__address" data-label="ADDRESS">
+                <span>{w.address},&nbsp;</span>
+                <span>
+                  {w.city},&nbsp;{w.country}
+                </span>
+              </h3>
+              <h3 className="warehouse-item__name" data-label="CONTACT NAME">
+                {w.contact_name}
+              </h3>
+              <h3
+                className="warehouse-item__information"
+                data-label="CONTACT INFORMATION"
+              >
+                <span>{w.contact_phone}</span>
+                <span>{w.contact_email}</span>
+              </h3>
+              <h3 className="warehouse-item__actions" data-label="ACTIONS">
+                <DeleteModal
+                  warehouseName={w.warehouse_name}
+                  warehouseId={w.id}
+                  updateWarehouseList={updateWarehouseList}
+                />
+                <ReactSVG src={EditIcon} onClick={() => editWarehouse(w.id)} />
+              </h3>
+            </div>
+          );
+        })}
       </div>
     </div>
   );

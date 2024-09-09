@@ -16,18 +16,19 @@ function Inventory({ warehouseId }) {
   const [inventoryList, setInventoryList] = useState([]);
   const [renderInventoryList, setRenderInventoryList] = useState([]);
   const [ascendingOrder, setAscendingOrder] = useState({
-    item_name:true,
-    category:true,
-    status:true,
-    quantity:true,
-    warehouse_name:true,});
+    item_name: true,
+    category: true,
+    status: true,
+    quantity: true,
+    warehouse_name: true,
+  });
 
   const addInventory = () => {
     navigate("/inventory/add");
   };
 
   const goToDetail = (inventoryId) => {
-    sessionStorage.setItem('previousUrl', window.location.pathname)
+    sessionStorage.setItem("previousUrl", window.location.pathname);
     navigate(`/inventory/${inventoryId}`);
   };
 
@@ -43,6 +44,7 @@ function Inventory({ warehouseId }) {
       setInventoryList(response);
       setRenderInventoryList(response);
     };
+
     getInventoryList();
   }, []);
 
@@ -50,17 +52,21 @@ function Inventory({ warehouseId }) {
   // This function is passed as props to delete modal:
   function updateInventoryList(invId) {
     setInventoryList(inventoryList.filter((inv) => inv.id !== invId));
+    setRenderInventoryList(
+      renderInventoryList.filter((inv) => inv.id !== invId)
+    );
   }
 
   const handleSearch = (event) => {
-    event.preventDefault()
+    event.preventDefault();
     const keyword = event.target.value;
-    const searchResult = inventoryList.filter((item)=>(
-      Object.values(item).some(value => 
-      value.toString().toLowerCase().includes(keyword.toLowerCase())
-    )))
+    const searchResult = inventoryList.filter((item) =>
+      Object.values(item).some((value) =>
+        value.toString().toLowerCase().includes(keyword.toLowerCase())
+      )
+    );
     setRenderInventoryList(searchResult);
-  }
+  };
 
   const sortOnWarehouseDetailsPage = (colName, order) => {
     const sortedList = inventoryList.sort((a,b)=> {
@@ -125,19 +131,31 @@ function Inventory({ warehouseId }) {
         <div className="inventories__list-headers">
           <h3>
             INVENTORY ITEM
-            <ReactSVG src={SortIcon} onClick={(event)=>handleSort(event, "item_name")}/>
+            <ReactSVG
+              src={SortIcon}
+              onClick={(event) => handleSort(event, "item_name")}
+            />
           </h3>
           <h3>
             CATEGORY
-            <ReactSVG src={SortIcon} onClick={(event)=>handleSort(event, "category")}/>
+            <ReactSVG
+              src={SortIcon}
+              onClick={(event) => handleSort(event, "category")}
+            />
           </h3>
           <h3>
             STATUS
-            <ReactSVG src={SortIcon} onClick={(event)=>handleSort(event, "status")}/>
+            <ReactSVG
+              src={SortIcon}
+              onClick={(event) => handleSort(event, "status")}
+            />
           </h3>
           <h3>
             QTY
-            <ReactSVG src={SortIcon} onClick={(event)=>handleSort(event, "quantity")}/>
+            <ReactSVG
+              src={SortIcon}
+              onClick={(event) => handleSort(event, "quantity")}
+            />
           </h3>
           {onInventoryPage && <h3>
             WAREHOUSE
@@ -187,9 +205,17 @@ function Inventory({ warehouseId }) {
               <h3 className="inventory-item__actions" data-label="ACTIONS">
                 <DeleteInventory
                   inventoryId={inventoryItem.id}
+                  inventoryName={inventoryItem.item_name}
                   updateInventoryList={updateInventoryList}
                 />
-                <ReactSVG src={EditIcon} onClick={() => navigate(`/inventory/${inventoryItem.id}/edit`, {state: {from: location.pathname}})}/>
+                <ReactSVG
+                  src={EditIcon}
+                  onClick={() =>
+                    navigate(`/inventory/${inventoryItem.id}/edit`, {
+                      state: { from: location.pathname },
+                    })
+                  }
+                />
               </h3>
             </div>
           );
