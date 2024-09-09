@@ -63,7 +63,7 @@ function InventoryDetails() {
         <section className="inventory-information">
           <div className="inventory-information__overview">
             <div>
-              <h3 className="label">ITEM DESCRIPTION:</h3>
+              <h3 className="inventory-information__label">ITEM DESCRIPTION:</h3>
               <p className="inventory-information__description">
                 <span className="inventory-information__description--text">
                   {inventoryItem.description}
@@ -71,15 +71,15 @@ function InventoryDetails() {
               </p>
             </div>
             <div>
-              <h3 className="label">CATEGORY:</h3>
-              <p>{inventoryItem.category}</p>
+              <h3 className="inventory-information__label">CATEGORY:</h3>
+              <p className="inventory-information__text">{inventoryItem.category}</p>
             </div>
           </div>
 
           <div>
             <section className="inventory-information__status">
               <div>
-                <h3 className="label">STATUS:</h3>
+                <h3 className="inventory-information__label">STATUS:</h3>
                 <h3
                   className={`inventory__status ${
                     inventoryItem.status === "In Stock"
@@ -92,14 +92,14 @@ function InventoryDetails() {
               </div>
 
               <div>
-                <h3 className="label">QUANTITY:</h3>
-                <p>{inventoryItem.quantity}</p>
+                <h3 className="inventory-information__label">QUANTITY:</h3>
+                <p className="inventory-information__text">{inventoryItem.quantity}</p>
               </div>
             </section>
 
             <div>
-              <h3 className="label">WAREHOUSE:</h3>
-              <p>{inventoryItem.warehouse_name}</p>
+              <h3 className="inventory-information__label">WAREHOUSE:</h3>
+              <p className="inventory-information__text">{inventoryItem.warehouse_name}</p>
             </div>
           </div>
         </section>

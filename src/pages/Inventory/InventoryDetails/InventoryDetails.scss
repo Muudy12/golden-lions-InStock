@@ -1,10 +1,6 @@
 @import "../../../styles/global.scss";
 @import "../../../styles/partials/mixins.scss";
 
-h3 {
-    color: $secondary-slate-color
-}
-
 .inventory-details {
     @include details-background;
 }
@@ -72,6 +68,13 @@ h3 {
     @include tablet {
         flex-direction: row;
         gap: 3rem;
+    }
+
+    &__label{
+        color: $secondary-slate-color
+    }
+    &{
+        color: $primary-text-color;
     }
 }
 
