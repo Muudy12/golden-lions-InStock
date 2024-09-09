@@ -20,7 +20,7 @@ function InventoryDetails() {
       const response = await api.getInventoryItemDetails(params.inventoryId);
       setInventoryItem(response);
     } catch (error) {
-      console.log(error)
+      console.log('There is is an error getting inventory details')
     }
   };
 
@@ -46,7 +46,7 @@ function InventoryDetails() {
             )}
           </section>
           <div className="inventory__header--wrapper">
-            <div
+            <a
               className="inventory__header--wrapper-link"
               onClick={() => navigate(`/inventory/${params.inventoryId}/edit`, {state: {from: location.pathname}})}
             >
@@ -56,7 +56,7 @@ function InventoryDetails() {
 
               />
               <span>Edit</span>
-            </div>
+            </a>
           </div>
         </section>
 

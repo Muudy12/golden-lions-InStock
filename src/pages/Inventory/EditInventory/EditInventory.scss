@@ -6,7 +6,7 @@
     align-items: center;
     background-color: $primary-white-color;
     width: 100%;
-    border-radius: 0.2rem;
+    border-radius: 0.25rem;
     box-shadow: 0 0.2rem 0.5rem 0 rgba($primary-text-color, 0.1);
     margin: 2rem 0;
 
@@ -18,14 +18,7 @@
         margin-bottom: 5rem;
     }
 
-    &__arrow-icon{
-        display: inline-block;
-        transition: transform 0.3s ease;
 
-        &:hover{
-            transform: translateX(-4px);
-        }
-    }
     &__title {
         display: flex;
         justify-content: flex-start;
@@ -179,7 +172,7 @@
   }
 
   &__radio-circle {
-    margin-right: 4px;
+    margin-right: .25rem;
     height: 0.85rem;
     width: 0.85rem;
     padding: 1px;

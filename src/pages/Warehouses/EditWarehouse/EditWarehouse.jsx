@@ -58,7 +58,7 @@ function EditWarehouse() {
       //success handler
       () => warehousesPageNavigator('/warehouses'),
       // error handler
-      (error) => console.log("There is an error editing the warehouse.", error)
+      () => console.log("There is an error editing the warehouse.")
   );
 };
 
@@ -86,4 +86,3 @@ function EditWarehouse() {
 }
 
 export default EditWarehouse;
-
