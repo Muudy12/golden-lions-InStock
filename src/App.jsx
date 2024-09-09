@@ -15,7 +15,9 @@ import "./App.scss";
 function App() {
   return (
     <>
+    <div className="full-page">
       <BrowserRouter>
+      <div className="full-page__content">
         <Header />
         <Routes>
           <Route path='/' element={<Warehouses />} />
@@ -30,8 +32,12 @@ function App() {
           <Route path='/inventory/:inventoryId/edit' element={<EditInventory />} />
           <Route path='/inventory/add' element={<AddNewInventory/>} />
         </Routes>
+      </div>
+      <div className="full-page__footer">
         <Footer />
+      </div>
       </BrowserRouter>
+    </div>
     </>
   );
 }
