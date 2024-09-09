@@ -41,7 +41,7 @@ function DeleteInventory({ inventoryId, inventoryName, updateInventoryList }) {
         <div className="delete-inventory__modal modal">
           <ReactSVG
             src={CloseIcon}
-            className="modal__close"
+            className="modal__close close"
             onClick={() => closeModal()}
           />
           <h1 className="modal__title">
