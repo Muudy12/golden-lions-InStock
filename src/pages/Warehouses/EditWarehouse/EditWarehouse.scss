@@ -95,6 +95,7 @@
       display: flex;
       justify-content: center;
       align-items: center;
+      cursor: pointer;
 
       @include tablet {
         flex: 0;
@@ -117,6 +118,7 @@
       align-items: center;
       color: $secondary-slate-color;
       background-color: $primary-white-color;
+      cursor: pointer;
 
       @include tablet {
         flex: 0;

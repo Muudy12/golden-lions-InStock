@@ -51,7 +51,7 @@ function DeleteModal({ warehouseName, warehouseId, updateWarehouseList }) {
             Cancel
           </button>
 
-          <button className="delete-modal__delete-btn" onClick={handleDelete}>
+          <button className="delete-modal__delete-btn" onClick={() => handleDelete()}>
             Delete
           </button>
         </div>
