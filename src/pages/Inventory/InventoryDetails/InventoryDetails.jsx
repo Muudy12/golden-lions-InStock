@@ -26,7 +26,7 @@ function InventoryDetails() {
 
   useEffect(() => {
     getInventoryItemDetails();
-    document.title = "Warehouse - Details";
+    document.title = "Inventory - Details";
   }, [params.inventoryId]);
 
   return (
