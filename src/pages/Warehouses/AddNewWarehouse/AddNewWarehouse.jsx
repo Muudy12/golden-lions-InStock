@@ -50,7 +50,7 @@ function AddNewWarehouse() {
         <Link to="/warehouses">
           <ReactSVG className="form__header-icon" src={ArrowBackIcon} />
         </Link>
-        <h1 className="form__header-title">Add Warehouse</h1>
+        <h1 className="form__header-title">Add New Warehouse</h1>
       </div>
       <form className="form__wrapper" onSubmit={submitFormHandler}>
         <WarehouseForm

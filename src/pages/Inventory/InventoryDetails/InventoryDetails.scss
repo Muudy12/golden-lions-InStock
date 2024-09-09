@@ -7,6 +7,11 @@ h3 {
 
 .inventory-details {
     @include details-background;
+    margin-top: 1.5rem;
+
+    @include tablet {
+        margin-top: 1.7rem;
+    }
 }
 
 .inventory {
@@ -16,6 +21,8 @@ h3 {
     &__header {
         @include container-flex(flex-end);
         color: $primary-text-color;
+        padding-top: 1rem;
+        padding-bottom: 0.3rem;
         &--title {
         margin: 0;
         }
