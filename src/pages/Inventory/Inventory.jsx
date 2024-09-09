@@ -12,6 +12,7 @@ function Inventory({ warehouseId }) {
   const navigate = useNavigate();
   const location = useLocation();
   const api = new Api();
+  const [onInventoryPage, setOnInventoryPage] = useState(warehouseId===undefined);
   const [inventoryList, setInventoryList] = useState([]);
   const [renderInventoryList, setRenderInventoryList] = useState([]);
   const [ascendingOrder, setAscendingOrder] = useState({
@@ -35,10 +36,10 @@ function Inventory({ warehouseId }) {
     document.title = "InStock - Inventory";
     const getInventoryList = async () => {
       let response;
-      if (warehouseId !== undefined) {
-        response = await api.getInventoriesGivenWarehouseId(warehouseId);
+      if (onInventoryPage) {
+        response = await api.getAllInventories();       
       } else {
-        response = await api.getAllInventories();
+        response = await api.getInventoriesGivenWarehouseId(warehouseId);
       }
       setInventoryList(response);
       setRenderInventoryList(response);
@@ -67,19 +68,38 @@ function Inventory({ warehouseId }) {
     setRenderInventoryList(searchResult);
   };
 
+  const sortOnWarehouseDetailsPage = (colName, order) => {
+    const sortedList = inventoryList.sort((a,b)=> {
+      let result;
+      if (typeof a[colName] === 'string'){
+        result = a[colName].localeCompare(b[colName]);
+      }else{
+        result = a[colName]-b[colName]
+      }
+      return order==="asc"?result: -result;
+    })
+      
+    setRenderInventoryList(sortedList);
+  }
+
   const handleSort = async (event, columnName) => {
     event.preventDefault();
-    setAscendingOrder((preState) => ({
-      ...preState,
-      [columnName]: !preState[columnName],
-    }));
-    const order = ascendingOrder[columnName] ? "asc" : "desc";
-    const queryString =
-      "?" + "sort_by=" + columnName + "&" + "order_by=" + order;
-    const response = await api.getAllInventories(queryString);
-    setInventoryList(response);
-    setRenderInventoryList(response);
-  };
+    setAscendingOrder((preState)=> ({
+      ...preState, 
+      [columnName]: !preState[columnName]
+    }))
+    const order = ascendingOrder[columnName]? "asc":"desc";
+
+    if (onInventoryPage){
+      const queryString = "?"+"sort_by="+columnName+"&"+"order_by="+order;
+      const response = await api.getAllInventories(queryString);
+      setInventoryList(response);
+      setRenderInventoryList(response);
+    }else {
+      sortOnWarehouseDetailsPage(columnName, order);
+    }
+    
+  }
 
   return (
     <div className="inventories-container">
@@ -137,13 +157,10 @@ function Inventory({ warehouseId }) {
               onClick={(event) => handleSort(event, "quantity")}
             />
           </h3>
-          <h3>
+          {onInventoryPage && <h3>
             WAREHOUSE
-            <ReactSVG
-              src={SortIcon}
-              onClick={(event) => handleSort(event, "warehouse_name")}
-            />
-          </h3>
+            <ReactSVG src={SortIcon} onClick={(event)=>handleSort(event, "warehouse_name")}/>
+          </h3>} 
           <h3>ACTIONS</h3>
         </div>
 
@@ -173,18 +190,18 @@ function Inventory({ warehouseId }) {
                       : "status--red"
                   }`}
                 >
-                  {inventoryItem.status}
+                  {inventoryItem.status.toUpperCase()}
                 </div>
               </h3>
               <h3 className="inventory-item__qty" data-label="QTY">
                 {inventoryItem.quantity}
               </h3>
-              <h3
+              {onInventoryPage && <h3
                 className="inventory-item__warehouse_id"
                 data-label="WAREHOUSE"
               >
                 {inventoryItem.warehouse_name}
-              </h3>
+              </h3>}
               <h3 className="inventory-item__actions" data-label="ACTIONS">
                 <DeleteInventory
                   inventoryId={inventoryItem.id}

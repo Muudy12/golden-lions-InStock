@@ -26,13 +26,17 @@
     justify-content: flex-start;
     align-items: center;
     gap: 0.4rem;
-    padding: 1.5rem 1rem 1.5rem;
+    padding: 1.5rem 1rem 1.5rem 3rem;
     border-bottom: 0.1rem solid $secondary-cloud-color;
     box-sizing: border-box;
+    position: relative;
     @include tablet {
       padding: 1.5rem 1.5rem 1.3rem !important;
     }
     &-icon {
+      position: absolute;
+      top:2.5rem;
+      left: 1.25rem;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -112,7 +116,7 @@
       color: $secondary-slate-color;
       width: 100%;
       position: relative;
-      padding-right: 5rem;
+      padding-right: 3rem;
       padding-left: 1.3rem;
       cursor: pointer;
 
