@@ -44,7 +44,7 @@
       width: 1.5rem;
       height: 1.5rem;
       padding-bottom: 1.5rem;
-
+      cursor: pointer;
 
       & div {
         display: flex;
@@ -86,7 +86,7 @@
         border: 0.1rem solid $secondary-cloud-color;
         height: 2.25rem;
         padding-left: 1rem;
-        color: $secondary-slate-color;
+        color: $primary-text-color;
       }
     }
     &-dropdown {
@@ -95,7 +95,7 @@
       border: 0.1rem solid $secondary-cloud-color;
       height: 2.75rem;
       padding-left: 1rem;
-      color: $secondary-slate-color;
+      color: $primary-text-color;
       appearance: none;
       background-image: url("../../../assets/icons/arrow_drop_down-24px.svg");
       background-repeat: no-repeat;
@@ -182,7 +182,6 @@
           width: calc(100% - 2.2rem);
           height: 7.5rem;
           padding: 0.5rem 1rem;
-          font-family: "Titillium Web";
           resize: none;
         }
       }

@@ -18,6 +18,7 @@
       @include button-base-alt;
       background-color: $primary-element-color;
       color: $primary-white-color;
+      cursor: pointer;
       @include tablet{
         white-space: nowrap;
       }
