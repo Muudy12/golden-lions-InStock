@@ -404,6 +404,13 @@
   }
 }
 
+@mixin liner-gradient ($height: 12.5rem) {
+  background: linear-gradient(
+    rgb(35, 41, 64) $height,
+    rgba(247, 248, 249, 1) 0rem
+  );
+}
+
 @mixin details-background {
   background-color: $primary-white-color;
   border-radius: 0.25rem;
