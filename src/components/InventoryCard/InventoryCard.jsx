@@ -46,8 +46,8 @@ function InventoryCard({cardTitle, inventoryItem}) {
   }, []);
 
   const warehouseTypes = Array.from(
-    new Set(inventoryList.map((item)=>([item.warehouse_name, item.warehouse_id])).map(JSON.stringify)));
-  const categoryTypes = Array.from(new Set(inventoryList.map((item)=>(item.category))));
+    new Set(inventoryList?.map((item)=>([item.warehouse_name, item.warehouse_id])).map(JSON.stringify)));
+  const categoryTypes = Array.from(new Set(inventoryList?.map((item)=>(item.category))));
 
   const handleChange = (event) => {
     const { name, value, type, checked } = event.target;
@@ -159,7 +159,7 @@ function InventoryCard({cardTitle, inventoryItem}) {
           </div>
           <div className='inventory-card__form-availability'>
             <h2 className="inventory-card__form-details-title">Item Availability</h2>
-            <h3 className="inventory-card__form-label">Category</h3>
+            <h3 className="inventory-card__form-label">Status</h3>
             <div className='inventory-card__form-radios'>
 
             <label className={`inventory-card__form-radio ${inStock ? "inventory-card__form-radio--selected" : ""}`}>
