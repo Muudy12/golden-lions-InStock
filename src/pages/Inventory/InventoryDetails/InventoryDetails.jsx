@@ -20,7 +20,7 @@ function InventoryDetails() {
       const response = await api.getInventoryItemDetails(params.inventoryId);
       setInventoryItem(response);
     } catch (error) {
-      console.log(error)
+      console.log('There is is an error getting inventory details')
     }
   };
 
