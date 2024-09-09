@@ -18,6 +18,9 @@
       @include button-base-alt;
       background-color: $primary-element-color;
       color: $primary-white-color;
+      @include tablet{
+        white-space: nowrap;
+      }
       &:hover {
         background-color: $background-graphite-color;
       }
