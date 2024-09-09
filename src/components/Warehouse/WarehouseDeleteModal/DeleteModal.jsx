@@ -44,7 +44,7 @@ function DeleteModal({ warehouseName, warehouseId, updateWarehouseList }) {
             className="delete-modal__close"
           />
         </div>
-        <h2 className="delete-modal__title">{`Delete ${warehouseName} warehouse?`}</h2>
+        <h1 className="delete-modal__title">{`Delete ${warehouseName} warehouse?`}</h1>
         <p className="delete-modal__text large">{`Please confirm that you'd like to delete the ${warehouseName} from the list of warehouses. You won't be able to undo this action?`}</p>
         <div className="delete-modal__container">
           <button className="delete-modal__cancel-btn" onClick={closeModal}>
