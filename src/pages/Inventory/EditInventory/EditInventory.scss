@@ -18,6 +18,9 @@
         margin-bottom: 5rem;
     }
 
+    &__arrow-icon{
+      cursor: pointer;
+    }
 
     &__title {
         display: flex;
@@ -119,7 +122,6 @@
     @include formStyling;
     width: calc(100% - 1.65rem);
     height: 2.25rem;
-
     &--quantity {
       @include desktop {
         width: 7.625rem;
@@ -132,7 +134,6 @@
     width: calc(100% - 2.2rem);
     height: 7.5rem;
     padding: 0.5rem 1rem;
-    font-family: "Titillium Web";
     resize: none;
   }
 
@@ -151,7 +152,6 @@
     @include formStyling;
     width: 100%;
     height: 2.25rem;
-    font-family: "Titillium Web";
   }
 
   &__status {
