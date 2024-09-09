@@ -1,4 +1,4 @@
-@import "../../styles/global.scss";
+@import "../../../styles/global.scss";
 
 .inventory-card {
   display: flex;
@@ -31,7 +31,8 @@
     box-sizing: border-box;
     position: relative;
     @include tablet {
-      padding: 1.5rem 1.5rem 1.3rem !important;
+      padding: 1.5rem 1.5rem 1.3rem 3rem !important;
+
     }
     &-icon {
       position: absolute;
@@ -44,9 +45,6 @@
       height: 1.5rem;
       padding-bottom: 1.5rem;
 
-      @include tablet {
-        padding: 0.5rem 0 0;
-      }
 
       & div {
         display: flex;

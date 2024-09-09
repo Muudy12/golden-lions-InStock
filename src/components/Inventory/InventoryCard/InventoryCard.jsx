@@ -1,11 +1,11 @@
 import { React, useEffect, useState } from 'react';
 import { ReactSVG } from "react-svg";
 import { useNavigate  } from 'react-router-dom';
-import { Api } from "../../utils/utils.js"
+import { Api } from "../../../utils/utils"
 
 import './InventoryCard.scss'
-import ArrowBackIcon from "../../assets/icons/arrow_back-24px.svg"
-import FormError from '../FormError/FormError.jsx';
+import ArrowBackIcon from "../../../assets/icons/arrow_back-24px.svg"
+import FormError from '../../FormError/FormError.jsx';
 
 function InventoryCard({cardTitle, inventoryItem}) {
 
