@@ -1,0 +1,132 @@
+@import "../../styles/global.scss";
+
+.inventories {
+  @include displayListContainer();
+
+  &-container {
+    @include displayMainContainer();
+  }
+
+  &__title {
+    @include displayListTitle();
+
+    & .options {
+      @include displayListTitleOptions();
+
+      &__add-btn {
+        @include tablet {
+          width: 8rem !important;
+        }
+      }
+    }
+  }
+
+  & h3 {
+    @include tablet {
+      &:nth-of-type(1) {
+        width: 8rem;
+      }
+
+      &:nth-of-type(2) {
+        width: 7rem;
+      }
+
+      &:nth-of-type(3) {
+        width: 8rem;
+      }
+
+      &:nth-of-type(4) {
+        width: 4rem;
+      }
+
+      &:nth-of-type(5) {
+        width: 7rem;
+      }
+
+      &:nth-of-type(6) {
+        width: 5rem;
+      }
+    }
+  }
+
+  &__list {
+    &-headers {
+      @include displayListHeaders();
+    }
+
+    &-item {
+      @include displayListItem();
+
+      & .inventory-item {
+        &__title {
+          @include arrow-animation;
+          order: 0;
+        }
+
+        &__category {
+          order: 1;
+
+          @include tablet {
+            order: 0;
+          }
+        }
+
+        &__status {
+          height: 24px;
+          padding-left: 8px;
+          padding-right: 8px;
+          border-radius: 20px;
+          order: 0;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          font-weight: 600;
+
+          @include tablet {
+            height: 26px;
+          }
+
+          @include desktop {
+            height: 26px;
+          }
+
+          &.status--green {
+            color: $supporting-green-color;
+            background-color: rgba($supporting-green-color, 0.07);
+          }
+
+          &.status--red {
+            color: $supporting-red-color;
+            background-color: rgba($supporting-red-color, 0.07);
+          }
+        }
+
+        &__qty {
+          order: 1;
+
+          @include tablet {
+            order: 0;
+          }
+        }
+
+        &__warehouse_id {
+          order: 3;
+          margin-left: 50%;
+
+          @include tablet {
+            margin-left: 0;
+            order: 0;
+          }
+        }
+
+        &__actions {
+          order: 4;
+
+          @include tablet {
+            order: 0;
+          }
+        }
+      }
+    }
+  }
+}

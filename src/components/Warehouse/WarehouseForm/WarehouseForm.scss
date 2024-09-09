@@ -1,0 +1,32 @@
+@import "../../../styles/global.scss";
+
+.form__element {
+    box-sizing: border-box;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+
+    @include tablet {
+        flex-direction: row;
+    }
+
+    &-warehouse {
+        @include element-base-warehouse;
+        border-bottom: 0.1rem solid $secondary-cloud-color;border-bottom: 0.1rem solid $secondary-cloud-color;
+        @include tablet {
+            border-right: 0.1rem solid $secondary-cloud-color;
+        }
+        &-title {
+            @include title-base-warehouse;
+        }
+    }
+    
+    &-contact {
+        @include element-base-warehouse;
+        padding: 1.5rem  1.5rem  0rem  1.5rem;
+
+        &-title {
+            @include title-base-warehouse;
+        }
+    }
+}

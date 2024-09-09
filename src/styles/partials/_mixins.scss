@@ -1,13 +1,849 @@
-@use "./variables" as *;
+@mixin buttonBase {
+  border: none;
+  cursor: pointer;
+  font-family: "Titillium Web";
+}
 
-@mixin tablet {
-    @media (min-width: $tablet-breakpoint) {
-      @content;
+@mixin roundButton {
+  @include buttonBase;
+  font-weight: 400;
+  border-radius: 20px;
+  height: 36px;
+  width: 100%;
+  padding: 0.45rem;
+  border: none;
+  cursor: pointer;
+  font-family: "Titillium Web";
+
+  @include tablet {
+    padding: 0 1rem;
+    width: fit-content;
+  }
+}
+
+@mixin displayMainContainer {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 2.5rem;
+}
+
+@mixin displayListContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: $primary-white-color;
+  width: 100%;
+  border-radius: .25rem;
+  box-shadow: 0 0.2rem 0.5rem 0 rgba($primary-text-color, 0.1);
+  margin-top: 1.5rem;
+  min-width: 18rem;
+  @include responsiveListContainer();
+}
+
+@mixin responsiveListContainer {
+  @include tablet {
+    margin: 1.6875rem 0 2.3rem;
+    min-width: 44rem;
+
+    & div h3:last-of-type {
+      max-width: 5rem !important;
     }
   }
-  
-  @mixin desktop {
-    @media (min-width: $desktop-breakpoint) {
-      @content;
+
+  @include desktop {
+    margin-bottom: 0;
+    min-width: 63.75rem;
+
+    & div {
+      gap: 16px;
+      min-width: fit-content;
+
+      & h3:nth-of-type(2) {
+        padding-right: 2rem;
+      }
     }
   }
+}
+
+@mixin displayListTitle {
+  @include listSidePadding();
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  align-items: center;
+  padding-top: 0.9rem;
+  padding-bottom: 0.3rem;
+  box-sizing: border-box;
+
+  & h1 {
+    align-self: flex-start;
+    margin-bottom: 0;
+    font-size: 1.75rem;
+
+    @include tablet {
+      margin: 0;
+      font-size: 2rem;
+    }
+  }
+
+  @include tablet {
+    flex-direction: row;
+    justify-content: space-between;
+    padding-top: 2rem;
+    padding-bottom: 1.35rem;
+  }
+}
+
+@mixin searchFormButtonHeight {
+  height: 2.25rem;
+  border-radius: 2rem;
+
+  @include tablet {
+    height: 2.375rem;
+  }
+}
+
+@mixin displayListTitleOptions {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: 16px 0;
+  gap: 16px;
+
+  & button,
+  & form {
+    @include searchFormButtonHeight();
+    box-sizing: border-box;
+  }
+
+  & form {
+    @include displaySearchForm();
+  }
+
+  & button {
+    @include displayAddBtn();
+  }
+
+  @include tablet {
+    flex-direction: row;
+    width: fit-content;
+    padding: 0;
+  }
+}
+
+@mixin displaySearchForm {
+  width: 100%;
+  position: relative;
+  border: 0.1rem solid $secondary-cloud-color;
+  overflow: hidden;
+
+  @include tablet {
+    width: 185px;
+  }
+
+  @include desktop {
+    width: 17.125rem;
+  }
+
+  &::after {
+    content: "";
+    display: flex;
+    width: 32px;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    right: 8px;
+    background-image: url("../../assets/icons/search-24px.svg");
+    background-position: center;
+    background-size: 1.8em;
+    background-repeat: no-repeat;
+
+    @include tablet {
+      background-size: 1.5em;
+    }
+  }
+
+  &:focus-within {
+    border-color: $primary-element-color;
+  }
+
+  & input {
+    @include buttonBase();
+    width: 90%;
+    height: 100%;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    font-size: 0.77rem;
+    padding: 1rem;
+
+    @include tablet {
+      padding: 0.8rem;
+      font-size: 0.8rem;
+      width: 85%;
+    }
+
+    &:focus {
+      outline: none;
+
+      &::placeholder {
+        opacity: 0;
+      }
+    }
+  }
+}
+
+@mixin listSidePadding() {
+  padding-left: 24px;
+  padding-right: 24px;
+
+  @include tablet {
+    padding-left: 32px;
+    padding-right: 32px;
+  }
+}
+
+@mixin displayListItem {
+  @include listSidePadding();
+  display: flex;
+  flex-wrap: wrap;
+  border-top: 0.0835rem solid $secondary-cloud-color;
+  padding-top: 0.6rem;
+  padding-bottom: 0.8rem;
+  box-sizing: border-box;
+  width: 100%;
+  justify-content: space-between;
+
+  @include tablet {
+    padding-top: 16px;
+    padding-bottom: 16px;
+    flex-wrap: nowrap;
+
+    &:nth-of-type(2) {
+      border-top: 0;
+      padding-top: 8px;
+      padding-bottom: 8px;
+    }
+  }
+
+  @include desktop {
+    padding-top: 8px;
+    padding-bottom: 8px;
+  }
+
+  &:hover {
+    background-color: rgba($primary-element-color, 0.1);
+  }
+
+  & h3 {
+    width: 50%;
+    position: relative;
+    font-size: 13px;
+    line-height: 20px;
+    margin: 8px 0;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    font-weight: 400;
+
+    &:first-of-type {
+      font-weight: 600;
+    }
+
+    & span {
+      font-size: 13px;
+      line-height: 20px;
+    }
+
+    @include tablet {
+      width: 128px;
+      flex-wrap: nowrap;
+      font-size: 14px;
+      line-height: 22px;
+
+      & span {
+        font-size: 14px;
+        line-height: 22px;
+      }
+    }
+
+    @include desktop {
+      flex: 1;
+    }
+
+    &::before {
+      content: attr(data-label);
+      display: block;
+      position: relative;
+      font-size: 0.6875rem;
+      line-height: 1rem;
+      font-weight: 600;
+      color: $secondary-slate-color;
+      width: 100%;
+      padding-bottom: 0.25rem;
+
+      @include tablet {
+        display: none;
+      }
+    }
+
+    &:first-of-type {
+      color: $primary-element-color;
+      font-weight: 600;
+
+      & span:hover {
+        text-decoration: underline;
+        cursor: pointer;
+      }
+
+      & svg {
+        height: 1.25rem;
+        width: 1.25rem;
+        display: flex;
+        align-self: flex-end;
+        box-sizing: border-box;
+        cursor: pointer;
+      }
+    }
+
+    &:last-of-type {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      &::before {
+        display: none;
+      }
+
+      @include tablet {
+        justify-content: flex-end;
+        gap: 16px;
+      }
+
+      & svg {
+        display: flex;
+        cursor: pointer;
+      }
+    }
+  }
+}
+
+@mixin displayAddBtn {
+  @include buttonBase;
+  width: 100%;
+  background-color: $primary-element-color;
+  color: $primary-white-color;
+  outline: none;
+  font-size: 0.8rem;
+  padding: 0.45rem 1rem;
+  font-weight: 600;
+  box-sizing: border-box;
+
+  &:hover {
+    background-color: $background-graphite-color;
+  }
+}
+
+@mixin displayListHeaders {
+  display: none;
+
+  @include tablet {
+    @include listSidePadding();
+    display: flex;
+    width: 100%;
+    padding: 0;
+    box-sizing: border-box;
+    background-color: $background-light-grey;
+    justify-content: space-between;
+  }
+
+  & h3 {
+    @include tablet {
+      font-size: 0.75rem;
+      line-height: 1.125rem;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      color: $secondary-slate-color;
+
+      &:last-of-type {
+        justify-content: end;
+      }
+
+      & svg {
+        height: 1rem;
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+      }
+    }
+
+    @include desktop {
+      flex: 1;
+    }
+  }
+}
+
+@mixin formStyling {
+  border-radius: 1.25rem;
+  border: 0.1rem solid $secondary-cloud-color;
+  padding: 0 0.75rem;
+  color: $primary-text-color;
+  font-family: "Titillium Web";
+
+  &:focus {
+    border: 0.1rem solid $primary-element-color;
+    outline: none;
+  }
+
+  &::placeholder {
+    font-family: "Titillium Web";
+  }
+}
+
+@mixin liner-gradient ($height: 12.5rem) {
+  background: linear-gradient(
+    rgb(35, 41, 64) $height,
+    rgba(247, 248, 249, 1) 0rem
+  );
+}
+
+@mixin details-background {
+  background-color: $primary-white-color;
+  border-radius: 0.25rem;
+  box-shadow: 0 0.2rem 0.5rem 0 rgba(19, 24, 44, 0.1);
+  margin: 2rem 0;
+}
+
+@mixin container-flex($align: center, $justify: space-between, $gap: 16px) {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: $align;
+  justify-content: $justify;
+  gap: $gap;
+}
+
+@mixin border-bottom($color: $secondary-cloud-color, $width: 1px) {
+  border-bottom: $width solid $color;
+}
+
+@mixin responsive-border-radius($radius-default: 50%, $radius-tablet: 40px) {
+  border-radius: $radius-default;
+
+  @include tablet {
+    border-radius: $radius-tablet;
+  }
+}
+
+@mixin responsive-padding(
+  $padding-default: 1rem,
+  $padding-tablet: 0.375rem 1rem
+) {
+  padding: $padding-default;
+
+  @include tablet {
+    padding: $padding-tablet;
+  }
+}
+
+@mixin hidden-span {
+  span {
+    display: none;
+
+    @include tablet {
+      display: inline;
+    }
+  }
+}
+
+@mixin responsive-status($height-default: 1.5rem, $height-tablet: 1.625rem) {
+  min-height: $height-default;
+  text-wrap: nowrap;
+
+  @include tablet {
+    height: $height-tablet;
+  }
+
+  @include desktop {
+    height: $height-tablet;
+  }
+}
+
+@mixin status-color($color) {
+  color: $color;
+  background-color: rgba($color, 0.07);
+  font-weight: 600;
+  border-radius: 1.25rem;
+  padding: 0 0.5rem;
+}
+
+@mixin flex-column($gap: 16px) {
+  display: flex;
+  flex-direction: column;
+  gap: $gap;
+}
+
+@mixin description-text {
+  display: inline;
+
+  @include tablet {
+    display: block;
+  }
+}
+
+@mixin detailsContainer {
+  margin-top: 1.5rem;
+  padding-top: 0.58rem;
+  min-width: 18rem;
+  width: 100%;
+
+  @include tablet {
+    margin-top: 1.7rem;
+    padding-top: 0.3rem;
+    min-width: 44rem;
+  }
+
+  @include desktop {
+    min-width: 63.75;
+  }
+}
+
+@mixin detailsTitle {
+  padding: 1.5rem 1.5rem 1.3rem;
+
+  & section,
+  & div {
+    gap: 0.5rem;
+    display: flex;
+    align-items: center;
+
+    & a {
+      height: 1.5rem;
+      width: 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      & div {
+        display: flex;
+        margin-top: 0.05rem;
+        margin-left: 0.05rem;
+        width: 100%;
+        height: 100%;
+      }
+    }
+  }
+
+  & > div {
+    display: flex;
+    box-sizing: border-box;
+    width: 2.25rem;
+    height: 2.25rem;
+    align-items: center;
+    justify-content: center;
+
+    @include tablet {
+      width: 5.0625rem;
+      height: 2.375rem;
+    }
+
+    & a {
+      display: flex;
+      box-sizing: border-box;
+      height: 1.25rem;
+      width: 1.25rem;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      color: $primary-white-color;
+
+      & div {
+        display: flex;
+        width: 100%;
+        height: 100%;
+        align-items: center;
+        justify-content: center;
+      }
+    }
+  }
+
+  @include tablet {
+    padding: 1.7rem 2rem 1.3rem;
+  }
+}
+
+@mixin detailsInformation {
+  margin: 0;
+  padding: 1rem 1.5rem;
+}
+
+@mixin arrow-animation {
+  svg {
+    transition: transform 0.3s ease;
+  }
+
+  &:hover svg {
+    transform: translateX(4px);
+  }
+}
+
+@mixin displayListContainer-alt {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: $primary-white-color;
+  width: 100%;
+  border-radius: 0.25rem;
+  box-shadow: 0 0.2rem 0.5rem 0 rgba($primary-text-color, 0.1);
+  margin: 1.5rem 0 2rem;
+  min-width: 18rem;
+
+  @include tablet {
+    margin-top: 1.7rem;
+    margin-bottom: 15rem;
+  }
+
+  @include desktop {
+    margin-bottom: 3rem;
+  }
+}
+
+@mixin displayListHeaders-alt {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 2rem 1rem 1.5rem;
+  border-bottom: 0.1rem solid $secondary-cloud-color;
+  box-sizing: border-box;
+
+  @include tablet {
+    padding: 2rem 1.5rem 1.3rem !important;
+  }
+
+  &-icon {
+    padding-top: 0.5rem;
+  }
+
+  &-title {
+    margin: 0;
+    font-size: 1.75rem;
+
+    @include tablet {
+      font-size: 2rem;
+      line-height: 2.5rem;
+    }
+  }
+}
+
+@mixin form-wrapper {
+  width: 100%;
+  padding-top: 1.5rem;
+
+  @include tablet {
+    flex-direction: row;
+  }
+}
+
+@mixin buttons-wrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  padding: 1rem 1.5rem;
+  gap: 1rem;
+  background-color: $background-light-grey;
+
+  @include tablet {
+    justify-content: flex-end;
+    padding-right: 2rem;
+    padding-top: 1rem;
+    margin-top: 1.5rem;
+  }
+
+  @include desktop {
+    padding-right: 3rem;
+  }
+}
+
+@mixin button-base-alt {
+  all: unset;
+  border-radius: 1.25rem;
+  height: 2.25rem;
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  @include tablet {
+    flex: 0;
+    height: 2.375rem;
+    padding: 0rem 1rem;
+  }
+}
+
+@mixin element-base-warehouse {
+  display: flex;
+  flex-direction: column;
+  padding: 0rem 1.5rem;
+
+  @include tablet {
+    flex: 1;
+    padding: 0rem 2rem;
+    border-bottom: none;
+  }
+
+  @include desktop {
+    padding: 0.5rem 3rem;
+  }
+}
+
+@mixin title-base-warehouse {
+  margin: 0;
+  padding-bottom: 1.5rem;
+
+  @include tablet {
+    padding-bottom: 2rem;
+  }
+}
+
+@mixin deleteModalsOverlay {
+  display: flex;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba($color: $background-graphite-color, $alpha: 0.8);
+}
+
+@mixin deleteModalsContentContainer {
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  background-color: $primary-white-color;
+  border-radius: 0;
+  box-shadow: 0 0.2rem 0.5rem 0
+    rgba($color: $background-graphite-color, $alpha: 0.1);
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 100%;
+
+  @include tablet {
+    padding: 2.3rem 4rem;
+    width: 42rem;
+    height: 16.375rem;
+    position: absolute;
+    top: 11.5rem;
+    border-radius: 0.25rem;
+  }
+
+  @include desktop {
+    width: 42rem;
+    height: 16.375rem;
+  }
+
+  & div.close {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    cursor: pointer;
+  }
+
+  & h1 {
+    margin: 2rem 0 0;
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    width: 100%;
+    font-size: 1.76rem;
+
+    @include tablet {
+      margin: 0;
+      flex: 1;
+      font-size: 2rem;
+      line-height: 2.5rem;
+    }
+  }
+
+  & p {
+    flex: 1;
+    font-size: 0.93rem;
+    line-height: 1.8rem;
+    width: 100%;
+
+    @include tablet {
+      font-size: 1rem;
+      line-height: 1.75rem;
+      display: flex;
+      flex-direction: column;
+    }
+
+    @include desktop {
+      font-size: 1.09rem;
+    }
+  }
+
+  & button {
+    width: 43vw;
+    height: 2.6rem;
+    border-radius: 1.5rem;
+    border: 0.1rem solid $secondary-cloud-color;
+    cursor: pointer;
+    background-color: inherit;
+    font-weight: 600;
+    color: $secondary-slate-color;
+    font-family: "Titillium Web";
+
+    @include tablet {
+      font-size: 0.8rem;
+      width: 4.5rem;
+      height: 2.375rem;
+      border-radius: 1.25rem;
+    }
+
+    &:first-of-type {
+      &:hover {
+        color: $primary-element-color;
+        border-color: $primary-element-color;
+      }
+    }
+
+    &:last-of-type {
+      background-color: $supporting-red-color;
+      border-color: $supporting-red-color;
+      color: $primary-white-color;
+
+      &:hover {
+        background-color: $background-graphite-color;
+        border-color: $background-graphite-color;
+      }
+    }
+  }
+}
+
+@mixin deleteModalsButtonsContainer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  margin-top: 0.5rem;
+  margin-bottom: 1rem;
+
+  @include tablet {
+    flex: 1;
+    justify-content: end;
+    gap: 1.1rem;
+    margin-bottom: 0;
+  }
+}

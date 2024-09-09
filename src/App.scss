@@ -1,1 +1,28 @@
-@use "./styles/global.scss" as *;
+@import "./styles/global.scss";
+
+body {
+  margin: 0;
+  padding: 1.5rem 1rem;
+  position: relative;
+
+  @include tablet {
+    padding: 1.6875rem 2rem;
+  }
+
+  @include desktop {
+    padding: 1.6875rem 8.125rem;
+  }
+}
+
+.full-page {
+  @include flex-column(0);
+  min-height: 95vh;
+  &__content{
+    flex: 1;
+    @include flex-column(0);
+  }
+  &__footer{
+    @include flex-column(0);
+  }
+}
+

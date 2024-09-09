@@ -1,0 +1,48 @@
+@import "../../../styles/global.scss";
+
+.form__element-item{
+    display: flex;
+    flex-direction: column;
+    height: 90px;
+    &-label{
+        margin: 0rem;
+        padding: 0rem  .25rem  .25rem  .25rem;
+        width: auto;
+    }
+    &-input{
+        all: unset;
+        box-sizing: border-box;
+        border-radius: 1.25rem;
+        border: 0.1rem solid $secondary-cloud-color;
+        height: 2.25rem;
+        padding-left: 1rem;
+        color: $primary-text-color;
+        @include tablet {
+            height: 2.375rem;
+        }
+        &:focus {
+            border: 0.1rem solid $primary-element-color;
+            outline: none;
+        }
+        &.invalid {
+            border-color: $supporting-red-color; 
+            &:focus {
+                border-color: $supporting-red-color; 
+            }
+        }
+        &-error{
+            display: flex;
+            flex-direction: row;
+            margin-top: .25rem;
+            &-icon svg{
+                width: 16px;
+                height: 16px;
+            }
+            &-message{
+                margin: 0;
+                color: $supporting-red-color;
+                padding-left: .25rem;
+            }
+        }
+    }
+}

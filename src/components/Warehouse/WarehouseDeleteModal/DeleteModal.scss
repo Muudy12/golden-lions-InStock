@@ -1,0 +1,13 @@
+@import "../../../styles/global.scss";
+
+.delete-modal {
+  @include deleteModalsOverlay;
+
+  &__outer-container {
+    @include deleteModalsContentContainer;
+  }
+
+  &__container {
+    @include deleteModalsButtonsContainer;
+  }
+}

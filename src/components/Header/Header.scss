@@ -1,0 +1,90 @@
+@import "../../styles/global.scss";
+
+body {
+  @include liner-gradient;
+  min-height: 100vh;
+  @include tablet {
+    @include liner-gradient(11.625rem);
+  }
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+
+  @include tablet {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &-logo {
+    width: 8.0369rem;
+    height: 1.75rem;
+    margin: auto;
+
+    @include tablet {
+      margin: 0;
+    }
+  }
+
+  &-link {
+    align-self: center;
+  }
+
+  &-links {
+    display: flex;
+    justify-content: space-around;
+
+    @include tablet {
+      gap: 1rem;
+    }
+
+    & h3 {
+      margin: 0;
+
+      &:first-of-type {
+        width: 10.25rem;
+
+        @include tablet {
+          width: 6.6875rem;
+        }
+      }
+
+      &:last-of-type {
+        width: 10.1875rem;
+
+        @include tablet {
+          width: 5.625rem;
+        }
+      }
+    }
+
+    &__item {
+      display: flex;
+      box-sizing: border-box;
+      border-radius: 1.25rem;
+      align-items: center;
+      justify-content: center;
+      height: 2.25rem;
+      font-size: 0.8125rem;
+      text-decoration: none;
+      color: $secondary-cloud-color;
+
+      &:hover {
+        text-decoration: underline;
+      }
+
+      @include tablet {
+        font-size: 0.875rem;
+        height: 2.375rem;
+      }
+    }
+
+    .active-link {
+      background-color: $primary-text-color;
+      color: $primary-white-color;
+    }
+  }
+}

@@ -1,0 +1,15 @@
+@import "../../../styles/global.scss";
+
+.delete-inventory {
+  @include deleteModalsOverlay;
+
+  &__modal {
+    @include deleteModalsContentContainer;
+  }
+
+  & .modal {
+    &__buttons {
+      @include deleteModalsButtonsContainer;
+    }
+  }
+}

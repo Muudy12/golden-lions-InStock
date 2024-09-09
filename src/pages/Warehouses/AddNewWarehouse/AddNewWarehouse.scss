@@ -1,0 +1,42 @@
+@import "../../../styles/global.scss";
+
+.form {
+  @include displayListContainer-alt;
+
+  &__header {
+    @include displayListHeaders-alt;
+  }
+
+  &__wrapper {
+    @include form-wrapper;
+  }
+
+  &__element-buttons {
+    @include buttons-wrapper;
+
+    &-addWarehouse {
+      @include button-base-alt;
+      background-color: $primary-element-color;
+      color: $primary-white-color;
+      cursor: pointer;
+      @include tablet{
+        white-space: nowrap;
+      }
+      &:hover {
+        background-color: $background-graphite-color;
+      }
+    }
+
+    &-cancel {
+      @include button-base-alt;
+      border: 0.1rem solid $secondary-cloud-color;
+      color: $secondary-slate-color;
+      background-color: $primary-white-color;
+
+      &:hover {
+        border-color: $primary-element-color;
+        color: $primary-element-color;
+      }
+    }
+  }
+}
