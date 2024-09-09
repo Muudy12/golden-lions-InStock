@@ -15,7 +15,6 @@
   cursor: pointer;
   font-family: "Titillium Web";
 
-
   @include tablet {
     padding: 0 1rem;
     width: fit-content;
@@ -432,8 +431,10 @@
   }
 }
 
-@mixin responsive-padding($padding-default: 1rem,
-  $padding-tablet: 0.375rem 1rem) {
+@mixin responsive-padding(
+  $padding-default: 1rem,
+  $padding-tablet: 0.375rem 1rem
+) {
   padding: $padding-default;
 
   @include tablet {
@@ -529,7 +530,7 @@
     }
   }
 
-  &>div {
+  & > div {
     display: flex;
     box-sizing: border-box;
     width: 2.25rem;
@@ -601,7 +602,6 @@
   @include desktop {
     margin-bottom: 3rem;
   }
-
 }
 
 @mixin displayListHeaders-alt {
@@ -661,7 +661,6 @@
   @include desktop {
     padding-right: 3rem;
   }
-
 }
 
 @mixin button-base-alt {
@@ -685,7 +684,6 @@
   flex-direction: column;
   padding: 0rem 1.5rem;
 
-
   @include tablet {
     flex: 1;
     padding: 0rem 2rem;
@@ -703,5 +701,142 @@
 
   @include tablet {
     padding-bottom: 2rem;
+  }
+}
+
+@mixin deleteModalsOverlay {
+  display: flex;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba($color: $background-graphite-color, $alpha: 0.8);
+}
+
+@mixin deleteModalsContentContainer {
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  background-color: $primary-white-color;
+  border-radius: 0;
+  box-shadow: 0 0.2rem 0.5rem 0
+    rgba($color: $background-graphite-color, $alpha: 0.1);
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 100%;
+
+  @include tablet {
+    padding: 2.3rem 4rem;
+    width: 42rem;
+    height: 16.375rem;
+    position: absolute;
+    top: 11.5rem;
+    border-radius: 0.25rem;
+  }
+
+  @include desktop {
+    width: 42rem;
+    height: 16.375rem;
+  }
+
+  & div.close {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    cursor: pointer;
+  }
+
+  & h1 {
+    margin: 2rem 0 0;
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    width: 100%;
+    font-size: 1.76rem;
+
+    @include tablet {
+      margin: 0;
+      flex: 1;
+      font-size: 2rem;
+      line-height: 2.5rem;
+    }
+  }
+
+  & p {
+    flex: 1;
+    font-size: 0.93rem;
+    line-height: 1.8rem;
+    width: 100%;
+
+    @include tablet {
+      font-size: 1rem;
+      line-height: 1.75rem;
+      display: flex;
+      flex-direction: column;
+    }
+
+    @include desktop {
+      font-size: 1.09rem;
+    }
+  }
+
+  & button {
+    width: 10.1875rem;
+    height: 2.6rem;
+    border-radius: 1.5rem;
+    border: 0.1rem solid $secondary-cloud-color;
+    cursor: pointer;
+    background-color: inherit;
+    font-weight: 600;
+    color: $secondary-slate-color;
+    font-family: "Titillium Web";
+
+    @include tablet {
+      font-size: 0.8rem;
+      width: 4.5rem;
+      height: 2.375rem;
+      border-radius: 1.25rem;
+    }
+
+    &:first-of-type {
+      &:hover {
+        color: $primary-element-color;
+        border-color: $primary-element-color;
+      }
+    }
+
+    &:last-of-type {
+      background-color: $supporting-red-color;
+      border-color: $supporting-red-color;
+      color: $primary-white-color;
+
+      &:hover {
+        background-color: $background-graphite-color;
+        border-color: $background-graphite-color;
+      }
+    }
+  }
+}
+
+@mixin deleteModalsButtonsContainer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  margin-top: 0.5rem;
+  margin-bottom: 1rem;
+
+  @include tablet {
+    flex: 1;
+    justify-content: end;
+    gap: 1.1rem;
+    margin-bottom: 0;
   }
 }

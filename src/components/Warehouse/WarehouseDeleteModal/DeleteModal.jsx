@@ -26,10 +26,13 @@ function DeleteModal({ warehouseName, warehouseId, updateWarehouseList }) {
     setShowModal(false);
   };
   return (
-    <div>
-      <a className="warehouse__delete-btn" onClick={openModal}>
-        <ReactSVG src={DeleteIcon} />
-      </a>
+    <>
+      <ReactSVG
+        src={DeleteIcon}
+        className="warehouse__delete-btn"
+        onClick={openModal}
+      />
+
       <ReactModal
         isOpen={showModal}
         onRequestClose={closeModal}
@@ -37,26 +40,31 @@ function DeleteModal({ warehouseName, warehouseId, updateWarehouseList }) {
         className="delete-modal"
         overlayClassName="delete-modal__overlay"
       >
-        <div className="delete-modal__top-container">
-          <img
-            src={CloseIcon}
-            onClick={closeModal}
-            className="delete-modal__close"
-          />
-        </div>
-        <h1 className="delete-modal__title">{`Delete ${warehouseName} warehouse?`}</h1>
-        <p className="delete-modal__text large">{`Please confirm that you'd like to delete the ${warehouseName} from the list of warehouses. You won't be able to undo this action?`}</p>
-        <div className="delete-modal__container">
-          <button className="delete-modal__cancel-btn" onClick={closeModal}>
-            Cancel
-          </button>
+        <div className="delete-modal__outer-container">
+          <div className="delete-modal__top-container">
+            <ReactSVG
+              src={CloseIcon}
+              onClick={closeModal}
+              className="delete-modal__close close"
+            />
+          </div>
+          <h1 className="delete-modal__title">{`Delete ${warehouseName} warehouse?`}</h1>
+          <p className="delete-modal__text large">{`Please confirm that you'd like to delete the ${warehouseName} from the list of warehouses. You won't be able to undo this action?`}</p>
+          <div className="delete-modal__container">
+            <button className="delete-modal__cancel-btn" onClick={closeModal}>
+              Cancel
+            </button>
 
-          <button className="delete-modal__delete-btn" onClick={() => handleDelete()}>
-            Delete
-          </button>
+            <button
+              className="delete-modal__delete-btn"
+              onClick={() => handleDelete()}
+            >
+              Delete
+            </button>
+          </div>
         </div>
       </ReactModal>
-    </div>
+    </>
   );
 }
 
