@@ -40,7 +40,7 @@ function AddNewWarehouse() {
       //success handler
       () => warehousesPageNavigator('/warehouses'),
       // error handler
-      (error) => console.log("There is an error adding the new warehouse.", error)
+      () => console.log("There is an error adding the new warehouse.")
     );
   };
 

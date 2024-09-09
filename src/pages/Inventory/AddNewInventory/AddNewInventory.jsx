@@ -1,6 +1,5 @@
 import React from 'react'
-import InventoryCard from '../../../components/InventoryCard/InventoryCard.jsx'
-import './AddNewInventory.scss'
+import InventoryCard from '../../../components/Inventory/InventoryCard/InventoryCard.jsx'
 
 function AddNewInventory() {
   document.title = "Instock - Add Inventory"

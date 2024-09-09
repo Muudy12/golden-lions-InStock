@@ -29,6 +29,7 @@
       border: 0.1rem solid $secondary-cloud-color;
       color: $secondary-slate-color;
       background-color: $primary-white-color;
+      cursor: pointer;
 
       &:hover {
         border-color: $primary-element-color;
