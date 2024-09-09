@@ -1,18 +1,10 @@
 @import "../../styles/global.scss";
 
 body {
-  background: linear-gradient(
-    rgb(35, 41, 64) 12.5rem,
-    rgba(255, 255, 255, 1) 0rem
-  );
-
+  @include liner-gradient;
   min-height: 100vh;
-
   @include tablet {
-    background: linear-gradient(
-      rgb(35, 41, 64) 11.625rem,
-      rgba(255, 255, 255, 1) 0rem
-    );
+    @include liner-gradient(11.625rem);
   }
 }
 

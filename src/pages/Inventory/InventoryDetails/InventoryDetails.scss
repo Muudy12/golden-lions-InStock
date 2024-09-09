@@ -1,6 +1,10 @@
 @import "../../../styles/global.scss";
 @import "../../../styles/partials/mixins.scss";
 
+h3 {
+    color: $secondary-slate-color
+}
+
 .inventory-details {
     @include details-background;
 }
@@ -42,7 +46,6 @@
 .inventory-information {
     @include flex-column;
     padding: 2rem;
-    @include border-bottom;
     & * {
         margin: 0;
     }
