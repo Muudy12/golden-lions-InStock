@@ -680,11 +680,11 @@
   }
 }
 
-@mixin element-base {
+@mixin element-base-warehouse {
   display: flex;
   flex-direction: column;
   padding: 0rem 1.5rem;
-  border-bottom: 0.1rem solid $secondary-cloud-color;
+  
 
   @include tablet {
     flex: 1;
@@ -697,7 +697,7 @@
   }
 }
 
-@mixin title-base {
+@mixin title-base-warehouse {
   margin: 0;
   padding-bottom: 1.5rem;
 

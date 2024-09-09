@@ -11,19 +11,22 @@
     }
 
     &-warehouse {
-        @include element-base;
-        border-right: 0.1rem solid $secondary-cloud-color;
-
+        @include element-base-warehouse;
+        border-bottom: 0.1rem solid $secondary-cloud-color;border-bottom: 0.1rem solid $secondary-cloud-color;
+        @include tablet {
+            border-right: 0.1rem solid $secondary-cloud-color;
+        }
         &-title {
-            @include title-base;
+            @include title-base-warehouse;
         }
     }
-
+    
     &-contact {
-        @include element-base;
+        @include element-base-warehouse;
+        padding: 1.5rem  1.5rem  0rem  1.5rem;
 
         &-title {
-            @include title-base;
+            @include title-base-warehouse;
         }
     }
 }
