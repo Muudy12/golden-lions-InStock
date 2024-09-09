@@ -1,4 +1,4 @@
-import "./FormInput.scss"
+import "./WarehouseFormInput.scss"
 import { ReactSVG } from "react-svg"
 import ErrorIcon from "../../../assets/icons/error-24px.svg"
 

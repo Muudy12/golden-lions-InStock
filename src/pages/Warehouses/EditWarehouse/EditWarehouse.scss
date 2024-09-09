@@ -1,106 +1,23 @@
 @import "../../../styles/global.scss";
 
 .form {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  background-color: $primary-white-color;
-  width: 100%;
-  border-radius: 0.2rem;
-  box-shadow: 0 0.2rem 0.5rem 0 rgba($primary-text-color, 0.1);
-  margin: 1.5rem 0 2rem;
-  min-width: 18rem;
-
-  @include tablet {
-    margin-top: 1.7rem;
-    margin-bottom: 15rem;
-  }
-
-  @include desktop {
-    margin-bottom: 3rem;
-  }
+  @include displayListContainer-alt;
 
   &__header {
-    width: 100%;
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-start;
-    align-items: center;
-    gap: 0.4rem;
-    padding: 2rem 1rem 1.5rem;
-    border-bottom: 0.1rem solid $secondary-cloud-color;
-    box-sizing: border-box;
-
-    @include tablet {
-      padding: 2rem 1.5rem 1.3rem !important;
-    }
-
-    &-icon {
-      padding-top: 0.5rem;
-    }
-
-    &-title {
-      margin: 0rem;
-
-      @include tablet {
-        font-size: 2rem;
-        line-height: 2.5rem;
-      }
-    }
-
-    & a {
-      display: flex;
-      height: 1.5rem;
-      width: 1.5rem;
-      align-items: center;
-      justify-content: center;
-    }
+    @include displayListHeaders-alt;
   }
 
   &__wrapper {
-    width: 100%;
-    padding-top: 1.5rem;
-
-    @include tablet {
-      flex-direction: row;
-    }
+    @include form-wrapper;
   }
 
   &__element-buttons {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    padding: 1rem 1.5rem;
-    gap: 1rem;
-    background-color: $background-light-grey;
-
-    @include tablet {
-      justify-content: flex-end;
-      padding-right: 2rem;
-      padding-top: 1rem;
-      margin-top: 1.5rem;
-    }
-
-    @include desktop {
-      padding-right: 3rem;
-    }
+    @include buttons-wrapper;
 
     &-save {
-      all: unset;
-      border-radius: 1.25rem;
-      height: 2.25rem;
+      @include button-base-alt;
       background-color: $primary-element-color;
       color: $primary-white-color;
-      flex: 1;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-
-      @include tablet {
-        flex: 0;
-        height: 2.375rem;
-        padding: 0rem 1rem;
-      }
 
       &:hover {
         background-color: $background-graphite-color;
@@ -108,21 +25,10 @@
     }
 
     &-cancel {
-      all: unset;
-      border-radius: 1.25rem;
+      @include button-base-alt;
       border: 0.1rem solid $secondary-cloud-color;
-      flex: 1;
-      display: flex;
-      justify-content: center;
-      align-items: center;
       color: $secondary-slate-color;
       background-color: $primary-white-color;
-
-      @include tablet {
-        flex: 0;
-        height: 2.375rem;
-        padding: 0rem 1rem;
-      }
 
       &:hover {
         border-color: $primary-element-color;
