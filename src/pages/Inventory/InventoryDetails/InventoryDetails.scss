@@ -2,7 +2,11 @@
 @import "../../../styles/partials/mixins.scss";
 
 h3 {
-    color: $secondary-slate-color
+    color: $secondary-slate-color;
+}
+
+span, p {
+    color: $primary-text-color;
 }
 
 .inventory-details {
