@@ -1,52 +1,32 @@
-
 @import "../../../styles/global.scss";
-.form__element{
+
+.form__element {
     box-sizing: border-box;
     width: 100%;
     display: flex;
     flex-direction: column;
-    @include tablet{
+
+    @include tablet {
         flex-direction: row;
     }
-    &-warehouse{
-        display: flex;
-        flex-direction: column;
-        padding: 0rem  1.5rem;
-        border-bottom: 0.1rem solid $secondary-cloud-color;
-        @include tablet{
-            border-bottom: none;
+
+    &-warehouse {
+        @include element-base-warehouse;
+        border-bottom: 0.1rem solid $secondary-cloud-color;border-bottom: 0.1rem solid $secondary-cloud-color;
+        @include tablet {
             border-right: 0.1rem solid $secondary-cloud-color;
-            flex: 1;
-            padding: 0rem  2rem;
         }
-        @include desktop{
-            padding: .5rem  3rem;
-        }
-        &-title{
-            margin: 0rem;
-            padding-bottom: 1.5rem;
-            @include tablet{
-                padding-bottom: 2rem;
-            }
+        &-title {
+            @include title-base-warehouse;
         }
     }
-    &-contact{
-        display: flex;
-        flex-direction: column;
+    
+    &-contact {
+        @include element-base-warehouse;
         padding: 1.5rem  1.5rem  0rem  1.5rem;
-        @include tablet{
-            flex: 1;
-            padding: 0rem  2rem;
-        }
-        @include desktop{
-            padding: .5rem  3rem;
-        }
-        &-title{
-            margin: 0rem;
-            padding-bottom: 1.5rem;
-            @include tablet{
-                padding-bottom: 2rem;
-            }
+
+        &-title {
+            @include title-base-warehouse;
         }
     }
 }
