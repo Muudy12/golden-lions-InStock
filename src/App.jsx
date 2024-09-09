@@ -11,6 +11,7 @@ import InventoryDetails from "./pages/Inventory/InventoryDetails/InventoryDetail
 import EditInventory from "./pages/Inventory/EditInventory/EditInventory";
 import AddNewInventory from "./pages/Inventory/AddNewInventory/AddNewInventory";
 import "./App.scss";
+import NotFound from "./pages/NotFound/NotFound";
 
 function App() {
   return (
@@ -31,6 +32,7 @@ function App() {
           <Route path='/inventory/:inventoryId' element={<InventoryDetails />} />
           <Route path='/inventory/:inventoryId/edit' element={<EditInventory />} />
           <Route path='/inventory/add' element={<AddNewInventory/>} />
+          <Route path='*' element={<NotFound />} />
         </Routes>
       </div>
       <div className="full-page__footer">
