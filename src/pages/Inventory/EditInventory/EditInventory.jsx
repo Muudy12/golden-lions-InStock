@@ -14,6 +14,7 @@ function EditInventory() {
   const [inStock, setInStock] = useState(false);
   const formRef = useRef();
   const [allCategories, setAllCategories] = useState([]);
+  const [uniqueCategories, setUniqueCategories] = useState([]);
   const [allWarehouses, setAllWarehouses] = useState([]);
 
   const [formData, setFormData] = useState({
@@ -67,8 +68,10 @@ function EditInventory() {
   const getCurrentItem = async () => {
     try {
       const data = await api.getInventoryItemDetails(inventoryId);
+      const categories = await api.getInventoryCategories();
 
-      setAllCategories(await api.getInventoryCategories());
+      setAllCategories(categories);
+      setUniqueCategories(categories.filter(category => category !== data.category));
 
       setFormData({
         item_name: data.item_name,
@@ -80,7 +83,7 @@ function EditInventory() {
       })
       setInStock(data.status === 'In Stock')
     } catch (err) {
-      console.error("Error getting current item", err)
+      console.error("Error getting current item")
     }
   }
   useEffect(() => {
@@ -88,11 +91,6 @@ function EditInventory() {
     getCurrentItem();
     getWarehouses();
   }, [inventoryId])
-
-
-  const getUniqueCategories = (currentCategory) => (allCategories.filter(category => category !== currentCategory))
-
-  const getUniqueWarehouses = (currentWarehouse) => (allWarehouses.filter(warehouse => warehouse.id !== currentWarehouse))
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
@@ -182,7 +180,7 @@ function EditInventory() {
                 name="category"
                 onChange={handleInputChange} >
                 <option defaultValue={formData.category} >{formData.category}</option>
-                {getUniqueCategories(formData.category).map((category, index) => (
+                {uniqueCategories.map((category, index) => (
                   <option key={index} value={category}>{category}</option>
                 ))}
               </select>

@@ -90,6 +90,7 @@
       }
     }
     &-dropdown {
+      @include formStyling;
       border-radius: 1.25rem;
       border: 0.1rem solid $secondary-cloud-color;
       height: 2.75rem;
